@@ -2,7 +2,7 @@
 body{
  margin: 0;
  padding: 0;
- background: radial-gradient(#a429bc,#9225a7,#7f2092);
+ background: radial-gradient(#0a7273,#033043);
  height: 100vh;
  overflow: hidden;
  font-family: 'Noto Sans TC', sans-serif;
@@ -17,7 +17,7 @@ body{
  font-weight: bold;
  color: white;
  padding: 25px 0 30px 25px;
- background: #5c1769;
+ background: #033043;
  border-bottom: 1px solid #370e3f;
  border-radius: 5px 5px 0 0;
 }
@@ -27,7 +27,7 @@ body{
  width: 100%;
  padding: 50px 10px 0 30px;
  box-sizing: border-box;
- border: 1px solid #6d1c7d;
+ border: 1px solid #033043;
  border-radius: 0 0 5px 5px;
 }
 form input{
@@ -61,15 +61,15 @@ form input[type="submit"]{
  line-height: 45px;
  border-radius: 45px;
  border-radius: 5px;
- background: #5c1769;
+ background: #033043;
 }
 form input[type="submit"]:hover{
- background: #491254;
+ background: #033043;
  transition: .5s;
 }
 form a{
  text-decoration: none;
  font-size: 18px;
- color: #7f2092;
+ color: #033043;
  padding: 0 0 0 20px;
 }
