@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #fff;
+    background-color: #2e4e43; /* Ganti dengan warna QA7273 yang valid */
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
@@ -36,8 +36,19 @@ nav ul {
 
 nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: #fff; /* Warna teks putih */
     font-weight: 500;
+    font-size: 1.1rem; /* Ukuran huruf lebih besar */
+    padding-bottom: 5px; /* Ruang untuk garis bawah */
+    padding-left: 30px; /* Pindah sedikit ke kanan */
+    border-bottom: 2px solid transparent; /* Garis bawah transparan */
+    transition: border-bottom 0.3s ease, padding-left 0.3s ease; /* Transisi untuk garis dan pergeseran */
+}
+
+nav ul li a:hover {
+    color: #E9E9E9; /* Warna abu-abu saat hover */
+    border-bottom: 2px solid #E9E9E9; /* Menampilkan garis bawah abu-abu saat hover */
+    padding-left: 15px; /* Menambahkan pergeseran ke kanan saat hover */
 }
 
 .auth-buttons {
@@ -54,15 +65,15 @@ nav ul li a {
 }
 
 .btn-signup {
-    background-color: #6c63ff;
+    background-color: #fda521;
     color: #fff;
     border-radius: 5px;
 }
 
 .btn-login {
     background-color: #fff;
-    color: #6c63ff;
-    border: 1px solid #6c63ff;
+    color:  #fda521;
+    border: 1px solid #fda521;
     border-radius: 5px;
 }
 
@@ -85,7 +96,6 @@ nav ul li a {
     height: auto;
 }
 
-
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -104,7 +114,7 @@ nav ul li a {
 
 .service h2 {
     font-size: 1.2rem;
-    color: #6c63ff;
+    color: #e9e3d5;
     margin-bottom: 10px;
 }
 
