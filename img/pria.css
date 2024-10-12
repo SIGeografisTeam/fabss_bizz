@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #2e4e43; /* Ganti dengan warna QA7273 yang valid */
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo img {
+    max-height: 70px;
+    margin-right: 30px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Warna teks putih */
+    font-weight: 500;
+    font-size: 1.1rem; /* Ukuran huruf lebih besar */
+    padding-bottom: 5px; /* Ruang untuk garis bawah */
+    padding-left: 30px; /* Pindah sedikit ke kanan */
+    border-bottom: 2px solid transparent; /* Garis bawah transparan */
+    transition: border-bottom 0.3s ease, padding-left 0.3s ease; /* Transisi untuk garis dan pergeseran */
+}
+
+nav ul li a:hover {
+    color: #E9E9E9; /* Warna abu-abu saat hover */
+    border-bottom: 2px solid #E9E9E9; /* Menampilkan garis bawah abu-abu saat hover */
+    padding-left: 15px; /* Menambahkan pergeseran ke kanan saat hover */
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    margin-left: auto; /* This pushes the buttons to the right */
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-signup {
+    background-color: #fda521;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.btn-login {
+    background-color: #fff;
+    color:  #fda521;
+    border: 1px solid #fda521;
+    border-radius: 5px;
+}
