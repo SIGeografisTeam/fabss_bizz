@@ -1,39 +1,25 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <title>Login Form</title>
-      <link rel="stylesheet" href="login.style.css">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-   </head>
-   <body>
-      <div class="center">
-         <div class="header">
-            Masuk
-         </div>
-         <form>
-            <input type="text" placeholder="Email">
-            <i class="far fa-envelope"></i>
-            <input id="pswrd" type="password" placeholder="Kata Sandi">
-            <i class="fas fa-lock" onclick="show()"></i>
-            <input type="submit" value="Sign in">
-            <a href="#">Lupa Kata Sandi?</a>
-         </form>
-      </div>
-      <script>
-         function show(){
-          var pswrd = document.getElementById('pswrd');
-          var icon = document.querySelector('.fas');
-          if (pswrd.type === "password") {
-           pswrd.type = "text";
-           pswrd.style.marginTop = "20px";
-           icon.style.color = "#7f2092";
-          }else{
-           pswrd.type = "password";
-           icon.style.color = "grey";
-          }
-         }
-      </script>
-   </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.style.css">
+</head>
+<body>
+    <div class="center">
+        <div class="header">Login</div>
+        <form class="form">
+            <p class="message">Login now!</p>
+            <label>
+                <input class="input" type="email" placeholder="Email" required="">
+            </label>
+            <label>
+                <input class="input" type="password" placeholder="Password" required="">
+            </label>
+            <button class="submit" type="submit">Submit</button>
+            <p class="signin">Don't have an account? <a href="#">Register</a></p>
+        </form>
+    </div>
+</body>
 </html>
