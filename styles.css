@@ -233,7 +233,7 @@ footer {
     display: flex; /* Flexbox for card body */
     flex-direction: column; /* Stack card content vertically */
     justify-content: space-between; /* Space out card text and last updated info */
-    height: 200px; /* Set a fixed height for uniformity */
+    height: 100px; /* Set a fixed height for uniformity */
 }
 
 .card img {
@@ -245,6 +245,28 @@ footer {
     text-align: center; /* Center the title */
     margin-bottom: 20px; /* Add spacing below the title */
 }
+.btn-buy {
+    margin-top: auto; /* Push the button to the bottom of the card */
+    background-color: #fda521; /* Background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    padding: 10px 15px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.btn-buy:hover {
+    background-color: #e89f1d; /* Darker shade on hover */
+}
+.nav-item.dropdown .nav-link {
+    color: #fff; /* Change color to white */
+}
+
+.nav-item.dropdown .nav-link:hover {
+    color: #E9E9E9; /* Optional: change color on hover for better visibility */
+}
+
 
 
 
