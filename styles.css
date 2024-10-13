@@ -7,8 +7,8 @@ body {
 }
 
 header {
-    background-color: #2e4e43; /* Ganti dengan warna QA7273 yang valid */
-    padding: 20px 50px;
+    background-color: #0a7273; /* Ganti dengan warna QA7273 yang valid */
+    padding: 10px 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,7 +16,7 @@ header {
 }
 
 .logo img {
-    max-height: 60px;
+    max-height: 80px; /* Adjusted logo height for a more compact look */
     margin-right: 30px;
 }
 
@@ -24,6 +24,8 @@ nav {
     display: flex;
     align-items: center;
     flex-grow: 1;
+    padding: 10px 20px; /* Optional: Add some padding for spacing */
+    
 }
 
 nav ul {
@@ -40,7 +42,7 @@ nav ul li a {
     font-weight: 500;
     font-size: 1.1rem; /* Ukuran huruf lebih besar */
     padding-bottom: 5px; /* Ruang untuk garis bawah */
-    padding-left: 30px; /* Pindah sedikit ke kanan */
+    padding-left: 10px; /* Reduced padding for a tighter look */
     border-bottom: 2px solid transparent; /* Garis bawah transparan */
     transition: border-bottom 0.3s ease, padding-left 0.3s ease; /* Transisi untuk garis dan pergeseran */
 }
@@ -48,7 +50,7 @@ nav ul li a {
 nav ul li a:hover {
     color: #E9E9E9; /* Warna abu-abu saat hover */
     border-bottom: 2px solid #E9E9E9; /* Menampilkan garis bawah abu-abu saat hover */
-    padding-left: 15px; /* Menambahkan pergeseran ke kanan saat hover */
+    padding-left: 10px; /* Maintain padding on hover for a consistent look */
 }
 
 .auth-buttons {
@@ -58,33 +60,57 @@ nav ul li a:hover {
 }
 
 .btn {
-    padding: 10px 20px;
+    padding: 8px 16px; /* Adjusted padding for buttons for a smaller size */
     border: none;
     cursor: pointer;
     font-weight: 600;
+    border-radius: 5px; /* Added border radius for buttons */
 }
 
 .btn-signup {
     background-color: #fda521;
     color: #fff;
-    border-radius: 5px;
 }
 
 .btn-login {
     background-color: #fff;
     color:  #fda521;
     border: 1px solid #fda521;
-    border-radius: 5px;
 }
 
+/* Full-width and full-height hero section */
 .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px;
-    background-color: #f7f7f7;
-    text-align: center;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden; /* Prevent overflow of content */
 }
+
+/* Full-width and full-height carousel images */
+.hero .carousel-item img {
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    object-fit: cover; /* Maintain aspect ratio, cover the container */
+}
+
+/* Center the hero text over the carousel */
+.hero .hero-text {
+    position: absolute;
+    z-index: 1;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Optional: background for better readability */
+    padding: 20px;
+    width: 100%;
+}
+
+
+
 
 .hero-text h1 {
     font-size: 2rem;
@@ -101,12 +127,12 @@ nav ul li a:hover {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 50px;
-    background-color: #fff;
+    background-color: #ffffff;
     text-align: center;
 }
 
 .service {
-    background-color: #f7f7f7;
+    background-color: #e9e3d5;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
@@ -114,7 +140,7 @@ nav ul li a:hover {
 
 .service h2 {
     font-size: 1.2rem;
-    color: #e9e3d5;
+    color: #000000;
     margin-bottom: 10px;
 }
 
@@ -182,3 +208,44 @@ footer {
     text-align: center;
     padding: 20px;
 }
+.search-bar {
+    margin-left: 40px; /* Keeps the 20px space between "Mega Sale" and the search bar */
+    flex-grow: 1; /* Allows the search bar to grow and fill available space */
+}
+
+.search-bar input {
+    padding: 5px 10px;
+    font-size: 16px;
+    width: 100%; /* Makes the input take up 100% of the parent container */
+    max-width: 50%; /* Restricts the input to 50% of the overall navbar width */
+    min-width: 200px; /* Prevents it from getting too small on smaller screens */
+    box-sizing: border-box; /* Ensures padding and borders are included in width calculations */
+}
+
+.card {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    height: 100%; /* Take full height of parent */
+}
+
+.card-body {
+    flex-grow: 1; /* Allow body to grow */
+    display: flex; /* Flexbox for card body */
+    flex-direction: column; /* Stack card content vertically */
+    justify-content: space-between; /* Space out card text and last updated info */
+    height: 200px; /* Set a fixed height for uniformity */
+}
+
+.card img {
+    max-height: 200px; /* Control image height */
+    object-fit: cover; /* Ensure images fill the space properly */
+}
+
+.mega-sale-title {
+    text-align: center; /* Center the title */
+    margin-bottom: 20px; /* Add spacing below the title */
+}
+
+
+
+
