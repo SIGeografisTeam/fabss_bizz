@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fashion Anak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <script>
+        // Fungsi untuk menampilkan kategori fashion anak laki-laki atau anak perempuan
+        function filterCategoryAnak(gender) {
+            const itemsLaki = document.querySelectorAll('.product-item.laki');
+            const itemsPerempuan = document.querySelectorAll('.product-item.perempuan');
+
+            if (gender === 'laki') {
+                itemsLaki.forEach(item => item.style.display = 'block');
+                itemsPerempuan.forEach(item => item.style.display = 'none');
+            } else if (gender === 'perempuan') {
+                itemsPerempuan.forEach(item => item.style.display = 'block');
+                itemsLaki.forEach(item => item.style.display = 'none');
+            }
+        }
+
+        // Fungsi pencarian produk
+        function searchProduct() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const allProducts = document.querySelectorAll('.product-item');
+            
+            allProducts.forEach(item => {
+                const productName = item.querySelector('h2').textContent.toLowerCase();
+                if (productName.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="bg-blue-600 p-4 flex items-center justify-between">
+        <h1 class="text-white text-xl font-bold">Fashion Anak</h1>
+        <div class="flex items-center">
+            <input id="search-input" class="p-2 rounded border border-gray-300" type="text" placeholder="Search" />
+            <button class="bg-red-500 text-white p-2 rounded ml-2" onclick="searchProduct()">Search</button>
+            <a href="index.html" class="ml-4">
+                <button class="bg-green-500 text-white p-2 rounded">Beranda</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- Kategori Anak Laki-Laki dan Anak Perempuan -->
+    <div class="p-4 flex space-x-4">
+        <button class="bg-blue-500 text-white p-2 rounded" onclick="filterCategoryAnak('laki')">Anak Laki-Laki</button>
+        <button class="bg-pink-500 text-white p-2 rounded" onclick="filterCategoryAnak('perempuan')">Anak Perempuan</button>
+    </div>
+
+    <!-- Produk -->
+    <div class="p-4 grid grid-cols-3 gap-4">
+
+        <!-- Produk Anak Laki-Laki -->
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/free-photo/medium-shot-cute-modern-boy-posing_23-2148423275.jpg?t=st=1728792239~exp=1728795839~hmac=17dff8f93cc0d401142016c24de6c849656a529800610878d41034ada6f71f55&w=360" width="200px" />
+            <h2 class="font-bold">Kemeja</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 120.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/premium-photo/cute-indian-little-boy-playing-giving-multiple-expression_96696-319.jpg?w=360" width="200px" />
+            <h2 class="font-bold">Jaket</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 180.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/free-photo/pants_1203-8308.jpg?t=st=1728793595~exp=1728797195~hmac=3e7cc9d406049d37ba50913e862517fe831ee032ac9f25ccb0656221359323ff&w=360" width="200px" />
+            <h2 class="font-bold">Celana</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 90.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/premium-photo/contemplative-young-african-american-boy-white-sweater-holding-his-head-gazing-intently_163305-349580.jpg?w=360" width="200px" />
+            <h2 class="font-bold">Sweater</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 140.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/free-photo/child-wearing-jeans-white-sneakers_53876-98496.jpg?t=st=1728794496~exp=1728798096~hmac=d0aebc18c088d1ef93da1d3eeffb4acb22884f2b33be15ef924cdaeb05561785&w=360" width="200px" />
+            <h2 class="font-bold">Sepatu</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 160.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item laki max-w-xs text-center mx-auto">
+            <img src="https://img.freepik.com/free-photo/front-view-modern-boy-with-sunglasses-posing_23-2148423108.jpg?t=st=1728793891~exp=1728797491~hmac=4e1bd263fade0530f54d70b61a3e48d1299107f8dda9aeadd82f6c7cff46a972&w=360" width="200px" />
+            <h2 class="font-bold">Hoodie</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 200.000</p>
+        </div>
+
+        <!-- Produk Anak Perempuan -->
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/free-photo/interior-kids-room-decoration-with-clothes_23-2149096039.jpg?t=st=1728794029~exp=1728797629~hmac=a088d85bd7ed8ee9d52eed0ec8394dce416eb5667e0a573dedbdf84e5948ce3b&w=360" width="200px" />
+            <h2 class="font-bold">Baju</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 130.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/free-photo/portrait-little-asian-girl-smiling-cheerful-cute-looking-camera-isolated-pink-background_74952-4161.jpg?t=st=1728794102~exp=1728797702~hmac=da42da10a1041f9fce6d97b149122ffb643df0b9a2b26a492a2a9ea748f3a58d&w=360" width="200px" />
+            <h2 class="font-bold">Celana</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 100.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/free-photo/woman-wearing-blue-skirt_53876-97853.jpg?t=st=1728794153~exp=1728797753~hmac=3555713ba38f9a9e985346b5b70aeaeea44a776e1d3e21d75dc84328d6fb4969&w=740" width="200px" />
+            <h2 class="font-bold">Sepatu</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 90.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/premium-photo/funny-surprised-little-child-girl-pink-dress-hair-curlers-holding-lollipop-old-retro-suitcase-gray-background_114963-11882.jpg?w=360" width="200px" />
+            <h2 class="font-bold">Dress</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 140.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/free-photo/child-wearing-jeans-white-sneakers_53876-98496.jpg?t=st=1728794496~exp=1728798096~hmac=d0aebc18c088d1ef93da1d3eeffb4acb22884f2b33be15ef924cdaeb05561785&w=360" width="200px" />
+            <h2 class="font-bold">Overall</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 150.000</p>
+        </div>
+
+        <div class="border rounded p-4 product-item perempuan max-w-xs text-center mx-auto" style="display: none;">
+            <img src="https://img.freepik.com/free-photo/portrait-girl-streching_23-2149334588.jpg?t=st=1728794242~exp=1728797842~hmac=96813a2f65766508984c9e06b5539647091313300e5fc5c6a88928057303688d&w=360" width="200px" />
+            <h2 class="font-bold">Jaket</h2>
+            <p class="bg-red-500 text-white p-1 rounded mt-1 max-w-xs mx-auto">Rp 180.000</p>
+        </div>
+
+    </div>
+</body>
+
+</html>
