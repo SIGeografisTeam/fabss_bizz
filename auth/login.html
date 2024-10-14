@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="login.style.css">
+    <title>Register & Login</title>
+    <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
-    <div class="center">
-        <div class="header">Login</div>
-        <form class="form">
-            <p class="message">Login now!</p>
-            <label>
-                <input class="input" type="email" placeholder="Email" required="">
-            </label>
-            <label>
-                <input class="input" type="password" placeholder="Password" required="">
-            </label>
-            <button class="submit" type="submit">Submit</button>
-            <p class="signin">Don't have an account? <a href="#">Register</a></p>
+    <!-- Form Login -->
+    <div class="form-container">
+        <form class="login-form" action="#" method="POST">
+            <h2>Login</h2>
+            <div class="input-group">
+                <input type="email" id="login-email" required>
+                <label for="login-email">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="login-password" required>
+                <label for="login-password">Password</label>
+            </div>
+            <button type="submit" class="submit-btn">Masuk</button>
         </form>
     </div>
+
 </body>
 </html>
