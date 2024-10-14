@@ -98,5 +98,20 @@ footer {
 }
 
 section.bg-light h2 {
-    color: #033043; /* Ganti dengan warna yang kamu inginkan */
+    color: #033043; 
+}
+
+.text-highlight {
+    color: #84b8c6;
+    text-align: justify; 
+}
+
+h1 {
+    color: #84b8c6; 
+    text-align: center; 
+}
+
+.about-title {
+    color: #033043; 
+    text-align: center;
 }
