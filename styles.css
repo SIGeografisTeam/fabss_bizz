@@ -34,7 +34,7 @@ header {
     width: 500px; /* Sudah sesuai dengan instruksi sebelumnya */
 }
 .navbar .search-form .btn {
-color: #033043;
+    color: #033043;
 }
 .navbar .search-form .btn:hover {
     background-color: #E9E3D5; /* Warna hover */
@@ -114,4 +114,21 @@ h1 {
 .about-title {
     color: #033043; 
     text-align: center;
+}
+
+.logo {
+    margin-top: 20px; 
+    margin-left: 20px; 
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.col-md-6 img {
+    max-width: 100%; /* Agar gambar tidak melampaui lebar kolom */
+    height: auto; /* Menjaga aspek rasio gambar */
+    min-height: 250px; /* Atur tinggi minimum sesuai kebutuhan */
+    object-fit: cover; /* Mengisi kolom tanpa merusak aspek rasio */
 }
