@@ -1,11 +1,12 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, "Signika", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     color: #E9E3D5;
 }
+  
 
 a {
     text-decoration: none;
@@ -26,7 +27,40 @@ a {
 
 /* Navbar */
 header {
-    background-color: #0A7273;
+    background-color: #aacdd0;
+}
+
+
+
+.navbar-brand {
+    font-family: "Signika", Arial, sans-serif;
+    color: #033043;
+  }
+
+.navbar-nav {
+    color: white;
+}
+  .dropdown-toggle {
+    font-size: 20px; /* Set font size to 20px */
+   
+}
+
+.navbar .dropdown-toggle#kategoriDropdown + .dropdown-menu {
+    background-color: #033043; /* Set background color to #033043 */
+    color: #E9E3D5; /* Set text color for dropdown items */
+    border: none;
+  }
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px; /* Perkecil ukuran dropdown */
+    padding: 10px 15px; /* Atur jarak padding */
+    margin-right: 8px;
+    color: white;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #FDA521;
+    color: #033043;
 }
 
 .navbar .search-form {
