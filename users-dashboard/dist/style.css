@@ -89,6 +89,7 @@ body {
   overflow: auto;
   background: #fff;
   border-right: 1px solid #ede8f0;
+  width: 250px; 
 }
 .menu-wrap .user {
   height: 80px;
