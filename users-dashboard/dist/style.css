@@ -24,7 +24,8 @@ body {
 }
 .search-wrap {
   grid-area: search;
-  background: #fff;
+  background: #033043;
+  color: #ffff;
   border-bottom: 1px solid #ede8f0;
   display: flex;
   align-items: center;
@@ -87,9 +88,8 @@ body {
   grid-area: menu;
   padding-bottom: 3em;
   overflow: auto;
-  background: #fff;
+  background: #033043;
   border-right: 1px solid #ede8f0;
-  width: 250px; 
 }
 .menu-wrap .user {
   height: 80px;
@@ -115,7 +115,7 @@ body {
 .menu-wrap .user figcaption {
   margin: 0;
   padding: 0 0 0 1em;
-  color: #1b253d;
+  color: #ffff;
   font-weight: 700;
   font-size: 0.875em;
   line-height: 100%;
@@ -149,7 +149,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: #99a0b0;
+  color: #ffff;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.875em;
@@ -179,6 +179,7 @@ body {
   fill: #4b84fe;
 }
 .content-wrap {
+  background-color: #ffff;
   grid-area: content;
   padding: 3em;
   overflow: auto;
