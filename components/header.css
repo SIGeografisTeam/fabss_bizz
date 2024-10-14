@@ -39,34 +39,70 @@ color: #033043;
 .navbar .search-form .btn:hover {
     background-color: #E9E3D5; /* Warna hover */
 }
-/* Button Daftar */
-.daftar {
-    background-color: #033043; /* Warna dasar */
-    color: #E9E3D5; /* Warna teks */
-    padding: 8px 20px;
-    border-radius: 5px;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
+
+/* General Icon Styling */
+.btn-auth a {
+    color: #E9E3D5; /* Warna teks utama */
+    text-decoration: none;
+    font-size: 20px;
 }
 
-.daftar:hover {
-    background-color: #E9E3D5; /* Warna hover */
-    color: #033043; /* Warna teks saat hover */
+.btn-auth a:hover {
+    color: #FDA521; /* Warna saat hover */
 }
 
-/* Button Masuk */
-.masuk {
-    background-color: #FDA521; /* Warna dasar */
-    color: #033043; /* Warna teks */
-    padding: 8px 20px;
-    border-radius: 5px;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* Cart Icon */
+.cart-icon {
+    position: relative;
 }
 
-.masuk:hover {
-    background-color: #E9E3D5; /* Warna hover */
-    color: #FDA521; /* Warna teks saat hover */
+.cart-icon i {
+    color: #033043;
+    transition: color 0.3s ease;
+}
+
+.cart-icon:hover i {
+    color: #FDA521;
+}
+
+/* Orders Icon */
+.orders-icon i {
+    color: #033043;
+    transition: color 0.3s ease;
+}
+
+.orders-icon:hover i {
+    color: #FDA521;
+}
+
+/* Profile Icon */
+.profile-icon {
+    color: #033043;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.profile-icon:hover {
+    color: #FDA521;
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    background-color: #033043;
+    border: none;
+}
+
+.dropdown-menu .dropdown-item {
+    color: #E9E3D5;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #FDA521;
+    color: #033043;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0.5rem;
+    color: #E9E3D5;
 }

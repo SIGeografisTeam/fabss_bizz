@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="category.html">Kategori</a>
+                            <a class="nav-link" href="/category.html">Kategori</a>
                         </li>
                     </ul>
                     <form class="d-flex mx-auto my-2 search-form">
@@ -50,10 +50,29 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
-                    <div class="btn-auth"></div>
-                    <a href="register.html" class="daftar  mx-2">Daftar</a>
-                    <a href="login.html" class="masuk ">Masuk</a>
-                </div>
+                    <div class="btn-auth d-flex align-items-center">
+                        <!-- Cart Icon -->
+                        <a href="/cart.html" class="cart-icon mx-2">
+                            <i class="fa-solid fa-shopping-cart"></i>
+                        </a>
+                    
+                        <!-- History/Pesanan Icon -->
+                        <a href="/orders" class="orders-icon mx-2">
+                            <i class="fa-solid fa-box"></i>
+                        </a>
+                    
+                        <!-- Profile with Dropdown -->
+                        <div class="dropdown">
+                            <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-circle-user"></i>
+                                <span class="ms-2">Nama Pengguna</span> <!-- Ganti dengan nama dinamis -->
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end"  aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="/profile">Ubah Profil</a></li>
+                                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>                    
             </div>
         </nav>
     </header>
