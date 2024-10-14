@@ -1,0 +1,72 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #E9E3D5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #033043;
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        display: none;
+    }
+}
+
+/* Navbar */
+header {
+    background-color: #0A7273;
+}
+
+.navbar .search-form {
+    margin-left: 0px; /* Jarak lebih dekat dengan Kategori */
+    width: 500px; /* Sudah sesuai dengan instruksi sebelumnya */
+}
+.navbar .search-form .btn {
+color: #033043;
+}
+.navbar .search-form .btn:hover {
+    background-color: #E9E3D5; /* Warna hover */
+}
+/* Button Daftar */
+.daftar {
+    background-color: #033043; /* Warna dasar */
+    color: #E9E3D5; /* Warna teks */
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.daftar:hover {
+    background-color: #E9E3D5; /* Warna hover */
+    color: #033043; /* Warna teks saat hover */
+}
+
+/* Button Masuk */
+.masuk {
+    background-color: #FDA521; /* Warna dasar */
+    color: #033043; /* Warna teks */
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.masuk:hover {
+    background-color: #E9E3D5; /* Warna hover */
+    color: #FDA521; /* Warna teks saat hover */
+}
