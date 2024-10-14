@@ -96,3 +96,7 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+section.bg-light h2 {
+    color: #033043; /* Ganti dengan warna yang kamu inginkan */
+}
