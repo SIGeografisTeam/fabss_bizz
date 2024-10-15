@@ -1,3 +1,8 @@
+/*navbar*/
+.custom-bg {
+    background-color: #aacdd0 !important;
+}
+
 /* Style for product cards */
 .product-card img {
     height: 250px;
