@@ -34,7 +34,7 @@
 	<header class="menu-wrap">
 		<figure class="user">
 			<div class="user-avatar">
-				<img src="https://images.unsplash.com/photo-1440589473619-3cde28941638?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=42ebdb92a644e864e032a2ebccaa25b6&auto=format&fit=crop&w=100&q=80" alt="Amanda King">
+				<img src="/assets/circle.png">
 			</div>
 			<figcaption>
 				Plastiqu.co
@@ -95,6 +95,7 @@
                     <th>Nama Produk</th>
                     <th>Varian</th>
                     <th>Stok</th>
+                    <th>Harga</th>
                     <th>Deskripsi</th>
                     <th>Aksi</th>
                   </tr>
@@ -113,8 +114,8 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
           const products = [
-            { name: "Produk A", variant: "Varian 1", stock: 10, description: "Deskripsi Produk A" },
-            { name: "Produk B", variant: "Varian 2", stock: 15, description: "Deskripsi Produk B" },
+            { name: "Produk A", variant: "Varian 1", stock: 10, harga: "100.000", description: "Deskripsi Produk A" },
+            { name: "Produk B", variant: "Varian 2", stock: 15, harga: "100.000", description: "Deskripsi Produk B" },
           ];
         
           // Function to render products list
@@ -128,6 +129,7 @@
                 <td>${product.name}</td>
                 <td>${product.variant}</td>
                 <td>${product.stock}</td>
+                <td>${product.harga}</td>
                 <td>${product.description}</td>
                 <td>
                   <button onclick="editProduct(${index})">Edit</button>
@@ -146,6 +148,7 @@
                 <input id="productName" class="swal2-input" placeholder="Nama Produk">
                 <input id="productVariant" class="swal2-input" placeholder="Varian">
                 <input id="productStock" type="number" class="swal2-input" placeholder="Stok">
+                <input id="productHarga" type="number" class="swal2-input" placeholder="Harga">
                 <input id="productDescription" class="swal2-input" placeholder="Deskripsi">
               `,
               confirmButtonText: 'Simpan',
@@ -154,12 +157,13 @@
                 const name = document.getElementById('productName').value;
                 const variant = document.getElementById('productVariant').value;
                 const stock = document.getElementById('productStock').value;
+                const harga = document.getElementById('productHarga').value;
                 const description = document.getElementById('productDescription').value;
         
-                if (!name || !variant || !stock || !description) {
+                if (!name || !variant || !stock || !harga || !description) {
                   Swal.showValidationMessage('Harap isi semua field');
                 }
-                return { name, variant, stock, description };
+                return { name, variant, stock, harga, description };
               }
             }).then((result) => {
               if (result.isConfirmed) {
@@ -180,6 +184,7 @@
                 <input id="productName" class="swal2-input" placeholder="Nama Produk" value="${product.name}">
                 <input id="productVariant" class="swal2-input" placeholder="Varian" value="${product.variant}">
                 <input id="productStock" type="number" class="swal2-input" placeholder="Stok" value="${product.stock}">
+                <input id="productHarga" type="number" class="swal2-input" placeholder="Stok" value="${product.harga}">
                 <input id="productDescription" class="swal2-input" placeholder="Deskripsi" value="${product.description}">
               `,
               confirmButtonText: 'Simpan',
@@ -188,12 +193,13 @@
                 const name = document.getElementById('productName').value;
                 const variant = document.getElementById('productVariant').value;
                 const stock = document.getElementById('productStock').value;
+                const harga = document.getElementById('productHarga').value;
                 const description = document.getElementById('productDescription').value;
         
-                if (!name || !variant || !stock || !description) {
+                if (!name || !variant || !stock || !harga || !description) {
                   Swal.showValidationMessage('Harap isi semua field');
                 }
-                return { name, variant, stock, description };
+                return { name, variant, stock, harga, description };
               }
             }).then((result) => {
               if (result.isConfirmed) {

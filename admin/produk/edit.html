@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Produk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Container utama -->
+<div class="edit-container">
+
+  <!-- Logo -->
+  <div class="logo">
+    <!-- Logo dalam bentuk teks -->
+    <h2><span>Plastiqu.co</span></h2>
+  </div>
+
+<!-- Container utama -->
+<div class="edit-container">
+  <h1>Edit Produk</h1>
+
+  <!-- Form Edit Produk -->
+  <form id="editProductForm">
+    <div class="form-group">
+      <label for="productName">Nama Produk</label>
+      <input type="text" id="productName" class="input-field" placeholder="Edit nama produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productVariant">Varian</label>
+      <input type="text" id="productVariant" class="input-field" placeholder="Edit varian produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productStock">Stok</label>
+      <input type="number" id="productStock" class="input-field" placeholder="Edit stok produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productStock">Harga</label>
+      <input type="number" id="productHarga" class="input-field" placeholder="Edit harga produk" required>
+    </div>
+    <div class="form-group">
+      <label for="productDescription">Deskripsi</label>
+      <textarea id="productDescription" class="input-field" placeholder="Edit deskripsi produk" required></textarea>
+    </div>
+
+    <!-- Tombol Simpan dan Batal -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save">Simpan</button>
+      <button type="button" class="btn btn-cancel" onclick="window.location.href='index.html'">Batal</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Fungsi untuk menampilkan produk yang sedang diedit
+  function loadProductDetails(productIndex) {
+    const products = JSON.parse(localStorage.getItem('products'));
+    const product = products[productIndex];
+
+    document.getElementById('productName').value = product.name;
+    document.getElementById('productVariant').value = product.variant;
+    document.getElementById('productStock').value = product.stock;
+    document.getElementById('productHarga').value = product.harga;
+    document.getElementById('productDescription').value = product.description;
+
+    document.getElementById('editProductForm').onsubmit = function(event) {
+      event.preventDefault();
+      saveProductChanges(productIndex);
+    };
+  }
+
+  // Fungsi untuk menyimpan perubahan produk
+  function saveProductChanges(productIndex) {
+    const products = JSON.parse(localStorage.getItem('products'));
+    products[productIndex] = {
+      name: document.getElementById('productName').value,
+      variant: document.getElementById('productVariant').value,
+      stock: document.getElementById('productStock').value,
+      harga: document.getElementById('productHarga').value,
+      description: document.getElementById('productDescription').value,
+    };
+
+    localStorage.setItem('products', JSON.stringify(products));
+    alert('Produk berhasil diupdate!');
+    window.location.href = 'index.html';
+  }
+
+  // Ambil parameter index produk dari URL
+  const params = new URLSearchParams(window.location.search);
+  const productIndex = params.get('index');
+  if (productIndex !== null) {
+    loadProductDetails(productIndex);
+  }
+</script>
+
+</body>
+</html>
