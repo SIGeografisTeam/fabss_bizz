@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tambah Produk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Container utama -->
+<div class="edit-container">
+
+  <!-- Logo -->
+  <div class="logo">
+    <!-- Logo dalam bentuk teks -->
+    <h2><span>Plastiqu.co</span></h2>
+  </div>
+
+<!-- Container utama -->
+<div class="edit-container">
+  <h1>Tambah Produk</h1>
+
+  <!-- Form Tambah Produk -->
+  <form id="addProductForm">
+    <div class="form-group">
+      <label for="productName">Nama Produk</label>
+      <input type="text" id="productName" class="input-field" placeholder="Masukkan nama produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productVariant">Varian</label>
+      <input type="text" id="productVariant" class="input-field" placeholder="Masukkan varian produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productStock">Stok</label>
+      <input type="number" id="productStock" class="input-field" placeholder="Masukkan jumlah stok produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productStock">Harga</label>
+      <input type="number" id="productHarga" class="input-field" placeholder="Masukkan jumlah harga produk" required>
+    </div>
+
+    <div class="form-group">
+      <label for="productDescription">Deskripsi</label>
+      <textarea id="productDescription" class="input-field" placeholder="Masukkan deskripsi produk" required></textarea>
+    </div>
+
+    <!-- Tombol Tambah dan Reset -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save">Tambah Produk</button>
+      <button type="reset" class="btn btn-cancel">Batal</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Fungsi untuk menyimpan produk baru ke LocalStorage
+  document.getElementById('addProductForm').onsubmit = function(event) {
+    event.preventDefault();
+
+    const newProduct = {
+      name: document.getElementById('productName').value,
+      variant: document.getElementById('productVariant').value,
+      stock: document.getElementById('productStock').value,
+      harga: document.getElementById('productHarga').value,
+      description: document.getElementById('productDescription').value,
+    };
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    products.push(newProduct);
+    localStorage.setItem('products', JSON.stringify(products));
+
+    alert('Produk berhasil ditambahkan!');
+    window.location.href = 'index.html'; // Kembali ke halaman utama
+  };
+</script>
+
+</body>
+</html>
