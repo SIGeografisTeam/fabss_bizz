@@ -10,8 +10,7 @@ body {
   background: #f5f5fa;
   font-size: 16px;
   line-height: 120%;
-  font-family: Open Sans, Helvetica, sans-serif;
-
+  font-family: Arial, "Signika", sans-serif;
 }
 .dashboard {
   display: grid;
@@ -22,9 +21,14 @@ body {
   grid-template-rows: 80px auto;
   grid-template-areas: 'menu search' 'menu content';
 }
+.dashboard-tittle {
+  font-family: 'signika';
+  font-weight: 700;
+  font-size: 15rem;
+}
 .search-wrap {
   grid-area: search;
-  background: #033043;
+  background: #84b8c6;
   color: #ffff;
   border-bottom: 1px solid #ede8f0;
   display: flex;
@@ -88,7 +92,7 @@ body {
   grid-area: menu;
   padding-bottom: 3em;
   overflow: auto;
-  background: #033043;
+  background: #84b8c6;
   border-right: 1px solid #ede8f0;
 }
 .menu-wrap .user {
@@ -97,11 +101,11 @@ body {
   align-items: center;
   justify-content: flex-start;
   margin: 0;
-  padding: 0 3em;
+  padding: 1em 3em;
 }
 .menu-wrap .user .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -117,8 +121,9 @@ body {
   padding: 0 0 0 1em;
   color: #ffff;
   font-weight: 700;
-  font-size: 0.875em;
+  font-size: 24px;
   line-height: 100%;
+  font-family: 'signika';
 }
 .menu-wrap nav {
   display: block;
@@ -130,20 +135,22 @@ body {
 }
 .menu-wrap nav h3 {
   margin: 0;
-  font-size: 0.875em;
+  font-size: 17px;
   text-transform: uppercase;
-  color: #4b84fe;
+  color: #033043;
   font-weight: 600;
 }
 .menu-wrap nav ul {
   display: block;
   padding: 0;
-  margin: 0;
+  margin: 0.75em 0;
+  margin-top: 1em;
 }
 .menu-wrap nav li {
   display: block;
-  padding: 0;
+  padding: 0.25em 0;
   margin: 1em 0 0;
+  margin-bottom: 8px;
 }
 .menu-wrap nav li a {
   display: flex;
@@ -152,8 +159,27 @@ body {
   color: #ffff;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.875em;
+  font-size: 16px;
   transition: color 0.15s ease;
+  padding-left: 0em;
+}
+.menu-wrap nav ul li {
+  display: block;
+  padding: 0.25em 0;
+  margin: 0em 0;
+}
+.menu-wrap nav li a {
+  padding: 8px 15px;
+  margin-bottom: 5px;
+}
+.menu-wrap nav ul li a.active {
+  background-color: #033043;
+  color: white;
+  border-radius: 5px;
+  border-left: 5px solid #4b84fe;
+  padding-left: 15px;
+  margin-bottom: 5px;
+  padding: 10px 15px;
 }
 .menu-wrap nav li a svg {
   display: block;
