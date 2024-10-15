@@ -277,11 +277,11 @@ body {
 .content-wrap .info-boxes .info-box {
   background: #fff;
   height: 160px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: flex-start;
   padding: 0 3em;
-  border: 3px solid #84b8c6;
+  border: 3px solid #84b8c6 !important;
   border-radius: 5px;
 }
 .content-wrap .info-boxes .info-box .box-icon svg {
@@ -296,10 +296,12 @@ body {
 .content-wrap .info-boxes .info-box .box-content {
   padding-left: 1.25em;
   white-space: nowrap;
+  font-size: 20px !important;
 }
 .content-wrap .info-boxes .info-box .box-content .big {
   display: block;
-  font-size: 2em;
+  font-size: 50px !important;
+  font-weight: bold !important;
   line-height: 150%;
   color: #1b253d;
 }
