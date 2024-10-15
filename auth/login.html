@@ -8,20 +8,44 @@
 </head>
 <body>
     <!-- Form Login -->
-    <div class="form-container">
-        <form class="login-form" action="#" method="POST">
-            <h2>Login</h2>
-            <div class="input-group">
-                <input type="email" id="login-email" required>
-                <label for="login-email">Email</label>
-            </div>
-            <div class="input-group">
-                <input type="password" id="login-password" required>
-                <label for="login-password">Password</label>
-            </div>
-            <button type="submit" class="submit-btn">Masuk</button>
-        </form>
-    </div>
+<div class="form-container">
+    <form class="login-form" action="#" method="POST">
+        <!-- Header with logo and "Masuk" -->
+        <h2 class="text-center">
+            <img src="/assets/logo_vector.png" alt="Logo" style="height: 50px; vertical-align: middle;">
+            <span>Masuk</span>
+        </h2>
+
+        <!-- Welcome message -->
+        <p class="text-center">Selamat datang kembali! Silakan masukkan email dan password Anda untuk masuk.</p>
+
+        <!-- Email Input -->
+        <div class="input-group">
+            <input type="email" id="login-email" required>
+            <label for="login-email">Email</label>
+        </div>
+
+        <!-- Password Input -->
+        <div class="input-group">
+            <input type="password" id="login-password" required>
+            <label for="login-password">Password</label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Masuk</button>
+
+        <!-- Cancel Button -->
+        <div class="text-center mt-3">
+            <a href="index.html" class="cancel-btn">Batal</a>
+        </div>
+
+        <!-- Register Link -->
+        <div class="text-center mt-3">
+            <p>Belum punya akun? <a href="register.html" class="register-link">Daftar sekarang</a></p>
+        </div>
+    </form>
+</div>
+
 
 </body>
 </html>
