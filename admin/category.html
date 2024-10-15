@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Category List</h1>
+
+        <!-- Category Count -->
+        <div class="box-content mb-4">
+            <span class="big" id="category-count">0</span>
+        </div>
+        
+        <!-- Category List -->
+        <ul id="category-list" class="list-group mb-4">
+            <!-- Sample Category Items -->
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Plastik Makanan
+                <button class="btn btn-danger btn-sm" onclick="deleteCategory(this)">Delete</button>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Plastik Minuman
+                <button class="btn btn-danger btn-sm" onclick="deleteCategory(this)">Delete</button>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Kemasan Plastik
+                <button class="btn btn-danger btn-sm" onclick="deleteCategory(this)">Delete</button>
+            </li>
+        </ul>
+
+        <!-- Add Category Form -->
+        <h2>Add New Category</h2>
+        <form id="category-form">
+            <div class="mb-3">
+                <label for="category-name" class="form-label">Category Name</label>
+                <input type="text" id="category-name" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+    </div>
+
+    <script>
+        // Array to hold the category data
+        const categories = [
+            {name: 'Plastik Makanan'},
+            {name: 'Plastik Minuman'},
+            {name: 'Kemasan Plastik'}
+        ];
+
+        // Function to render the category list
+        function renderCategoryList() {
+            const categoryList = document.getElementById('category-list');
+            categoryList.innerHTML = ''; // Clear the current list
+            categories.forEach((category) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.textContent = category.name;
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'btn btn-danger btn-sm';
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteCategory(deleteButton);
+                listItem.appendChild(deleteButton);
+                categoryList.appendChild(listItem);
+            });
+            updateCategoryCount(); // Update the category count
+        }
+
+        // Function to update category count
+        function updateCategoryCount() {
+            document.getElementById('category-count').textContent = categories.length;
+        }
+
+        // Handle form submission to add new categories
+        document.getElementById('category-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get category details from form input
+            const categoryName = document.getElementById('category-name').value;
+
+            // Add new category to the array
+            categories.push({
+                name: categoryName
+            });
+
+            // Clear the form
+            document.getElementById('category-form').reset();
+
+            // Re-render the category list with the new category
+            renderCategoryList();
+        });
+
+        // Function to delete a category
+        function deleteCategory(button) {
+            const listItem = button.parentElement;
+            const categoryName = listItem.textContent.replace('Delete', '').trim();
+            const categoryIndex = categories.findIndex(category => category.name === categoryName);
+            if (categoryIndex !== -1) {
+                categories.splice(categoryIndex, 1); // Remove category from array
+                renderCategoryList(); // Re-render the list
+            }
+        }
+
+        // Initial render of category list
+        renderCategoryList();
+    </script>
+</body>
+</html>
