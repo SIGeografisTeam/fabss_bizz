@@ -24,7 +24,7 @@ body {
 .dashboard-tittle {
   font-family: 'signika';
   font-weight: 700;
-  font-size: 15rem;
+  font-size: 2rem;
 }
 .search-wrap {
   grid-area: search;
@@ -35,6 +35,30 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 3em;
+}
+.search-form {
+  margin-left: 0px;
+  max-width: 500px; /*menyesuaikan lebar */
+  width: 100%
+}
+
+.search-input {
+  border: 5px solid #ced4da; /* Warna border */
+  border-radius: 5px; /* Sudut melengkung */
+}
+
+.search-input:focus {
+  border-color: #ffc107; /* Warna border saat fokus */
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25); /* Bayangan saat fokus */
+}
+
+.btn-warning {
+  background-color: #ffc107; /* Warna latar belakang tombol */
+  border: none; /* Hapus border */
+}
+
+.btn-warning:hover {
+  background-color: #e0a800; /* Warna saat hover */
 }
 .search-wrap .search {
   height: 40px;
@@ -58,6 +82,7 @@ body {
   height: 100%;
   margin: 0;
   border: 0;
+  width: 80%;
 }
 .search-wrap .search label input:focus {
   background: #f5f5fa;
@@ -216,7 +241,7 @@ body {
   justify-content: space-between;
 }
 .content-wrap .content-head h1 {
-  font-size: 1.375em;
+  font-size: 2em;
   line-height: 100%;
   color: #1b253d;
   font-weight: 500;
@@ -256,7 +281,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   padding: 0 3em;
-  border: 1px solid #ede8f0;
+  border: 3px solid #84b8c6;
   border-radius: 5px;
 }
 .content-wrap .info-boxes .info-box .box-icon svg {
