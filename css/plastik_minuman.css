@@ -1,0 +1,45 @@
+/* Style for product cards */
+.product-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-card .card-body {
+    text-align: center;
+}
+
+.product-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.product-card .card-text {
+    font-size: 1rem;
+    color: #806154;
+    font-weight: 600;
+}
+
+/* Styling for search input and button */
+.search-form .search-input {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.search-form .btn-warning {
+    background-color: #f0ad4e;
+    border: none;
+    padding: 5px 10px;
+}
+
+h2 {
+    font-family: 'Signika', sans-serif;
+    color: #333;
+}
+
+/* Navbar dropdown active state */
+.dropdown-menu .active {
+    background-color: #0d6efd;
+    color: white;
+}
