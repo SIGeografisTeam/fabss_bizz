@@ -23,7 +23,7 @@
     <div class="container-fluid top-bar text-light py-2 d-none d-md-block">
         <div class="row">
             <div class="col-md-8 text-center text-md-start">
-                <a class="nav-link text-light d-inline-block me-3" href="about.html"><i class="fa-solid fa-info-circle"></i> Tentang Kami</a>
+                <a class="nav-link text-light d-inline-block me-3" href="#tentang"><i class="fa-solid fa-info-circle"></i> Tentang Kami</a>
                 <a class="nav-link text-light d-inline-block" href="https://wa.me/+62887435359524"><i class="fa-solid fa-phone"></i> Kontak</a>
             </div>
             <div class="col-md-4 text-center text-md-end">
@@ -49,11 +49,11 @@
                             <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Kategori
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="">
-                                <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
-                                <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
-                                <li><a class="dropdown-item" href="#">Kemasan kertas</a></li>
-                                <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item active" href="plastik_makanan.html">Plastik Makanan</a></li> <!-- Halaman aktif -->
+                                <li><a class="dropdown-item" href="plastik_minuman.html">Plastik Minuman</a></li>
+                                <li><a class="dropdown-item" href="kemasan_kertas.html">Kemasan Kertas</a></li>
+                                <li><a class="dropdown-item" href="#">Dan Lain-lain</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -65,7 +65,7 @@
                         </button>
                     </form>
                     <div class="btn-auth"></div>
-                    <a href="auth/signup.html" class="daftar  mx-2">Daftar</a>
+                    <a href="auth/register.html" class="daftar  mx-2">Daftar</a>
                     <a href="auth/login.html" class="masuk ">Masuk</a>
                 </div>
             </div>
@@ -93,6 +93,26 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+    </section>
+
+    <!-- about Section -->
+    <section id="tentang" class="py-5">
+        <div class="container">
+            <h1 class="text-center mb-4 about-title">Tentang Kami</h1>
+            <div class="row align-items-center"> 
+                <div class="col-md-6 text-center"> 
+                    <p class="text-highlight">
+                        Plastiqu adalah toko yang menyediakan berbagai jenis produk plastik untuk kebutuhan rumah tangga, industri, dan bisnis. Kami berdedikasi untuk memberikan produk berkualitas tinggi dengan harga terjangkau. Dalam lebih dari 10 tahun perjalanan kami, Plastiqu telah menjadi pilihan utama untuk pelanggan yang mencari produk plastik yang tahan lama dan ramah lingkungan.
+                    </p>
+                    <p class="text-highlight">
+                        Kami selalu berkomitmen untuk menghadirkan inovasi, efisiensi, dan layanan prima bagi setiap pelanggan. Setiap produk yang kami tawarkan dibuat dengan bahan terbaik dan diproduksi dengan standar mutu yang ketat. Kami juga berfokus pada keberlanjutan dan mendukung upaya daur ulang untuk menjaga lingkungan.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="img/logoplastiku2nobg.png" class="img-fluid logo" alt="Tentang Plastiqu">
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Mitra Section -->
