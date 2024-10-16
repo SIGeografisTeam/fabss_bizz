@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Keuangan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="search-wrap">
+            <div class="search">
+                <label for="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <!-- Isi SVG -->
+                    </svg>
+                </label>
+            </div>
+
+            <form class="d-flex mx-auto my-2 search-form">
+                <input class="form-control me-2 search-input" type="search" placeholder="Cari transaksi..."
+                    aria-label="Search">
+                <button class="btn btn-warning" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div class="dropdown">
+                <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span class="username ms-2">Nama Pengguna</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah
+                            Profil</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                            Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <header class="menu-wrap">
+            <figure class="user">
+                <div class="user-avatar">
+                    <img src="/assets/logo_only_vector.png" alt="Plastiqu.Co">
+                </div>
+                <figcaption>Plastiqu.Co</figcaption>
+            </figure>
+
+            <nav>
+                <section class="dicover">
+                    <h3>Kelola</h3>
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house"
+                                    style="margin-right: 10px;"></i>Dasbor</a></li>
+                        <li><a href="users.html"><i class="fa-solid fa-user-gear"
+                                    style="margin-right: 10px;"></i>Pengguna</a></li>
+                        <li><a href="category.html"><i class="fa-solid fa-list"
+                                    style="margin-right: 10px;"></i>Kategori</a></li>
+                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen"
+                                    style="margin-right: 10px;"></i>Produk</a></li>
+                        <li><a href="keuangan.html" class="active"><i class="fa-solid fa-hand-holding-dollar"
+                                    style="margin-right: 10px;"></i>Keuangan</a></li>
+                    </ul>
+                </section>
+            </nav>
+        </header>
+
+        <main class="content-wrap">
+            <header class="content-head">
+                <h1 class="dashboard-tittle">Manajemen Keuangan</h1>
+            </header>
+
+            <div class="content">
+                <h2 class="mt-4">Daftar Pesanan</h2>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nama Pembeli</th>
+                            <th>Nomor</th>
+                            <th>Alamat</th>
+                            <th>Nama Produk</th>
+                            <th>Varian</th>
+                            <th>Jumlah</th>
+                            <th>Harga Satuan</th>
+                            <th>Harga Total</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transaction-list">
+                        <!-- Sample Transaction Item -->
+                        <tr>
+                            <td>Jane Doe</td>
+                            <td>08123456789</td>
+                            <td>456 Another St, Anytown, USA</td>
+                            <td>Botol Plastik</td>
+                            <td>500ml</td>
+                            <td>10</td>
+                            <td>Rp 5.000</td>
+                            <td>Rp 50.000</td>
+                            <td>Sedang Diproses</td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye text-primary"></i>
+                                                Lihat</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i>
+                                                Ubah</a></li>
+                                        <li><a class="dropdown-item" href="#"><i
+                                                    class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                        <li>
+                                            <div class="dropdown">
+                                                <a class="dropdown-item dropdown-toggle" href="#" id="statusDropdown0"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-sync text-info"></i> Perbarui Status
+                                                </a>
+                                                <ul class="dropdown-menu" aria-labelledby="statusDropdown0">
+                                                    <li><a class="dropdown-item" href="#">Sedang Diproses</a></li>
+                                                    <li><a class="dropdown-item" href="#">Ditolak</a></li>
+                                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
+                                                    <li><a class="dropdown-item" href="#">Dikirim</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Array untuk menyimpan data transaksi
+        const transactions = [
+            {
+                buyerName: 'Jane Doe',
+                phone: '08123456789',
+                address: '456 Another St, Anytown, USA',
+                productName: 'Botol Plastik',
+                variant: '500ml',
+                quantity: 10,
+                unitPrice: 5000,
+                totalPrice: 50000,
+                status: 'Sedang Diproses' // Status pesanan
+            }
+        ];
+
+        // Fungsi untuk menampilkan daftar transaksi
+        function renderTransactionList() {
+            const transactionList = document.getElementById('transaction-list');
+            transactionList.innerHTML = ''; // Hapus daftar yang ada
+            transactions.forEach((transaction, index) => {
+                const row = document.createElement('tr');
+                const buyerNameCell = document.createElement('td');
+                const phoneCell = document.createElement('td');
+                const addressCell = document.createElement('td');
+                const productNameCell = document.createElement('td');
+                const variantCell = document.createElement('td');
+                const quantityCell = document.createElement('td');
+                const unitPriceCell = document.createElement('td');
+                const totalPriceCell = document.createElement('td');
+                const statusCell = document.createElement('td');
+                const actionCell = document.createElement('td');
+
+                buyerNameCell.textContent = transaction.buyerName;
+                phoneCell.textContent = transaction.phone;
+                addressCell.textContent = transaction.address;
+                productNameCell.textContent = transaction.productName;
+                variantCell.textContent = transaction.variant;
+                quantityCell.textContent = transaction.quantity;
+                unitPriceCell.textContent = `Rp ${transaction.unitPrice}`;
+                totalPriceCell.textContent = `Rp ${transaction.totalPrice}`;
+                statusCell.textContent = transaction.status;
+
+                // Aksi dropdown
+                const actionDropdown = document.createElement('div');
+                actionDropdown.className = 'dropdown';
+
+                const actionButton = document.createElement('button');
+                actionButton.className = 'btn btn-primary dropdown-toggle';
+                actionButton.setAttribute('type', 'button');
+                actionButton.setAttribute('id', `dropdownMenuButton${index}`);
+                actionButton.setAttribute('data-bs-toggle', 'dropdown');
+                actionButton.setAttribute('aria-expanded', 'false');
+                actionButton.textContent = 'Aksi';
+
+                const actionMenu = document.createElement('ul');
+                actionMenu.className = 'dropdown-menu';
+                actionMenu.setAttribute('aria-labelledby', `dropdownMenuButton${index}`);
+
+                const viewAction = document.createElement('li');
+                const viewLink = document.createElement('a');
+                viewLink.className = 'dropdown-item';
+                viewLink.innerHTML = '<i class="fas fa-eye text-primary"></i> Lihat';
+                viewAction.appendChild(viewLink);
+
+                const editAction = document.createElement('li');
+                const editLink = document.createElement('a');
+                editLink.className = 'dropdown-item';
+                editLink.innerHTML = '<i class="fas fa-pen text-warning"></i> Ubah';
+                editAction.appendChild(editLink);
+
+                const deleteAction = document.createElement('li');
+                const deleteLink = document.createElement('a');
+                deleteLink.className = 'dropdown-item';
+                deleteLink.innerHTML = '<i class="fas fa-trash-alt text-danger"></i> Hapus';
+                deleteAction.appendChild(deleteLink);
+
+                const statusAction = document.createElement('li');
+                const statusDropdown = document.createElement('div');
+                statusDropdown.className = 'dropdown';
+
+                const statusLink = document.createElement('a');
+                statusLink.className = 'dropdown-item dropdown-toggle';
+                statusLink.setAttribute('href', '#');
+                statusLink.setAttribute('data-bs-toggle', 'dropdown');
+                statusLink.setAttribute('aria-expanded', 'false');
+                statusLink.innerHTML = '<i class="fas fa-sync text-info"></i> Perbarui Status';
+
+                const statusMenu = document.createElement('ul');
+                statusMenu.className = 'dropdown-menu';
+                statusMenu.setAttribute('aria-labelledby', `statusDropdown${index}`); // Pastikan ID sesuai
+
+                const statusOptions = ['Sedang Diproses', 'Ditolak', 'Selesai', 'Dikirim'];
+                statusOptions.forEach(option => {
+                    const statusOptionItem = document.createElement('li');
+                    const statusOptionLink = document.createElement('a');
+                    statusOptionLink.className = 'dropdown-item';
+                    statusOptionLink.textContent = option;
+                    statusOptionItem.appendChild(statusOptionLink);
+                    statusMenu.appendChild(statusOptionItem);
+                });
+
+                // Menambahkan statusLink dan statusMenu ke statusDropdown
+                statusDropdown.appendChild(statusLink);
+                statusDropdown.appendChild(statusMenu);
+                statusAction.appendChild(statusDropdown);
+
+
+                actionMenu.appendChild(viewAction);
+                actionMenu.appendChild(editAction);
+                actionMenu.appendChild(deleteAction);
+                actionMenu.appendChild(statusAction);
+
+                actionDropdown.appendChild(actionButton);
+                actionDropdown.appendChild(actionMenu);
+                actionCell.appendChild(actionDropdown);
+
+
+                row.appendChild(buyerNameCell);
+                row.appendChild(phoneCell);
+                row.appendChild(addressCell);
+                row.appendChild(productNameCell);
+                row.appendChild(variantCell);
+                row.appendChild(quantityCell);
+                row.appendChild(unitPriceCell);
+                row.appendChild(totalPriceCell);
+                row.appendChild(statusCell);
+                row.appendChild(actionCell);
+
+                transactionList.appendChild(row);
+            });
+        }
+
+        // Memanggil fungsi untuk menampilkan daftar transaksi saat halaman dimuat
+        window.onload = renderTransactionList;
+    </script>
+</body>
+
+</html>
