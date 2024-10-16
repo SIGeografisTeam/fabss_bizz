@@ -403,6 +403,10 @@ html, body {
   position: relative;
 }
 
+.dropdown.show .dropdown-menu {
+  display: block; /* Menampilkan dropdown saat aktif */
+}
+
 .profile-icon {
   color: #333; /* Ubah sesuai kebutuhan */
   text-decoration: none;
