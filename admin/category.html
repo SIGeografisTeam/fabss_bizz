@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
-    <title>Kategori - Dashboard</title>
+    <title>Plastiqu.co - Manajemen Kategori</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
@@ -18,6 +18,7 @@
 
 <body>
     <div class="dashboard">
+        <!-- Sidebar dan Topbar yang sama -->
         <aside class="search-wrap">
             <div class="search">
                 <label for="search">
@@ -51,203 +52,106 @@
                 <div class="user-avatar">
                     <img src="/img/logoplastiku2nobg.png" alt="Plastiqu">
                 </div>
-                <figcaption>
-                    Plastiqu.co
-                </figcaption>
+                <figcaption>Plastiqu.co</figcaption>
             </figure>
 
             <nav>
-                <section class="dicover">
+                <section class="discover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li>
-                            <a href="dashboard.html">
-                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
-                                Dasbor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="users.html">
-                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
-                                Pengguna
-                            </a>
-                        </li>
-                        <li>
-                            <a href="category.html" class="active">
-                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
-                                Kategori
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage_product.html">
-                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
-                                Produk
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage_finance.html">
-                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
-                                Keuangan
-                            </a>
-                        </li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i>Dasbor</a></li>
+                        <li><a href="users.html"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>Pengguna</a></li>
+                        <li><a href="category.html" class="active"><i class="fa-solid fa-list" style="margin-right: 10px;"></i>Kategori</a></li>
+                        <li><a href="manage_product.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i>Produk</a></li>
+                        <li><a href="manage_finance.html"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>Keuangan</a></li>
                     </ul>
                 </section>
             </nav>
         </header>
 
+        <!-- Konten utama untuk halaman manajemen kategori -->
         <main class="content-wrap">
             <header class="content-head">
                 <h1 class="dashboard-tittle">Manajemen Kategori</h1>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Tambah Kategori</button>
             </header>
 
             <div class="content">
-                <h2 class="mt-4">Daftar Kategori</h2>
-                <table class="table table-bordered">
+                <!-- Tombol untuk menambahkan kategori baru -->
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <h2>Daftar Kategori</h2>
+                    <button class="btn btn-primary" id="add-category-btn">+ Tambah Kategori</button>
+                </div>
+
+                <!-- Tabel daftar kategori -->
+                <table class="table table-bordered mt-3">
                     <thead>
                         <tr>
-                            <th>ID Kategori</th>
                             <th>Nama Kategori</th>
-                            <th>Aksi</th>
+                            <th>Deskripsi</th>
+                            <th class="action-column">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="category-list">
-                        <!-- Sample Category Item -->
-                        <tr>
-                            <td>1</td>
-                            <td>Kategori 1</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" onclick="editCategory(this)">Edit</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteCategory(this)">Hapus</button>
-                            </td>
-                        </tr>
+                        <!-- Daftar kategori akan ditampilkan di sini -->
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
 
-    <!-- Modal untuk Menambahkan Kategori -->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Tambah Kategori</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="category-form">
-                        <input type="hidden" id="category-id">
-                        <div class="mb-3">
-                            <label for="category-name" class="form-label">Nama Kategori</label>
-                            <input type="text" class="form-control" id="category-name" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan Kategori</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Array to hold the category data
+        // Array untuk menyimpan data kategori
         const categories = [
-            { id: 1, name: 'Kategori 1' },
-            { id: 2, name: 'Kategori 2' },
+            { name: 'Plastik Makanan', description: 'Kategori untuk plastik makanan.' },
+            { name: 'Plastik Minuman', description: 'Kategori untuk plastik minuman.' },
+            { name: 'Kemasan Kertas', description: 'Kategori untuk berbagai kemasan kertas.' }
         ];
 
-        // Function to render the category list
+        // Fungsi untuk menampilkan daftar kategori
         function renderCategoryList() {
             const categoryList = document.getElementById('category-list');
-            categoryList.innerHTML = ''; // Clear the current list
+            categoryList.innerHTML = ''; // Hapus daftar yang ada
             categories.forEach((category) => {
                 const row = document.createElement('tr');
-                const idCell = document.createElement('td');
                 const nameCell = document.createElement('td');
+                const descriptionCell = document.createElement('td');
                 const actionCell = document.createElement('td');
 
-                idCell.textContent = category.id;
                 nameCell.textContent = category.name;
+                descriptionCell.textContent = category.description;
 
-                const editButton = document.createElement('button');
-                editButton.className = 'btn btn-warning btn-sm';
-                editButton.textContent = 'Edit';
-                editButton.onclick = () => editCategory(editButton);
-                
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-danger btn-sm';
-                deleteButton.textContent = 'Hapus';
-                deleteButton.onclick = () => deleteCategory(deleteButton);
+                const dropdown = document.createElement('div');
+                dropdown.className = 'dropdown';
+                dropdown.innerHTML = `
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Aksi
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                    </ul>
+                `;
+                actionCell.appendChild(dropdown);
 
-                actionCell.appendChild(editButton);
-                actionCell.appendChild(deleteButton);
-                row.appendChild(idCell);
                 row.appendChild(nameCell);
+                row.appendChild(descriptionCell);
                 row.appendChild(actionCell);
+
                 categoryList.appendChild(row);
             });
         }
 
-        // Handle form submission to add or edit categories
-        document.getElementById('category-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const categoryId = document.getElementById('category-id').value;
-            const categoryName = document.getElementById('category-name').value;
-
-            if (categoryId) {
-                // Update existing category
-                const category = categories.find(cat => cat.id == categoryId);
-                category.name = categoryName;
-            } else {
-                // Add new category
-                const newCategory = {
-                    id: categories.length + 1,
-                    name: categoryName
-                };
-                categories.push(newCategory);
-            }
-
-            // Render updated category list
-            renderCategoryList();
-
-            // Clear form inputs and close the modal
-            this.reset();
-            const modal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
-            modal.hide();
-        });
-
-        // Function to edit a category
-        function editCategory(button) {
-            const row = button.closest('tr');
-            const categoryId = row.cells[0].textContent; // Get the category ID
-            const category = categories.find(cat => cat.id == categoryId); // Find the category
-
-            // Set the form fields
-            document.getElementById('category-id').value = category.id;
-            document.getElementById('category-name').value = category.name;
-
-            // Show the modal
-            const modal = new bootstrap.Modal(document.getElementById('addCategoryModal'));
-            modal.show();
+        // Fungsi untuk menambahkan kategori baru (dummy function)
+        function addCategory() {
+            const newCategory = { name: 'Kategori Baru', description: 'Deskripsi kategori baru.' };
+            categories.push(newCategory);
+            renderCategoryList(); // Update daftar kategori
         }
 
-        // Function to delete a category
-        function deleteCategory(button) {
-            const row = button.closest('tr');
-            const categoryId = row.cells[0].textContent; // Get the category ID
+        // Event listener untuk tombol tambah kategori
+        document.getElementById('add-category-btn').addEventListener('click', addCategory);
 
-            // Remove the category from the array
-            const index = categories.findIndex(cat => cat.id == categoryId);
-            if (index > -1) {
-                categories.splice(index, 1);
-            }
-
-            // Render updated category list
-            renderCategoryList();
-        }
-
-        // Initial rendering of category list
+        // Rendering awal daftar kategori
         renderCategoryList();
     </script>
 </body>

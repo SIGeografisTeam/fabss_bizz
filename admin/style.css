@@ -473,6 +473,40 @@ html, body {
   font-size: 1rem; /* Ukuran font default */
 }
 
+/* Mengubah warna border seluruh tabel */
+table {
+  border: 2px solid #033043 !important;
+  border-collapse: collapse !important;
+}
+
+/*Agar teks di header tabel berada di tengah */
+table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Mengubah warna border pada sel-sel tabel */
+table th, table td {
+  border: 1px solid #033043 !important;
+}
+
+/*Mengubah warna background header table */
+table thead th {
+  background-color: #84b8c6 !important;
+  color: white;
+}
+/*Membuat isi kolom aksi berada di tengah */
+.action-column {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.action-column .dropdown {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
 @media (max-width: 576px) {
   .username {
       font-size: 0.8rem; /* Ukuran font untuk perangkat kecil */
