@@ -3,49 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register & Login</title>
+    <title>Login | Plastiqu.Co</title>
     <link rel="stylesheet" href="/css/auth.css">
+    
+
+    <!-- Google fonts signika -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- FA Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Form Login -->
-<div class="form-container">
-    <form class="login-form" action="#" method="POST">
-        <!-- Header with logo and "Masuk" -->
-        <h2 class="text-center">
-            <img src="/assets/logo_vector.png" alt="Logo" style="height: 50px; vertical-align: middle;">
-            <span>Masuk</span>
-        </h2>
+    <div class="form-container">
+        <form class="login-form" action="#" method="POST">
+            <!-- Header with logo and "Masuk" -->
+             <div class="brand">
+            <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+            <span class="text-center">Plastiqu.Co</span></div>
+            <h2 class="text-center login-title">Masuk</h2>
 
-        <!-- Welcome message -->
-        <p class="text-center">Selamat datang kembali! Silakan masukkan email dan password Anda untuk masuk.</p>
+            <!-- Welcome message -->
+            <p class="welcome-text">Selamat datang kembali!</p>
 
-        <!-- Email Input -->
-        <div class="input-group">
-            <input type="email" id="login-email" required>
-            <label for="login-email">Email</label>
-        </div>
+            <!-- Email Input -->
+            <div class="input-group">
+                <input type="email" id="login-email" required>
+                <label for="login-email" style="font-size: 16px;">Email</label>
+            </div>
 
-        <!-- Password Input -->
-        <div class="input-group">
-            <input type="password" id="login-password" required>
-            <label for="login-password">Password</label>
-        </div>
+            <!-- Password Input -->
+            <div class="input-group">
+                <input type="password" id="login-password" required>
+                <label for="login-password" style="font-size: 16px;">Password</label>
+            </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="submit-btn">Masuk</button>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Masuk</button>
 
-        <!-- Cancel Button -->
-        <div class="text-center mt-3">
-            <a href="index.html" class="cancel-btn">Batal</a>
-        </div>
+            <!-- Cancel Button -->
+            <div class="cancel-btn-container">
+                <a href="../index.html" class="cancel-btn">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a> <!-- Circle X Mark Icon -->
+            </div>
 
-        <!-- Register Link -->
-        <div class="text-center mt-3">
-            <p>Belum punya akun? <a href="register.html" class="register-link">Daftar sekarang</a></p>
-        </div>
-    </form>
-</div>
-
-
+            <!-- Register Link -->
+            <div class="text-center mt-3">
+                <p class="register-text">Belum punya akun? <a href="register.html" class="register-link">Daftar sekarang</a></p>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
