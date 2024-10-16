@@ -1,236 +1,321 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="id">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Daftar produk</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts Signika -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
 </head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="dashboard">
-	<aside class="search-wrap">
-		<div class="search">
-  <label for="search">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <!-- Isi SVG -->
-    </svg>
-  </label>
-  <input type="text" id="search" placeholder="Cari...">
-</div>
 
-		
-		<div class="user-actions">
-			<button>
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.094 2.085l-1.013-.082a1.082 1.082 0 0 0-.161 0l-1.063.087C6.948 2.652 4 6.053 4 10v3.838l-.948 2.846A1 1 0 0 0 4 18h4.5c0 1.93 1.57 3.5 3.5 3.5s3.5-1.57 3.5-3.5H20a1 1 0 0 0 .889-1.495L20 13.838V10c0-3.94-2.942-7.34-6.906-7.915zM12 19.5c-.841 0-1.5-.659-1.5-1.5h3c0 .841-.659 1.5-1.5 1.5zM5.388 16l.561-1.684A1.03 1.03 0 0 0 6 14v-4c0-2.959 2.211-5.509 5.08-5.923l.921-.074.868.068C15.794 4.497 18 7.046 18 10v4c0 .107.018.214.052.316l.56 1.684H5.388z"/></svg>
-			</button>
-			<button>
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21c4.411 0 8-3.589 8-8 0-3.35-2.072-6.221-5-7.411v2.223A6 6 0 0 1 18 13c0 3.309-2.691 6-6 6s-6-2.691-6-6a5.999 5.999 0 0 1 3-5.188V5.589C6.072 6.779 4 9.65 4 13c0 4.411 3.589 8 8 8z"/><path d="M11 2h2v10h-2z"/></svg>
-			</button>
-		</div>
-	</aside>
-	
-	<header class="menu-wrap">
-		<figure class="user">
-			<div class="user-avatar">
-				<img src="/assets/circle.png">
-			</div>
-			<figcaption>
-				Plastiqu.co
-			</figcaption>
-		</figure>
-	
-		<nav>
-			<section class="dicover">
-				<h3>Discover</h3>
-				
-				<ul>
-					<li>
-						<a href="#">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6.855 14.365l-1.817 6.36a1.001 1.001 0 0 0 1.517 1.106L12 18.202l5.445 3.63a1 1 0 0 0 1.517-1.106l-1.817-6.36 4.48-3.584a1.001 1.001 0 0 0-.461-1.767l-5.497-.916-2.772-5.545c-.34-.678-1.449-.678-1.789 0L8.333 8.098l-5.497.916a1 1 0 0 0-.461 1.767l4.48 3.584zm2.309-4.379c.315-.053.587-.253.73-.539L12 5.236l2.105 4.211c.144.286.415.486.73.539l3.79.632-3.251 2.601a1.003 1.003 0 0 0-.337 1.056l1.253 4.385-3.736-2.491a1 1 0 0 0-1.109-.001l-3.736 2.491 1.253-4.385a1.002 1.002 0 0 0-.337-1.056l-3.251-2.601 3.79-.631z"/></svg>
-							product
-						</a>
-					</li>
-					
-					<li>
-						<a href="#">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.353 2.355-6.049-.002-8.416zm-1.412 7.002L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002 1.563 1.571 1.564 4.025.002 5.588z"/></svg>
-							Users
-						</a>
-					</li>
-					
-					<li>
-						<a href="#">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.707 2.293A.996.996 0 0 0 12 2H3a1 1 0 0 0-1 1v9c0 .266.105.52.293.707l9 9a.997.997 0 0 0 1.414 0l9-9a.999.999 0 0 0 0-1.414l-9-9zM12 19.586l-8-8V4h7.586l8 8L12 19.586z"/><circle cx="7.507" cy="7.505" r="1.505"/></svg>
-							Categories
-						</a>
-					</li>
-					
-					<li>
-						<a href="#">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5.707 19.707L12 13.414l4.461 4.461L14.337 20H20v-5.663l-2.125 2.124L13.414 12l4.461-4.461L20 9.663V4h-5.663l2.124 2.125L12 10.586 5.707 4.293 4.293 5.707 10.586 12l-6.293 6.293z"/></svg>
-								terjual
-						</a>
-					</li>
-				</ul>
-			</section>
-		
-			
-			
-		</nav>
-	</header>
-		
-		 <!-- Daftar Produk -->
-         <main class="content-wrap">
-            <div class="content-head">
-                <h1>Daftar Produk</h1>
-                <div class="action">
-                    <button id="addProductBtn">Tambah Produk</button>
-                </div>
+<body>
+    <div class="dashboard">
+        <aside class="search-wrap">
+            <div class="search">
+                <label for="search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <!-- Isi SVG -->
+                    </svg>
+                </label>
             </div>
-              <table id="productTable">
+
+            <form class="d-flex mx-auto my-2 search-form">
+                <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..." aria-label="Search">
+                <button class="btn btn-warning" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+
+            <div class="dropdown">
+                <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span class="username ms-2">Nama Pengguna</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <header class="menu-wrap">
+            <figure class="user">
+                <div class="user-avatar">
+                    <img src="/assets/logo_only_vector.png" alt="Plastiqu.Co">
+                </div>
+                <figcaption>Plastiqu.Co</figcaption>
+            </figure>
+
+            <nav>
+                <section class="dicover">
+                    <h3>Kelola</h3>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html" class="active">
+                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+                                Dasbor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="users.html">
+                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+                                Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="category.html">
+                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+                                Kategori
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage_product.html">
+                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Produk
+                            </a>
+                        </li>
+                        <li>
+                            <a href="manage_finance.html">
+                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
+                                Keuangan
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </header>
+
+        <!-- Daftar Produk -->
+        <main class="content-wrap">
+            <header class="content-head">
+                <h1 class="dashboard-tittle">Daftar Produk</h1>
+            </header>
+            <table class="table table-striped" id="productTable">
                 <thead>
-                  <tr>
-                    <th>Nama Produk</th>
-                    <th>Varian</th>
-                    <th>Stok</th>
-                    <th>Harga</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                  </tr>
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Varian</th>
+                        <th>Stok</th>
+                        <th>Harga</th>
+                        <th>Deskripsi</th>
+                        <th>Gambar</th>
+                        <th>Aksi</th>
+                    </tr>
                 </thead>
                 <tbody id="productList">
-                  <!-- Data produk -->
+                    <!-- Data produk -->
                 </tbody>
-              </table>
+            </table>
+        </main>
+    </div>
+
+    <!-- Modal Ubah Produk -->
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProductModalLabel">Ubah Produk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProductForm">
+                        <div class="mb-3">
+                            <label for="productName" class="form-label">Nama Produk</label>
+                            <input type="text" class="form-control" id="productName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productVariant" class="form-label">Varian</label>
+                            <input type="text" class="form-control" id="productVariant" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productStock" class="form-label">Stok</label>
+                            <input type="number" class="form-control" id="productStock" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="form-label">Harga</label>
+                            <input type="text" class="form-control" id="productPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="form-label">Deskripsi</label>
+                            <textarea class="form-control" id="productDescription" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productImage" class="form-label">Gambar Produk</label>
+                            <input type="file" class="form-control" id="productImage" accept="image/*" required>
+                            <img id="previewImage" src="" alt="Preview" style="display:none; margin-top: 10px; width: 100%; height: auto;"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </form>
+                </div>
             </div>
-            
-            <header class="content-head">
-            </header>
-          </main>
         </div>
-        
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script>
-          const products = [
-            { name: "Produk A", variant: "Varian 1", stock: 10, harga: "100.000", description: "Deskripsi Produk A" },
-            { name: "Produk B", variant: "Varian 2", stock: 15, harga: "100.000", description: "Deskripsi Produk B" },
-          ];
-        
-          // Function to render products list
-          function renderProducts() {
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Contoh data produk
+        const products = [
+            {
+                productName: 'Plastiqu Box 500ml',
+                variant: '500ml',
+                stock: 100,
+                price: 'Rp. 15.000',
+                description: 'Kemasan plastik dengan ukuran 500ml.',
+                photo: '/assets/plastiqu_box_500ml.jpg'
+            },
+            {
+                productName: 'Plastiqu Drink 330ml',
+                variant: '330ml',
+                stock: 200,
+                price: 'Rp. 10.000',
+                description: 'Kemasan plastik untuk minuman 330ml.',
+                photo: '/assets/plastiqu_drink_330ml.jpg'
+            }
+        ];
+
+        // Fungsi untuk menampilkan daftar produk
+        function renderProducts() {
             const productList = document.getElementById('productList');
-            productList.innerHTML = '';
-        
+            productList.innerHTML = ''; // Kosongkan daftar produk yang ada
+
             products.forEach((product, index) => {
-              const row = document.createElement('tr');
-              row.innerHTML = `
-                <td>${product.name}</td>
-                <td>${product.variant}</td>
-                <td>${product.stock}</td>
-                <td>${product.harga}</td>
-                <td>${product.description}</td>
-                <td>
-                  <button onclick="editProduct(${index})">Edit</button>
-                  <button onclick="deleteProduct(${index})">Delete</button>
-                </td>
-              `;
-              productList.appendChild(row);
+                const row = document.createElement('tr');
+                const productNameCell = document.createElement('td');
+                const variantCell = document.createElement('td');
+                const stockCell = document.createElement('td');
+                const priceCell = document.createElement('td');
+                const descriptionCell = document.createElement('td');
+                const photoCell = document.createElement('td');
+                const actionCell = document.createElement('td');
+
+                productNameCell.textContent = product.productName;
+                variantCell.textContent = product.variant;
+                stockCell.textContent = product.stock;
+                priceCell.textContent = product.price;
+                descriptionCell.textContent = product.description;
+                photoCell.innerHTML = `<img src="${product.photo}" alt="${product.productName}" style="width: 50px; height: 50px;"/>`;
+
+                const dropdown = document.createElement('div');
+                dropdown.className = 'dropdown';
+                dropdown.innerHTML = `
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Aksi
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item edit-product" href="#" data-index="${index}" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                        <li><a class="dropdown-item delete-product" href="#" data-index="${index}"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye text-success"></i> Detail</a></li>
+                    </ul>
+                `;
+                actionCell.appendChild(dropdown);
+
+                row.appendChild(productNameCell);
+                row.appendChild(variantCell);
+                row.appendChild(stockCell);
+                row.appendChild(priceCell);
+                row.appendChild(descriptionCell);
+                row.appendChild(photoCell);
+                row.appendChild(actionCell);
+
+                productList.appendChild(row);
             });
-          }
-        
-          // Add Product
-          document.getElementById('addProductBtn').addEventListener('click', () => {
-            Swal.fire({
-              title: 'Tambah Produk',
-              html: `
-                <input id="productName" class="swal2-input" placeholder="Nama Produk">
-                <input id="productVariant" class="swal2-input" placeholder="Varian">
-                <input id="productStock" type="number" class="swal2-input" placeholder="Stok">
-                <input id="productHarga" type="number" class="swal2-input" placeholder="Harga">
-                <input id="productDescription" class="swal2-input" placeholder="Deskripsi">
-              `,
-              confirmButtonText: 'Simpan',
-              focusConfirm: false,
-              preConfirm: () => {
-                const name = document.getElementById('productName').value;
-                const variant = document.getElementById('productVariant').value;
-                const stock = document.getElementById('productStock').value;
-                const harga = document.getElementById('productHarga').value;
-                const description = document.getElementById('productDescription').value;
-        
-                if (!name || !variant || !stock || !harga || !description) {
-                  Swal.showValidationMessage('Harap isi semua field');
-                }
-                return { name, variant, stock, harga, description };
-              }
-            }).then((result) => {
-              if (result.isConfirmed) {
-                products.push(result.value);
-                renderProducts();
-                Swal.fire('Berhasil!', 'Produk berhasil ditambahkan.', 'success');
-              }
+
+            // Tambahkan event listener untuk tombol edit
+            document.querySelectorAll('.edit-product').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    const index = event.target.dataset.index;
+                    const product = products[index];
+
+                    // Isi form dengan data produk
+                    document.getElementById('productName').value = product.productName;
+                    document.getElementById('productVariant').value = product.variant;
+                    document.getElementById('productStock').value = product.stock;
+                    document.getElementById('productPrice').value = product.price;
+                    document.getElementById('productDescription').value = product.description;
+                    document.getElementById('previewImage').src = product.photo; // Menampilkan gambar produk
+
+                    // Menangani preview gambar saat file diupload
+                    const productImageInput = document.getElementById('productImage');
+                    productImageInput.onchange = function(event) {
+                        const file = event.target.files[0];
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById('previewImage').src = e.target.result;
+                            document.getElementById('previewImage').style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    };
+
+                    // Menangani pengiriman form
+                    document.getElementById('editProductForm').onsubmit = function(e) {
+                        e.preventDefault();
+                        const updatedProduct = {
+                            productName: document.getElementById('productName').value,
+                            variant: document.getElementById('productVariant').value,
+                            stock: document.getElementById('productStock').value,
+                            price: document.getElementById('productPrice').value,
+                            description: document.getElementById('productDescription').value,
+                            photo: document.getElementById('previewImage').src // Menyimpan URL gambar
+                        };
+
+                        // Di sini, simpan data ke server atau ke storage
+                        console.log('Data produk yang diubah:', updatedProduct);
+                        alert('Produk berhasil diperbarui!'); // Sebagai umpan balik
+
+                        // Setelah memperbarui, reload produk
+                        products[index] = updatedProduct; // Update produk
+                        renderProducts(); // Reload daftar produk
+
+                        // Tutup modal
+                        var modal = bootstrap.Modal.getInstance(document.getElementById('editProductModal'));
+                        modal.hide();
+                    };
+                });
             });
-          });
-        
-          // Edit Product
-          function editProduct(index) {
-            const product = products[index];
-        
-            Swal.fire({
-              title: 'Edit Produk',
-              html: `
-                <input id="productName" class="swal2-input" placeholder="Nama Produk" value="${product.name}">
-                <input id="productVariant" class="swal2-input" placeholder="Varian" value="${product.variant}">
-                <input id="productStock" type="number" class="swal2-input" placeholder="Stok" value="${product.stock}">
-                <input id="productHarga" type="number" class="swal2-input" placeholder="Stok" value="${product.harga}">
-                <input id="productDescription" class="swal2-input" placeholder="Deskripsi" value="${product.description}">
-              `,
-              confirmButtonText: 'Simpan',
-              focusConfirm: false,
-              preConfirm: () => {
-                const name = document.getElementById('productName').value;
-                const variant = document.getElementById('productVariant').value;
-                const stock = document.getElementById('productStock').value;
-                const harga = document.getElementById('productHarga').value;
-                const description = document.getElementById('productDescription').value;
-        
-                if (!name || !variant || !stock || !harga || !description) {
-                  Swal.showValidationMessage('Harap isi semua field');
-                }
-                return { name, variant, stock, harga, description };
-              }
-            }).then((result) => {
-              if (result.isConfirmed) {
-                products[index] = result.value;
-                renderProducts();
-                Swal.fire('Berhasil!', 'Produk berhasil diupdate.', 'success');
-              }
+
+            // Tambahkan event listener untuk tombol hapus
+            document.querySelectorAll('.delete-product').forEach(item => {
+                item.addEventListener('click', function(event) {
+                    const index = event.target.dataset.index;
+                    const productName = products[index].productName; // Ambil nama produk untuk konfirmasi
+
+                    // Konfirmasi penghapusan dengan SweetAlert2
+                    Swal.fire({
+                        title: 'Hapus Produk',
+                        text: `Apakah Anda yakin ingin menghapus ${productName}?`,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Hapus',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Hapus produk
+                            products.splice(index, 1); // Hapus dari array
+                            renderProducts(); // Reload daftar produk
+                            Swal.fire('Terhapus!', `${productName} telah dihapus.`, 'success');
+                        }
+                    });
+                });
             });
-          }
-        
-          // Delete Product
-          function deleteProduct(index) {
-            Swal.fire({
-              title: 'Hapus Produk?',
-              text: "Anda tidak dapat mengembalikan aksi ini!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonText: 'Ya, hapus!',
-              cancelButtonText: 'Batal'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                products.splice(index, 1);
-                renderProducts();
-                Swal.fire('Berhasil!', 'Produk telah dihapus.', 'success');
-              }
-            });
-          }
-        
-          // Render the initial product list
-          renderProducts();
-        </script>
-        
-        </body>
-        </html>
+        }
+
+        // Memanggil fungsi untuk menampilkan produk saat halaman dimuat
+        renderProducts();
+    </script>
+</body>
+
+</html>
+
