@@ -62,16 +62,11 @@
                 <section class="dicover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li><a href="dashboard.html"><i class="fa-solid fa-house"
-                                    style="margin-right: 10px;"></i>Dasbor</a></li>
-                        <li><a href="users.html"><i class="fa-solid fa-user-gear"
-                                    style="margin-right: 10px;"></i>Pengguna</a></li>
-                        <li><a href="category.html"><i class="fa-solid fa-list"
-                                    style="margin-right: 10px;"></i>Kategori</a></li>
-                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen"
-                                    style="margin-right: 10px;"></i>Produk</a></li>
-                        <li><a href="keuangan.html" class="active"><i class="fa-solid fa-hand-holding-dollar"
-                                    style="margin-right: 10px;"></i>Keuangan</a></li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i>Dasbor</a></li>
+                        <li><a href="users.html"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>Pengguna</a></li>
+                        <li><a href="category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i>Kategori</a></li>
+                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i>Produk</a></li>
+                        <li><a href="keuangan.html" class="active"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>Keuangan</a></li>
                     </ul>
                 </section>
             </nav>
@@ -114,25 +109,22 @@
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        id="dropdownMenuButton0" data-bs-toggle="dropdown" aria-expanded="false">
                                         Aksi
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye text-primary"></i>
-                                                Lihat</a></li>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton0">
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-eye text-primary"></i> Lihat</a></li>
                                         <li>
-                                            <div class="dropdown">
-                                                <a class="dropdown-item dropdown-toggle" href="#" id="statusDropdown0"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-sync text-info"></i> Perbarui Status
-                                                </a>
-                                                <ul class="dropdown-menu" aria-labelledby="statusDropdown0">
-                                                    <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Sedang Diproses')">Sedang Diproses</a></li>
-                                                    <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Ditolak')">Ditolak</a></li>
-                                                    <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Selesai')">Selesai</a></li>
-                                                    <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Dikirim')">Dikirim</a></li>
-                                                </ul>
-                                            </div>
+                                            <a class="dropdown-item dropdown-toggle" href="#" id="statusDropdown0"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-sync text-info"></i> Perbarui Status
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="statusDropdown0">
+                                                <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Sedang Diproses')">Sedang Diproses</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Ditolak')">Ditolak</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Selesai')">Selesai</a></li>
+                                                <li><a class="dropdown-item" href="#" onclick="updateStatus(0, 'Dikirim')">Dikirim</a></li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -195,7 +187,7 @@
                 const actionButton = document.createElement('button');
                 actionButton.className = 'btn btn-primary dropdown-toggle';
                 actionButton.type = 'button';
-                actionButton.setAttribute('id', `dropdownMenuButton${index}`);
+                actionButton.id = `dropdownMenuButton${index}`;
                 actionButton.setAttribute('data-bs-toggle', 'dropdown');
                 actionButton.setAttribute('aria-expanded', 'false');
                 actionButton.textContent = 'Aksi';
@@ -204,35 +196,23 @@
                 actionMenu.className = 'dropdown-menu';
                 actionMenu.setAttribute('aria-labelledby', `dropdownMenuButton${index}`);
 
-                const viewItem = document.createElement('li');
-                viewItem.innerHTML = `<a class="dropdown-item" href="#"><i class="fas fa-eye text-primary"></i> Lihat</a>`;
-                actionMenu.appendChild(viewItem);
+                const viewAction = document.createElement('li');
+                viewAction.innerHTML = `<a class="dropdown-item" href="#"><i class="fas fa-eye text-primary"></i> Lihat</a>`;
+                actionMenu.appendChild(viewAction);
 
-                // Dropdown status
-                const statusItem = document.createElement('li');
-                const statusDropdown = document.createElement('a');
-                statusDropdown.className = 'dropdown-item dropdown-toggle';
-                statusDropdown.setAttribute('href', '#');
-                statusDropdown.setAttribute('id', `statusDropdown${index}`);
-                statusDropdown.setAttribute('data-bs-toggle', 'dropdown');
-                statusDropdown.setAttribute('aria-expanded', 'false');
-                statusDropdown.innerHTML = `<i class="fas fa-sync text-info"></i> Perbarui Status`;
-
-                const statusMenu = document.createElement('ul');
-                statusMenu.className = 'dropdown-menu';
-                statusMenu.setAttribute('aria-labelledby', `statusDropdown${index}`);
-
-                // Opsi status
-                ['Sedang Diproses', 'Ditolak', 'Selesai', 'Dikirim'].forEach(status => {
-                    const statusOption = document.createElement('li');
-                    statusOption.innerHTML = `<a class="dropdown-item" href="#" onclick="updateStatus(${index}, '${status}')">${status}</a>`;
-                    statusMenu.appendChild(statusOption);
-                });
-
-                statusItem.appendChild(statusDropdown);
-                statusItem.appendChild(statusMenu);
-                actionMenu.appendChild(statusItem);
-
+                const updateAction = document.createElement('li');
+                updateAction.innerHTML = `
+                    <a class="dropdown-item dropdown-toggle" href="#" id="statusDropdown${index}" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-sync text-info"></i> Perbarui Status
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="statusDropdown${index}">
+                        <li><a class="dropdown-item" href="#" onclick="updateStatus(${index}, 'Sedang Diproses')">Sedang Diproses</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateStatus(${index}, 'Ditolak')">Ditolak</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateStatus(${index}, 'Selesai')">Selesai</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="updateStatus(${index}, 'Dikirim')">Dikirim</a></li>
+                    </ul>
+                `;
+                actionMenu.appendChild(updateAction);
                 actionDropdown.appendChild(actionButton);
                 actionDropdown.appendChild(actionMenu);
                 actionCell.appendChild(actionDropdown);
@@ -247,19 +227,18 @@
                 row.appendChild(totalPriceCell);
                 row.appendChild(statusCell);
                 row.appendChild(actionCell);
-
                 transactionList.appendChild(row);
             });
         }
 
-        // Fungsi untuk memperbarui status
-        function updateStatus(index, newStatus) {
-            transactions[index].status = newStatus; // Update status di array
-            renderTransactionList(); // Render ulang daftar transaksi
+        // Fungsi untuk memperbarui status transaksi
+        function updateStatus(index, status) {
+            transactions[index].status = status; // Update status di array
+            document.getElementById(`status-${index}`).textContent = status; // Update tampilan status
         }
 
         // Render daftar transaksi saat halaman dimuat
-        window.onload = renderTransactionList;
+        renderTransactionList();
     </script>
 </body>
 
