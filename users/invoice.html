@@ -8,93 +8,21 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .navbar {
-            background-color: #007bff;
-        }
-
-        .navbar-brand img {
-            margin-right: 10px;
-        }
-
-        .container {
-            background-color: #ffffff;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        /* Styling untuk halaman invoice */
+        .invoice-container {
             margin-top: 40px;
-            border-radius: 10px;
         }
-
-        h2 {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .table thead {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .table tbody tr {
-            background-color: #f9f9f9;
-        }
-
-        .table tbody tr:nth-child(even) {
-            background-color: #f1f1f1;
-        }
-
-        .payment-method, .shipping-method {
+        .payment-section, .shipping-section {
             margin-top: 30px;
-        }
-
-        .shipping-method select {
-            padding: 8px;
-            width: 100%;
-            font-size: 1.1em;
-        }
-
-        .form-check-label {
-            font-size: 1.1em;
-            color: #007bff;
-        }
-
-        .total-section {
-            margin-top: 30px;
-            text-align: right;
-        }
-
-        .total-section h4 {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.1em;
-            margin-top: 20px;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .text-center h5 {
-            color: #007bff;
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand text-white" href="index.html">
+                <a class="navbar-brand" href="index.html">
                     <img src="assets/logo.png" alt="Plastiqu Logo" height="50"> Plastiqu.Co
                 </a>
             </div>
@@ -102,7 +30,7 @@
     </header>
 
     <!-- Invoice Section -->
-    <section class="container py-5">
+    <section class="container invoice-container py-5">
         <h2 class="text-center mb-5">Invoice Pembayaran</h2>
         <div class="row">
             <div class="col-md-12">
@@ -118,35 +46,35 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="total-section">
-                    <h4>Total Pembayaran: <span id="totalPayment"></span></h4>
-                </div>
-
-                <!-- Shipping Method Section -->
-                <div class="shipping-method">
-                    <h5>Jasa Pengiriman</h5>
-                    <select id="shippingOption" class="form-select">
-                        <option value="JNE" data-price="15000">JNE - Rp 15.000</option>
-                    </select>
-                </div>
-
-                <!-- Payment Method Section -->
-                <div class="payment-method">
-                    <h5>Metode Pembayaran</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="paymentMethod" id="codOption" value="COD" checked>
-                        <label class="form-check-label" for="codOption">COD (Bayar di tempat)</label>
-                    </div>
-                </div>
-
-                <div class="total-section mt-4">
-                    <h4>Total dengan Pengiriman: <span id="totalWithShipping"></span></h4>
-                </div>
-
-                <div class="text-center mt-4">
-                    <button class="btn btn-primary">Lanjutkan Pembayaran</button>
+                <div class="text-end">
+                    <h4>Total Harga Produk: <span id="totalProductPrice"></span></h4>
                 </div>
             </div>
+        </div>
+        
+        <!-- Metode Pembayaran Section -->
+        <div class="payment-section text-center">
+            <h4>Pilih Metode Pembayaran</h4>
+            <select id="paymentMethod" class="form-select">
+                <option value="COD">COD (Cash on Delivery)</option>
+                <option value="Alfamart">Alfamart</option>
+                <option value="Indomaret">Indomaret</option>
+            </select>
+        </div>
+
+        <!-- Jasa Pengiriman Section -->
+        <div class="shipping-section text-center">
+            <h4>Pilih Jasa Pengiriman</h4>
+            <select id="shippingMethod" class="form-select" onchange="updateShippingCost()">
+                <option value="JNE" data-cost="10000">JNE - Rp 10.000</option>
+                <option value="Tiki" data-cost="12000">Tiki - Rp 12.000</option>
+                <option value="Gojek" data-cost="8000">Gojek - Rp 8.000</option>
+            </select>
+        </div>
+
+        <!-- Total Pembayaran -->
+        <div class="text-end mt-4">
+            <h4>Total Pembayaran: <span id="totalPayment"></span></h4>
         </div>
     </section>
 
@@ -154,37 +82,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         window.onload = function() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const currentProduct = JSON.parse(localStorage.getItem('currentProduct'));
             const invoiceTable = document.getElementById('invoiceTable');
-            const totalPaymentElem = document.getElementById('totalPayment');
-            const totalWithShippingElem = document.getElementById('totalWithShipping');
-            const shippingOption = document.getElementById('shippingOption');
 
-            let totalPayment = 0;
+            let totalProductPrice = 0;
 
-            // Display products and calculate total
-            cart.forEach(item => {
+            if (currentProduct) {
                 const row = invoiceTable.insertRow();
-                row.insertCell(0).innerText = item.name;
-                row.insertCell(1).innerText = 'Rp ' + item.price.toLocaleString();
-                totalPayment += parseInt(item.price.replace(/[^0-9]/g, ''), 10); // Remove non-digit characters before calculating
-            });
-
-            totalPaymentElem.innerText = 'Rp ' + totalPayment.toLocaleString();
-
-            // Calculate total including shipping
-            function updateTotalWithShipping() {
-                const shippingCost = parseInt(shippingOption.selectedOptions[0].dataset.price, 10);
-                const totalWithShipping = totalPayment + shippingCost;
-                totalWithShippingElem.innerText = 'Rp ' + totalWithShipping.toLocaleString();
+                row.insertCell(0).innerText = currentProduct.name;
+                row.insertCell(1).innerText = currentProduct.price;
+                totalProductPrice = parseInt(currentProduct.price.replace(/[^0-9]/g, '')); // Mengambil angka dari harga
+                document.getElementById('totalProductPrice').innerText = 'Rp ' + totalProductPrice.toLocaleString();
+            } else {
+                invoiceTable.innerHTML = '<tr><td colspan="2">Tidak ada produk yang dibeli.</td></tr>';
             }
 
-            // Initial calculation with default shipping
-            updateTotalWithShipping();
-
-            // Update total when shipping option changes
-            shippingOption.addEventListener('change', updateTotalWithShipping);
+            updateTotalPayment(totalProductPrice);
         };
+
+        function updateShippingCost() {
+            const shippingSelect = document.getElementById('shippingMethod');
+            const shippingCost = parseInt(shippingSelect.options[shippingSelect.selectedIndex].getAttribute('data-cost'));
+            const totalProductPrice = parseInt(document.getElementById('totalProductPrice').innerText.replace(/[^0-9]/g, ''));
+
+            updateTotalPayment(totalProductPrice, shippingCost);
+        }
+
+        function updateTotalPayment(productPrice, shippingCost = 0) {
+            const totalPayment = productPrice + shippingCost;
+            document.getElementById('totalPayment').innerText = 'Rp ' + totalPayment.toLocaleString();
+        }
     </script>
 </body>
 </html>

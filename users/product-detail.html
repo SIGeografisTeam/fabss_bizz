@@ -90,7 +90,7 @@
                         <h1 class="product-name">${product.name}</h1>
                         <p class="product-price">${product.price}</p>
                         <p class="product-description">${product.description}</p>
-                        <button class="btn btn-buy" onclick="buyProduct(${product.id})">Beli Sekarang</button>
+                        <button class="btn btn-buy" onclick="buyProduct(${product.id}, '${product.name}', '${product.price}')">Beli Sekarang</button>
                         <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
                     </div>
                 `;
@@ -99,8 +99,11 @@
             }
         }
 
-        function buyProduct(id) {
-            alert('Anda akan membeli produk dengan ID: ' + id);
+        function buyProduct(id, name, price) {
+            // Simpan detail produk ke localStorage
+            localStorage.setItem('currentProduct', JSON.stringify({ id, name, price }));
+            // Alihkan ke halaman invoice
+            window.location.href = 'invoice.html'; // Ganti dengan nama file invoice yang benar
         }
 
         function addToCart(id) {
