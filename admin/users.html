@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -32,6 +33,17 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
+
+            <div class="dropdown">
+                <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span class="username ms-2">Nama Pengguna</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
         <header class="menu-wrap">
@@ -39,45 +51,18 @@
                 <div class="user-avatar">
                     <img src="/img/logoplastiku2nobg.png" alt="Plastiqu">
                 </div>
-                <figcaption>
-                    Plastiqu.co
-                </figcaption>
+                <figcaption>Plastiqu.co</figcaption>
             </figure>
 
             <nav>
                 <section class="dicover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li>
-                            <a href="dashboard.html">
-                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
-                                Dasbor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="users.html" class="active">
-                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
-                                Pengguna
-                            </a>
-                        </li>
-                        <li>
-                            <a href="category.html">
-                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
-                                Kategori
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage_product.html">
-                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
-                                Produk
-                            </a>
-                        </li>
-                        <li>
-                            <a href="manage_finance.html">
-                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
-                                Keuangan
-                            </a>
-                        </li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i>Dasbor</a></li>
+                        <li><a href="users.html" class="active"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>Pengguna</a></li>
+                        <li><a href="category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i>Kategori</a></li>
+                        <li><a href="manage_product.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i>Produk</a></li>
+                        <li><a href="manage_finance.html"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>Keuangan</a></li>
                     </ul>
                 </section>
             </nav>
@@ -112,7 +97,16 @@
                             <td>123 Main St, Anytown, USA</td>
                             <td><img src="https://via.placeholder.com/50" alt="Foto John" class="img-fluid"></td>
                             <td>
-                                <button class="btn btn-danger btn-sm" onclick="deleteUser(this)">Hapus</button>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Aksi
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Password</a></li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -122,7 +116,7 @@
     </div>
 
     <script>
-        // Array to hold the user data
+        // Array untuk menyimpan data pengguna
         const users = [
             {
                 firstName: 'John',
@@ -134,10 +128,10 @@
             }
         ];
 
-        // Function to render the user list
+        // Fungsi untuk menampilkan daftar pengguna
         function renderUserList() {
             const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Clear the current list
+            userList.innerHTML = ''; // Hapus daftar yang ada
             users.forEach((user) => {
                 const row = document.createElement('tr');
                 const firstNameCell = document.createElement('td');
@@ -155,12 +149,20 @@
                 addressCell.textContent = user.address;
                 photoCell.innerHTML = `<img src="${user.photo}" alt="Foto ${user.firstName}" class="img-fluid" style="width: 50px;">`;
 
-                const deleteButton = document.createElement('button');
-                deleteButton.className = 'btn btn-danger btn-sm';
-                deleteButton.textContent = 'Hapus';
-                deleteButton.onclick = () => deleteUser(deleteButton);
-                
-                actionCell.appendChild(deleteButton);
+                const dropdown = document.createElement('div');
+                dropdown.className = 'dropdown';
+                dropdown.innerHTML = `
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Aksi
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Password</a></li>
+                    </ul>
+                `;
+                actionCell.appendChild(dropdown);
+
                 row.appendChild(firstNameCell);
                 row.appendChild(lastNameCell);
                 row.appendChild(emailCell);
@@ -168,48 +170,12 @@
                 row.appendChild(addressCell);
                 row.appendChild(photoCell);
                 row.appendChild(actionCell);
+
                 userList.appendChild(row);
             });
         }
 
-        // Handle form submission to add new users
-        document.getElementById('user-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Get user details from form inputs
-            const userFirstName = document.getElementById('user-first-name').value;
-            const userLastName = document.getElementById('user-last-name').value;
-            const userEmail = document.getElementById('user-email').value;
-            const userPhone = document.getElementById('user-phone').value;
-            const userAddress = document.getElementById('user-address').value;
-            const userPhoto = document.getElementById('user-photo').value;
-
-            // Add new user to the users array
-            users.push({
-                firstName: userFirstName,
-                lastName: userLastName,
-                email: userEmail,
-                phone: userPhone,
-                address: userAddress,
-                photo: userPhoto
-            });
-
-            // Render updated user list
-            renderUserList();
-
-            // Clear form inputs
-            this.reset();
-        });
-
-        // Function to delete a user
-        function deleteUser(button) {
-            const row = button.closest('tr');
-            const index = Array.from(row.parentNode.children).indexOf(row);
-            users.splice(index, 1); // Remove user from array
-            renderUserList(); // Update user list
-        }
-
-        // Initial render
+        // Rendering awal daftar pengguna
         renderUserList();
     </script>
 </body>
