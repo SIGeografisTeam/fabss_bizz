@@ -529,6 +529,13 @@ table thead th {
   }
 }
 
+.medium-big {
+  font-size: 28px; /* Ukuran antara medium dan big */
+  font-weight: bold; /* Untuk memastikan font tetap bold */
+}
+
+
+
 /* Hover effect for the dropdown button 
 .dropdown .btn-primary:hover {
   background-color: #aacdd0;
