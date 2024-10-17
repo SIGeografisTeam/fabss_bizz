@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Styling sederhana untuk halaman detail */
         .product-detail-container {
             margin-top: 40px;
         }
@@ -28,7 +27,7 @@
 
         .product-price {
             font-size: 1.5rem;
-            color: #28a745;
+            color: #449bab;
             margin-bottom: 20px;
         }
 
@@ -43,13 +42,28 @@
         }
 
         .btn-buy {
-            background-color: #28a745;
+            background-color: #449bab;
             color: white;
         }
 
         .btn-cart {
-            background-color: #ffc107;
+            background-color: #033043;
             color: black;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quantity-control input {
+            width: 50px;
+            text-align: center;
+        }
+
+        .quantity-control button {
+            width: 40px;
         }
     </style>
 </head>
@@ -62,12 +76,12 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 5.000 - Rp 10.000', description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan' },
-            { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 4.000 - Rp 7.500', description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman' },
-            { id: 3, name: 'Plastik Ziplock', price: 'Rp 10.000 - Rp 20.000', description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock' },
-            { id: 4, name: 'Plastik Wrapping', price: 'Rp 7.500 - Rp 15.000', description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping' },
-            { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 15.000 - Rp 25.000', description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum' },
-            { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 6.000 - Rp 12.000', description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas' }
+            { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan' },
+            { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman' },
+            { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock' },
+            { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping' },
+            { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum' },
+            { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas' }
         ];
 
         function getProductIdFromURL() {
@@ -88,8 +102,16 @@
                     </div>
                     <div class="col-md-6">
                         <h1 class="product-name">${product.name}</h1>
-                        <p class="product-price">${product.price}</p>
+                        <p class="product-price">Rp ${product.price.toLocaleString()}</p>
                         <p class="product-description">${product.description}</p>
+
+                        <!-- Quantity control -->
+                        <div class="quantity-control">
+                            <button class="btn btn-secondary" onclick="changeQuantity(-1)">-</button>
+                            <input type="text" id="quantity" value="1" readonly>
+                            <button class="btn btn-secondary" onclick="changeQuantity(1)">+</button>
+                        </div>
+
                         <button class="btn btn-buy" onclick="buyProduct(${product.id}, '${product.name}', '${product.price}')">Beli Sekarang</button>
                         <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
                     </div>
@@ -99,26 +121,46 @@
             }
         }
 
+        function changeQuantity(value) {
+            let quantityInput = document.getElementById('quantity');
+            let currentQuantity = parseInt(quantityInput.value);
+
+            if (currentQuantity + value > 0) {
+                quantityInput.value = currentQuantity + value;
+            }
+        }
+
         function buyProduct(id, name, price) {
+            const quantity = parseInt(document.getElementById('quantity').value);
+
             // Simpan detail produk ke localStorage
-            localStorage.setItem('currentProduct', JSON.stringify({ id, name, price }));
+            localStorage.setItem('currentProduct', JSON.stringify({ id, name, price, quantity }));
+
             // Alihkan ke halaman invoice
             window.location.href = 'invoice.html'; // Ganti dengan nama file invoice yang benar
         }
 
         function addToCart(id) {
+            const quantity = parseInt(document.getElementById('quantity').value);
             const product = products.find(p => p.id == id);
 
             // Cek apakah keranjang sudah ada di localStorage
             let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
-            // Tambahkan produk ke keranjang
-            cart.push(product);
+            // Cek apakah produk sudah ada di keranjang
+            const existingProduct = cart.find(item => item.id === product.id);
+            if (existingProduct) {
+                existingProduct.quantity += quantity;
+            } else {
+                // Tambahkan produk ke keranjang
+                product.quantity = quantity;
+                cart.push(product);
+            }
 
             // Simpan kembali ke localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
 
-            alert(`${product.name} telah ditambahkan ke keranjang!`);
+            alert(`${product.name} telah ditambahkan ke keranjang dengan kuantitas ${quantity}!`);
         }
 
         displayProductDetail();
