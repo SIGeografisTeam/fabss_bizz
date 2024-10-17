@@ -1,165 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transfer Bank | Plastiqu.Co</title>
-    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <title>Konfirmasi Transaksi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
             font-family: 'Signika', sans-serif;
-            color: #033043;
-            padding: 40px;
+            background-color: #f8f9fa;
         }
 
-        .bank-details {
-            background-color: white;
+        .invoice {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        .confirm-button, .later-button {
-            background-color: #033043;
-            color: white;
-            margin-top: 20px;
-        }
-
-        .confirm-button:hover, .later-button:hover {
-            background-color: #01a1b3;
-        }
-
-        h2 {
-            color: #033043;
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 400px;
+        .invoice-header {
             text-align: center;
+            margin-bottom: 40px;
         }
 
-        .popup input[type="file"] {
+        .invoice-header img {
+            max-width: 100px;
+        }
+
+        .invoice-header h1 {
             margin-top: 20px;
+            font-size: 24px;
         }
 
-        .popup button {
-            background-color: #033043;
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #84B8C6;
+            border-color: #84B8C6;
             color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
-            cursor: pointer;
         }
 
-        .popup button:hover {
-            background-color: #01a1b3;
+        .btn-submit:hover {
+            background-color: #6BA3B1;
+            border-color: #6BA3B1;
+        }
+
+        h4 {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .section-left {
+            text-align: left;
+        }
+
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+            vertical-align: middle;
         }
     </style>
 </head>
 
 <body>
-    <h2 class="text-center mb-5">Transfer Bank</h2>
-
-    <div class="bank-details">
-        <h5>Rekening Tujuan</h5>
-        <p><strong>Bank BCA</strong><br>No. Rekening: 123-456-789<br>Atas Nama: Plastiqu.Co</p>
-    </div>
-
-    <div class="bank-details">
-        <h5>Jumlah yang Harus Dibayar</h5>
-        <p><strong id="totalAmountDisplay">Rp 0</strong></p> <!-- Menampilkan total pembayaran -->
-    </div>
-
-    <div class="bank-details">
-        <h5>Instruksi Pembayaran</h5>
-        <ol>
-            <li>Lakukan transfer ke rekening tujuan yang tertera di atas.</li>
-            <li>Masukkan jumlah total pembayaran sesuai dengan yang ada di halaman checkout.</li>
-            <li>Simpan bukti transfer dan lakukan konfirmasi di halaman <strong>Konfirmasi Pembayaran</strong>.</li>
-        </ol>
-    </div>
-
-    <div class="bank-details">
-        <h5>Batas Waktu Pembayaran</h5>
-        <p>Anda memiliki waktu <strong>24 jam</strong> untuk menyelesaikan pembayaran. Jika pembayaran tidak dilakukan dalam waktu tersebut, pesanan Anda akan otomatis dibatalkan.</p>
-    </div>
-
-    <div class="text-center">
-        <button class="btn later-button" onclick="payLater()">Bayar Nanti</button>
-        <button class="btn confirm-button" onclick="openPopup()">Saya Sudah Bayar</button>
-    </div>
-
-    <!-- Popup for payment confirmation -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup">
-            <h5>Unggah Bukti Pembayaran</h5>
-            <input type="file" id="paymentProof">
-            <button onclick="submitPayment()">Submit</button>
-            <button onclick="closePopup()">Batal</button>
+    <div class="invoice">
+        <div class="invoice-header">
+            <img src="/assets/logo_only_vector.png" alt="Plastiqu.Co">
+            <h1>Konfirmasi Transaksi</h1>
         </div>
+
+        <form id="paymentForm">
+            <!-- Kode Transaksi -->
+            <div class="form-group">
+                <label for="kode-transaksi">Kode Transaksi</label>
+                <p class="form-control" id="kode-transaksi">TRX123456</p>
+            </div>
+
+            <!-- Informasi Pembeli -->
+            <h4 class="section-left">Informasi Pembeli</h4>
+            <div class="form-group section-left">
+                <label for="nama">Nama Pembeli</label>
+                <p class="form-control" id="nama"></p>
+            </div>
+            <div class="form-group section-left">
+                <label for="alamat">Alamat Pembeli</label>
+                <p class="form-control" id="alamat"></p>
+            </div>
+            <div class="form-group section-left">
+                <label for="telepon">Nomor Telepon</label>
+                <p class="form-control" id="telepon"></p>
+            </div>
+
+            <!-- Detail Pesanan -->
+            <h4 class="section-left">Detail Pesanan</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nama Produk + Varian</th>
+                        <th>Jumlah</th>
+                        <th>Harga Satuan</th>
+                        <th>Harga Total</th>
+                    </tr>
+                </thead>
+                <tbody id="orderDetails"></tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="3" class="text-end">Total Bayar</th>
+                        <th id="totalAmount"></th>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <!-- Metode Pembayaran -->
+            <h4 class="section-left">Metode Pembayaran</h4>
+            <div class="form-group section-left">
+                <label for="metode-pembayaran">Metode Pembayaran</label>
+                <p class="form-control" id="metode-pembayaran"></p>
+            </div>
+
+            <!-- Bukti Pembayaran -->
+            <h4 class="section-left">Bukti Pembayaran</h4>
+            <div class="form-group section-left">
+                <label for="bukti-transaksi">Upload Bukti Transaksi</label>
+                <input type="file" class="form-control" id="bukti-transaksi" accept="image/*">
+            </div>
+
+            <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Konfirmasi Pesanan</button>
+            <button type="button" class="btn btn-secondary btn-submit" onclick="saveOrderForLater()">Bayar Nanti</button>
+        </form>
     </div>
 
     <script>
-        // Mendapatkan jumlah total yang harus dibayar dari URL parameter
-        const urlParams = new URLSearchParams(window.location.search);
-        const totalAmount = urlParams.get('amount') || 0;
+        // Sample data retrieval for displaying
+        const currentUser = {
+            username: "User123",
+            recipientName: "Nama Penerima",
+            recipientAddress: "Jalan Alamat Penerima, Kota, Provinsi",
+            telephone: "081234567890"
+        };
 
-        // Menampilkan jumlah total pada halaman
-        document.getElementById('totalAmountDisplay').textContent = `Rp ${parseInt(totalAmount).toLocaleString()}`;
+        const cartItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+        const totalAmount = localStorage.getItem('totalAmount');
+        const paymentMethod = localStorage.getItem('paymentMethod');
 
-        // Fungsi untuk mengonfirmasi pembayaran
-        function payLater() {
-            window.location.href = 'pesanan.html'; // Redirect ke halaman order history
-        }
+        document.getElementById('nama').textContent = currentUser.recipientName;
+        document.getElementById('alamat').textContent = currentUser.recipientAddress;
+        document.getElementById('telepon').textContent = currentUser.telephone;
+        document.getElementById('totalAmount').textContent = `Rp ${totalAmount}`;
 
-        // Fungsi untuk membuka popup upload bukti pembayaran
-        function openPopup() {
-            document.getElementById('popupOverlay').style.display = 'flex';
-        }
+        // Displaying order details
+        const orderDetails = document.getElementById('orderDetails');
+        cartItems.forEach(item => {
+            const orderRow = `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>Rp ${item.price.toLocaleString()}</td>
+                    <td>Rp ${(item.price * item.quantity).toLocaleString()}</td>
+                </tr>
+            `;
+            orderDetails.innerHTML += orderRow;
+        });
 
-        // Fungsi untuk menutup popup
-        function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
+        document.getElementById('metode-pembayaran').textContent = paymentMethod;
 
-        // Fungsi untuk submit bukti pembayaran
-        function submitPayment() {
-            const paymentProof = document.getElementById('paymentProof').files[0];
-            if (paymentProof) {
-                // Logika untuk mengupload bukti pembayaran
-                alert('Bukti pembayaran berhasil diunggah. Pesanan Anda sedang diproses.');
-                closePopup();
-                window.location.href = 'pesanan.html'; // Redirect ke halaman utama setelah konfirmasi
+        function confirmOrder() {
+            const receipt = document.getElementById('bukti-transaksi').files[0];
+            if (receipt) {
+                // Create an order object to store
+                const order = {
+                    kodeTransaksi: document.getElementById('kode-transaksi').textContent,
+                    recipientName: currentUser.recipientName,
+                    recipientAddress: currentUser.recipientAddress,
+                    telephone: currentUser.telephone,
+                    items: cartItems,
+                    totalAmount: totalAmount,
+                    paymentMethod: paymentMethod,
+                    status: "waiting-confirmation" // Set status to "waiting-confirmation"
+                };
+
+                // Store the order in localStorage
+                localStorage.setItem('newOrder', JSON.stringify(order));
+
+                // Redirect to pesanan.html
+                window.location.href = 'pesanan.html';
             } else {
-                alert('Silakan unggah bukti pembayaran terlebih dahulu.');
+                alert("Silakan upload bukti pembayaran sebelum melanjutkan.");
             }
         }
 
-        // Logika untuk mengatur batas waktu 24 jam pembayaran
-        const paymentDeadline = new Date();
-        paymentDeadline.setHours(paymentDeadline.getHours() + 24); // Menambahkan 24 jam dari sekarang
-        console.log("Batas waktu pembayaran: ", paymentDeadline);
-    </script>
+        function saveOrderForLater() {
+            // Create an order object to store with status "belum dibayar"
+            const order = {
+                kodeTransaksi: document.getElementById('kode-transaksi').textContent,
+                recipientName: currentUser.recipientName,
+                recipientAddress: currentUser.recipientAddress,
+                telephone: currentUser.telephone,
+                items: cartItems,
+                totalAmount: totalAmount,
+                paymentMethod: paymentMethod,
+                status: "belum dibayar" // Set status to "belum dibayar"
+            };
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+            // Store the order in localStorage
+            let existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            existingOrders.push(order);
+            localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+            // Redirect to pesanan.html
+            window.location.href = 'pesanan.html';
+        }
+    </script>
 </body>
 
 </html>
