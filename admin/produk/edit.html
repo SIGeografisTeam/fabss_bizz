@@ -4,109 +4,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Produk</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <title>Edit Produk | Plastiqu.Co</title>
+    <link rel="stylesheet" href="/css/produkte.css">
+
+    <!-- Google fonts signika -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- FA Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+    <!-- Form Edit Produk -->
+    <div class="form-container">
+        <form id="editProductForm" action="#" method="POST">
+            <!-- Header with logo and "Edit Produk" -->
+            <div class="brand">
+                <img src="/assets/logo_only_vector.png" alt="Logo">
+                <span class="text-center">Plastiqu.Co</span>
+            </div>
+            <h2 class="text-center">Edit Produk</h2>
 
-<!-- Container utama -->
-<div class="edit-container">
+            <!-- Kategori Dropdown -->
+            <div class="input-group">
+                <select id="productCategory" required>
+                    <option value="" disabled selected>Pilih Kategori</option>
+                    <option value="Makanan">Makanan</option>
+                    <option value="Minuman">Minuman</option>
+                    <option value="Alat">Alat</option>
+                </select>
+                <label for="productCategory">Kategori</label>
+            </div>
 
-  <!-- Logo -->
-  <div class="logo">
-    <!-- Logo dalam bentuk teks -->
-    <h2><span>Plastiqu.co</span></h2>
-  </div>
-
-<!-- Container utama -->
-<div class="edit-container">
-  <h1>Edit Produk</h1>
-
-        <!-- Form Edit Produk -->
-        <form id="editProductForm">
-            <div class="form-group">
+            <!-- Nama Produk -->
+            <div class="input-group">
+                <input type="text" id="productName" required>
                 <label for="productName">Nama Produk</label>
-                <input type="text" id="productName" class="input-field" placeholder="Edit nama produk" required>
             </div>
 
-            <div class="form-group">
-                <label for="productVariant">Varian</label>
-                <input type="text" id="productVariant" class="input-field" placeholder="Edit varian produk" required>
+            <!-- Deskripsi -->
+            <div class="input-group">
+                <textarea id="productDescription" required></textarea>
+                <label for="productDescription">Deskripsi Produk</label>
             </div>
 
-            <div class="form-group">
-                <label for="productStock">Stok</label>
-                <input type="number" id="productStock" class="input-field" placeholder="Edit stok produk" required>
+            <!-- Varian Produk -->
+            <div id="variantsContainer">
+                <h3>Varian Produk</h3>
+                <div class="variant-input-group">
+                    <input type="text" placeholder="Varian" required>
+                    <input type="number" placeholder="Stok" required>
+                    <input type="number" placeholder="Harga (Range)" required>
+                </div>
             </div>
+            <a href="#" id="addVariantLink" class="add-variant-link">Tambah Varian</a>
 
-            <div class="form-group">
-                <label for="productHarga">Harga</label>
-                <input type="number" id="productHarga" class="input-field" placeholder="Edit harga produk" required>
-            </div>
-
-            <div class="form-group">
-                <label for="productDescription">Deskripsi</label>
-                <textarea id="productDescription" class="input-field" placeholder="Edit deskripsi produk" required></textarea>
-            </div>
-
-            <div class="form-group">
+            <!-- Gambar Produk -->
+            <div class="input-group">
+                <input type="file" id="productImage" accept="image/*" required>
                 <label for="productImage">Gambar Produk</label>
-                <input type="file" id="productImage" class="input-field" accept="image/*">
-                <img id="imagePreview" src="" alt="Preview Gambar" style="display:none; margin-top: 10px; max-width: 200px;">
+                <img id="imagePreview" src="" alt="Preview Gambar" style="display:none;">
+                <small style="color: #999; margin-top: 5px; display: block;">* Pilih gambar produk untuk preview</small>
             </div>
 
-            <!-- Tombol Simpan dan Batal -->
-            <div class="form-actions">
-                <button type="submit" class="btn btn-save">Simpan</button>
-                <button type="button" class="btn btn-cancel" onclick="window.location.href='index.html'">Batal</button>
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Simpan</button>
+
+            <!-- Cancel Button -->
+            <div class="cancel-btn-container">
+                <a href="produk.html" class="cancel-btn">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </a>
             </div>
         </form>
     </div>
 
     <script>
-        // Fungsi untuk menampilkan produk yang sedang diedit
-        function loadProductDetails(productIndex) {
-            const products = JSON.parse(localStorage.getItem('products'));
-            const product = products[productIndex];
+        // Ambil indeks produk yang akan diedit dari localStorage
+        const currentProductIndex = localStorage.getItem('currentProductIndex');
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+        const productToEdit = products[currentProductIndex];
 
-            document.getElementById('productName').value = product.name;
-            document.getElementById('productVariant').value = product.variant;
-            document.getElementById('productStock').value = product.stock;
-            document.getElementById('productHarga').value = product.harga;
-            document.getElementById('productDescription').value = product.description;
+        // Isi form dengan data produk yang ada
+        if (productToEdit) {
+            document.getElementById('productCategory').value = productToEdit.category;
+            document.getElementById('productName').value = productToEdit.name;
+            document.getElementById('productDescription').value = productToEdit.description;
 
-            // Menampilkan gambar produk yang ada
-            if (product.image) {
+            // Isi varian produk
+            const variantsContainer = document.getElementById('variantsContainer');
+            productToEdit.variants.forEach(variant => {
+                const newVariant = document.createElement('div');
+                newVariant.classList.add('variant-input-group');
+                newVariant.innerHTML = `
+                    <input type="text" value="${variant.name}" placeholder="Varian" required>
+                    <input type="number" value="${variant.stock}" placeholder="Stok" required>
+                    <input type="number" value="${variant.price}" placeholder="Harga (Range)" required>
+                `;
+                variantsContainer.appendChild(newVariant);
+            });
+
+            // Menampilkan gambar jika ada
+            if (productToEdit.image) {
                 const imagePreview = document.getElementById('imagePreview');
-                imagePreview.src = product.image; // Menyimpan URL gambar
-                imagePreview.style.display = 'block'; // Menampilkan gambar
+                imagePreview.src = productToEdit.image;
+                imagePreview.style.display = 'block'; // Menampilkan gambar preview
             }
-
-            document.getElementById('editProductForm').onsubmit = function(event) {
-                event.preventDefault();
-                saveProductChanges(productIndex);
-            };
         }
+
+        // Fungsi untuk menambahkan input varian baru
+        document.getElementById('addVariantLink').addEventListener('click', function(event) {
+            event.preventDefault(); // Menghindari navigasi
+            const variantsContainer = document.getElementById('variantsContainer');
+            const newVariant = document.createElement('div');
+            newVariant.classList.add('variant-input-group');
+            newVariant.innerHTML = `
+                <input type="text" placeholder="Varian" required>
+                <input type="number" placeholder="Stok" required>
+                <input type="number" placeholder="Harga (Range)" required>
+            `;
+            variantsContainer.appendChild(newVariant);
+        });
 
         // Fungsi untuk menyimpan perubahan produk
-        function saveProductChanges(productIndex) {
-            const products = JSON.parse(localStorage.getItem('products'));
-            products[productIndex] = {
+        document.getElementById('editProductForm').onsubmit = function(event) {
+            event.preventDefault();
+
+            // Update produk yang ada di localStorage
+            const updatedProduct = {
+                category: document.getElementById('productCategory').value,
                 name: document.getElementById('productName').value,
-                variant: document.getElementById('productVariant').value,
-                stock: document.getElementById('productStock').value,
-                harga: document.getElementById('productHarga').value,
                 description: document.getElementById('productDescription').value,
-                image: document.getElementById('productImage').files[0] ? URL.createObjectURL(document.getElementById('productImage').files[0]) : products[productIndex].image // Memperbarui gambar jika ada
+                variants: []
             };
 
+            // Mengambil data varian
+            const variantGroups = document.querySelectorAll('.variant-input-group');
+            variantGroups.forEach(variant => {
+                const variantName = variant.children[0].value;
+                const variantStock = variant.children[1].value;
+                const variantPrice = variant.children[2].value;
+                updatedProduct.variants.push({
+                    name: variantName,
+                    stock: variantStock,
+                    price: variantPrice
+                });
+            });
+
+            // Menambahkan gambar
+            const fileInput = document.getElementById('productImage');
+            if (fileInput.files[0]) {
+                updatedProduct.image = URL.createObjectURL(fileInput.files[0]);
+            } else {
+                updatedProduct.image = productToEdit.image; // Tetap gunakan gambar lama jika tidak ada yang dipilih
+            }
+
+            // Simpan produk ke localStorage
+            products[currentProductIndex] = updatedProduct;
             localStorage.setItem('products', JSON.stringify(products));
             alert('Produk berhasil diupdate!');
-            window.location.href = 'index.html';
-        }
+            window.location.href = 'produk.html'; // Arahkan ke halaman produk
+        };
 
         // Menampilkan preview gambar saat dipilih
         document.getElementById('productImage').addEventListener('change', function(event) {
@@ -119,15 +180,6 @@
             };
             reader.readAsDataURL(file);
         });
-
-        // Ambil parameter index produk dari URL
-        const params = new URLSearchParams(window.location.search);
-        const productIndex = params.get('index');
-        if (productIndex !== null) {
-            loadProductDetails(productIndex);
-        }
     </script>
-
 </body>
-
 </html>
