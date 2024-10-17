@@ -144,8 +144,10 @@
                 <input type="file" class="form-control" id="bukti-transaksi" accept="image/*">
             </div>
 
-            <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Konfirmasi Pesanan</button>
-            <button type="button" class="btn btn-secondary btn-submit" onclick="saveOrderForLater()">Bayar Nanti</button>
+            <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Konfirmasi
+                Pesanan</button>
+            <button type="button" class="btn btn-secondary btn-submit" onclick="saveOrderForLater()">Bayar
+                Nanti</button>
         </form>
     </div>
 
@@ -195,7 +197,7 @@
                     items: cartItems,
                     totalAmount: totalAmount,
                     paymentMethod: paymentMethod,
-                    status: "waiting-confirmation" // Set status to "waiting-confirmation"
+                    status: "menunggu konfirmasi" // Set status to "menunggu konfirmasi" when receipt is uploaded
                 };
 
                 // Store the order in localStorage
@@ -207,6 +209,7 @@
                 alert("Silakan upload bukti pembayaran sebelum melanjutkan.");
             }
         }
+
 
         function saveOrderForLater() {
             // Create an order object to store with status "belum dibayar"

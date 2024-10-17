@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,13 +17,11 @@
             color: #033043;
             background-color: #f7f7f7;
         }
-
         .container {
             padding: 18px;
             max-width: 1200px;
             margin: auto;
         }
-
         .order-card {
             background-color: white;
             border-radius: 10px;
@@ -32,163 +29,88 @@
             margin-bottom: 20px;
             padding: 20px;
         }
-
         .order-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .order-status {
             font-weight: bold;
             border-radius: 5px;
             padding: 5px 10px;
         }
-
         .order-status.belumdibayar {
             background-color: #ffecb3;
             color: #ff9800;
         }
-
         .order-status.menunggukonfirmasi {
             background-color: #bbdefb;
             color: #2196f3;
         }
-
         .order-status.processed {
             background-color: #c8e6c9;
             color: #4caf50;
         }
-
-        .order-status.packaged {
-            background-color: #e1bee7;
-            color: #9c27b0;
+        .btn-detail {
+            background-color: #84B8C6;
+            border-color: #84B8C6;
+            color: white;
         }
-
-        .order-status.shipped {
-            background-color: #c8e6c9;
-            color: #4caf50;
-        }
-
-        .order-status.completed {
-            background-color: #e1bee7;
-            color: #9c27b0;
-        }
-
-        .order-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .order-summary {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .sort-section {
-            margin-bottom: 20px;
+        .btn-detail:hover {
+            background-color: #6BA3B1;
+            border-color: #6BA3B1;
         }
     </style>
 </head>
-
 <body>
-
     <div class="container">
-        <h2 class="text-center mb-5">Riwayat Pesanan</h2>
-
-        <div class="sort-section d-flex justify-content-end mb-3">
-            <label for="sortOrders" class="me-2">Urutkan dari:</label>
-            <select id="sortOrders" class="form-select w-auto" onchange="filterOrders()">
-                <option value="all">Semua</option>
-                <option value="belumdibayar">Belum Dibayar</option>
-                <option value="menunggukonfirmasi">Menunggu Konfirmasi</option>
-                <option value="processed">Diproses</option>
-                <option value="packaged">Dikemas</option>
-                <option value="shipped">Dikirim</option>
-                <option value="completed">Selesai</option>
-            </select>
-        </div>
-
-        <div id="ordersList">
-            <!-- Order items will be dynamically generated here -->
-        </div>
+        <h2 class="text-center">Riwayat Pesanan Anda</h2>
+        <div id="orderHistory" class="mt-4"></div>
     </div>
 
     <script>
-        // Load orders from localStorage
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const orderHistoryContainer = document.getElementById('orderHistory');
+        const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
 
-        // Check for new order from bank transfer or COD page
-        const newOrder = JSON.parse(localStorage.getItem('newOrder'));
-        if (newOrder) {
-            // Set status for new orders to "menunggukonfirmasi" for COD
-            if (newOrder.paymentMethod === 'COD') {
-                newOrder.status = "menunggukonfirmasi"; // Set status to "menunggukonfirmasi"
-            } else {
-                newOrder.status = "belumdibayar"; // Set status to "belumdibayar" for other payment methods
+        function renderOrderHistory() {
+            orderHistoryContainer.innerHTML = ''; // Kosongkan container sebelum merender ulang
+
+            if (orderHistory.length === 0) {
+                orderHistoryContainer.innerHTML = '<p class="text-center">Anda belum memiliki pesanan.</p>';
+                return;
             }
-            orders.push(newOrder);
-            localStorage.setItem('orders', JSON.stringify(orders)); // Store updated orders
-            localStorage.removeItem('newOrder'); // Clear the new order after using it
-        }
 
-        function renderOrders(ordersToRender) {
-            const ordersList = document.getElementById('ordersList');
-            ordersList.innerHTML = ''; // Clear previous orders
+            orderHistory.forEach((order, index) => {
+                const orderCard = `
+                    <div class="order-card">
+                        <div class="order-header">
+                            <h5>Pesanan #${index + 1}</h5>
+                            <span class="order-status ${order.status.replace(/\s/g, '').toLowerCase()}">${order.status}</span>
+                        </div>
+                        <div>
+                            <strong>Kode Transaksi:</strong> ${order.kodeTransaksi}<br>
+                            <strong>Nama Penerima:</strong> ${order.recipientName}<br>
+                            <strong>Alamat:</strong> ${order.recipientAddress}<br>
+                            <strong>Nomor Telepon:</strong> ${order.phoneNumber}<br>
+                            <strong>Total Bayar:</strong> Rp ${order.totalPrice.toLocaleString()}<br>
+                            <strong>Metode Pembayaran:</strong> ${order.paymentMethod}
+                        </div>
+                        <button class="btn btn-primary btn-detail mt-2" data-index="${index}">Lihat Detail</button>
+                    </div>
+                `;
+                orderHistoryContainer.innerHTML += orderCard;
+            });
 
-            ordersToRender.forEach(order => {
-                const orderCard = document.createElement('div');
-                orderCard.className = 'order-card';
-
-                const orderHeader = document.createElement('div');
-                orderHeader.className = 'order-header';
-                orderHeader.innerHTML = `<h5>Pesanan #${order.kodeTransaksi}</h5> <span class="order-status ${order.status}">${capitalizeFirstLetter(order.status)}</span>`;
-                orderCard.appendChild(orderHeader);
-
-                order.items.forEach(item => {
-                    const orderItem = document.createElement('div');
-                    orderItem.className = 'order-item';
-                    orderItem.innerHTML = `
-                        <span>${item.name} (x${item.quantity})</span>
-                        <span>Rp ${item.price.toLocaleString()}</span>
-                    `;
-                    orderCard.appendChild(orderItem);
+            document.querySelectorAll('.btn-detail').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const orderIndex = event.target.getAttribute('data-index');
+                    const selectedOrder = orderHistory[orderIndex];
+                    alert(JSON.stringify(selectedOrder, null, 2));
                 });
-
-                const totalPrice = order.items.reduce((total, item) => total + (item.price * item.quantity), 0);
-                const orderSummary = document.createElement('div');
-                orderSummary.className = 'order-summary';
-                orderSummary.innerHTML = `Total: Rp ${totalPrice.toLocaleString()}`;
-                orderCard.appendChild(orderSummary);
-
-                ordersList.appendChild(orderCard);
             });
         }
 
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
-        }
-
-        function filterOrders() {
-            const filterValue = document.getElementById('sortOrders').value;
-            let filteredOrders;
-
-            if (filterValue === 'all') {
-                filteredOrders = orders;
-            } else {
-                filteredOrders = orders.filter(order => order.status === filterValue);
-            }
-
-            renderOrders(filteredOrders);
-        }
-
-        // Initial render of all orders
-        renderOrders(orders);
+        renderOrderHistory();
     </script>
-
 </body>
-
 </html>

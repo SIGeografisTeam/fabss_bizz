@@ -140,7 +140,6 @@
     </div>
 
     <script>
-        // Ambil data user dari localStorage (atau simpanan sementara)
         const currentUser = {
             username: "User123",
             recipientName: "Nama Penerima",
@@ -148,28 +147,25 @@
             phoneNumber: "081234567890"
         };
 
-        // Render data pengguna
         document.getElementById('nama').textContent = currentUser.recipientName;
         document.getElementById('alamat').textContent = currentUser.recipientAddress;
         document.getElementById('telepon').textContent = currentUser.phoneNumber;
 
-        // Ambil data cart dari localStorage
         const savedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         const totalAmount = parseInt(localStorage.getItem('totalAmount')) || 0;
 
-        // Render item keranjang di invoice
         function renderCartItems() {
             const cartItemsContainer = document.getElementById('cartItems');
             cartItemsContainer.innerHTML = '';
             savedCartItems.forEach(item => {
                 const cartItemHTML = `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>${item.quantity}</td>
-                        <td>Rp ${item.price.toLocaleString()}</td>
-                        <td>Rp ${(item.price * item.quantity).toLocaleString()}</td>
-                    </tr>
-                `;
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>Rp ${item.price.toLocaleString()}</td>
+                    <td>Rp ${(item.price * item.quantity).toLocaleString()}</td>
+                </tr>
+            `;
                 cartItemsContainer.innerHTML += cartItemHTML;
             });
 
@@ -178,25 +174,26 @@
 
         renderCartItems();
 
-        // Event listener untuk submit pesanan
         document.querySelector('.btn-submit').addEventListener('click', () => {
+            const selectedPaymentMethod = document.getElementById('paymentMethodDisplay').textContent;
+
             const newOrder = {
-                kodeTransaksi: "TRX123456", // Contoh kode transaksi
+                kodeTransaksi: "TRX123456",
                 recipientName: currentUser.recipientName,
                 recipientAddress: currentUser.recipientAddress,
                 phoneNumber: currentUser.phoneNumber,
-                items: savedCartItems, // Produk dari keranjang
-                totalPrice: totalAmount, // Total harga
-                paymentMethod: "Cash on Delivery (COD)", // Contoh metode pembayaran
-                status: "menunggu konfirmasi" // Status pesanan baru
+                items: savedCartItems,
+                totalPrice: totalAmount,
+                paymentMethod: selectedPaymentMethod,
+                status: "menunggu konfirmasi"
             };
 
-            // Simpan pesanan ke localStorage
             let orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
             orderHistory.push(newOrder);
             localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
 
-            // Redirect ke halaman pesanan
+            // Simpan order baru di localStorage
+            localStorage.setItem('newOrder', JSON.stringify(newOrder));
             window.location.href = "pesanan.html";
         });
     </script>
