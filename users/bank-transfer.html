@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Bank | Plastiqu.Co</title>
+    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Signika', sans-serif;
+            color: #033043;
+            padding: 40px;
+        }
+
+        .bank-details {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .confirm-button, .later-button {
+            background-color: #033043;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .confirm-button:hover, .later-button:hover {
+            background-color: #01a1b3;
+        }
+
+        h2 {
+            color: #033043;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .popup input[type="file"] {
+            margin-top: 20px;
+        }
+
+        .popup button {
+            background-color: #033043;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #01a1b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="text-center mb-5">Transfer Bank</h2>
+
+    <div class="bank-details">
+        <h5>Rekening Tujuan</h5>
+        <p><strong>Bank BCA</strong><br>No. Rekening: 123-456-789<br>Atas Nama: Plastiqu.Co</p>
+    </div>
+
+    <div class="bank-details">
+        <h5>Jumlah yang Harus Dibayar</h5>
+        <p><strong id="totalAmountDisplay">Rp 0</strong></p> <!-- Menampilkan total pembayaran -->
+    </div>
+
+    <div class="bank-details">
+        <h5>Instruksi Pembayaran</h5>
+        <ol>
+            <li>Lakukan transfer ke rekening tujuan yang tertera di atas.</li>
+            <li>Masukkan jumlah total pembayaran sesuai dengan yang ada di halaman checkout.</li>
+            <li>Simpan bukti transfer dan lakukan konfirmasi di halaman <strong>Konfirmasi Pembayaran</strong>.</li>
+        </ol>
+    </div>
+
+    <div class="bank-details">
+        <h5>Batas Waktu Pembayaran</h5>
+        <p>Anda memiliki waktu <strong>24 jam</strong> untuk menyelesaikan pembayaran. Jika pembayaran tidak dilakukan dalam waktu tersebut, pesanan Anda akan otomatis dibatalkan.</p>
+    </div>
+
+    <div class="text-center">
+        <button class="btn later-button" onclick="payLater()">Bayar Nanti</button>
+        <button class="btn confirm-button" onclick="openPopup()">Saya Sudah Bayar</button>
+    </div>
+
+    <!-- Popup for payment confirmation -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <h5>Unggah Bukti Pembayaran</h5>
+            <input type="file" id="paymentProof">
+            <button onclick="submitPayment()">Submit</button>
+            <button onclick="closePopup()">Batal</button>
+        </div>
+    </div>
+
+    <script>
+        // Mendapatkan jumlah total yang harus dibayar dari URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const totalAmount = urlParams.get('amount') || 0;
+
+        // Menampilkan jumlah total pada halaman
+        document.getElementById('totalAmountDisplay').textContent = `Rp ${parseInt(totalAmount).toLocaleString()}`;
+
+        // Fungsi untuk mengonfirmasi pembayaran
+        function payLater() {
+            window.location.href = 'pesanan.html'; // Redirect ke halaman order history
+        }
+
+        // Fungsi untuk membuka popup upload bukti pembayaran
+        function openPopup() {
+            document.getElementById('popupOverlay').style.display = 'flex';
+        }
+
+        // Fungsi untuk menutup popup
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+
+        // Fungsi untuk submit bukti pembayaran
+        function submitPayment() {
+            const paymentProof = document.getElementById('paymentProof').files[0];
+            if (paymentProof) {
+                // Logika untuk mengupload bukti pembayaran
+                alert('Bukti pembayaran berhasil diunggah. Pesanan Anda sedang diproses.');
+                closePopup();
+                window.location.href = 'pesanan.html'; // Redirect ke halaman utama setelah konfirmasi
+            } else {
+                alert('Silakan unggah bukti pembayaran terlebih dahulu.');
+            }
+        }
+
+        // Logika untuk mengatur batas waktu 24 jam pembayaran
+        const paymentDeadline = new Date();
+        paymentDeadline.setHours(paymentDeadline.getHours() + 24); // Menambahkan 24 jam dari sekarang
+        console.log("Batas waktu pembayaran: ", paymentDeadline);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
