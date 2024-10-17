@@ -71,6 +71,12 @@
                                     style="margin-right: 10px;"></i>Kategori</a></li>
                         <li><a href="produk/produk.html"><i class="fa-solid fa-pen"
                                     style="margin-right: 10px;"></i>Produk</a></li>
+                        <li>
+                            <a href="daftarpesanan.html">
+                                <i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+                                Daftar Pesanan
+                            </a>
+                        </li>
                         <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar"
                                     style="margin-right: 10px;"></i>Keuangan</a></li>
                     </ul>
@@ -128,7 +134,7 @@
                     <!-- Cancel Button -->
                     <div class="cancel-btn-container">
                         <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-circle-xmark"></i> 
+                            <i class="fa-solid fa-circle-xmark"></i>
                         </button>
                     </div>
                 </form>
@@ -150,34 +156,58 @@
     </div>
     </div>
 
-<!-- Form untuk mengubah kategori (Popup) -->
-<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="brand">
-                <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
-                <span class="text-center">Plastiqu.Co</span>
+    <!-- Form untuk mengubah kategori (Popup) -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
+                </div>
+                <h2 class="text-center category-title">Ubah Kategori</h2>
+                <p class="welcome-text">Masukkan nama kategori yang baru!</p>
+                <form class="register-form" id="edit-category-form" onsubmit="return validateCategory()">
+                    <!-- Input untuk Nama Kategori -->
+                    <div class="input-group">
+                        <input type="text" id="edit-category-name" placeholder=" " required>
+                        <label for="edit-category-name">Nama Kategori</label>
+                    </div>
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Simpan Perubahan</button>
+                    <!-- Cancel Button -->
+                    <div class="cancel-btn-container">
+                        <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
-            <h2 class="text-center category-title">Ubah Kategori</h2>
-            <p class="welcome-text">Masukkan nama kategori yang baru!</p>
-            <form class="register-form" id="edit-category-form" onsubmit="return validateCategory()">
-                <!-- Input untuk Nama Kategori -->
-                <div class="input-group">
-                    <input type="text" id="edit-category-name" placeholder=" " required>
-                    <label for="edit-category-name">Nama Kategori</label>
-                </div>
-                <!-- Submit Button -->
-                <button type="submit" class="submit-btn">Simpan Perubahan</button>
-                <!-- Cancel Button -->
-                <div class="cancel-btn-container">
-                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-circle-xmark"></i> 
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
+
+    <!-- Form untuk menghapus kategori (Popup) -->
+    <div class="modal fade" id="deleteCategoryModal" tabindex="-1" aria-labelledby="deleteCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
+                </div>
+                <h2 class="text-center category-title">Hapus Kategori</h2>
+                <p class="welcome-text">Apakah Anda yakin ingin menghapus kategori ini?</p>
+                <div class="text-center">
+                    <!-- Konfirmasi Hapus -->
+                    <button id="confirm-delete-btn" class="submit-btn">Hapus</button>
+                    <!-- Cancel Button -->
+                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-circle-xmark"></i> Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script>
@@ -189,6 +219,7 @@
         ];
 
         let currentEditIndex = null; // Untuk menyimpan index kategori yang sedang diedit
+        let currentDeleteIndex = null //Untuk menyimpan index kategori yang akan diapus
 
         // Fungsi untuk menampilkan daftar kategori
         function renderCategoryList() {
@@ -211,7 +242,8 @@
                 const deleteButton = document.createElement('button');
                 deleteButton.className = 'btn btn-danger';
                 deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i> Hapus';
-                deleteButton.addEventListener('click', () => deleteCategory(index)); // Menambahkan event listener untuk tombol Hapus
+                deleteButton.addEventListener('click', () => openDeleteModal(index)); // Menambahkan event listener untuk tombol Hapus
+
 
                 // Menambahkan tombol ke dalam actionCell
                 actionCell.appendChild(editButton);
@@ -245,6 +277,17 @@
             editCategoryModal.hide();
         });
 
+        // Fungsi untuk menghapus kategori setelah konfirmasi
+        document.getElementById('confirm-delete-btn').addEventListener('click', () => {
+            if (currentDeleteIndex !== null) {
+                categories.splice(currentDeleteIndex, 1); //Hapus kategori dari array
+                renderCategoryList(); //Render ulang daftar kategori
+                const deleteCategoryModal = bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal'));
+                deleteCategoryModal.hide(); //Tutup modal hapus
+                currentDeleteIndex = null; //Reset index setelah penghapusan
+            }
+        })
+
         // Fungsi untuk membuka modal edit kategori
         function openEditModal(index) {
             currentEditIndex = index; // Menyimpan index kategori yang akan diedit
@@ -254,9 +297,10 @@
         }
 
         // Fungsi untuk menghapus kategori
-        function deleteCategory(index) {
-            categories.splice(index, 1);
-            renderCategoryList();
+        function openDeleteModal(index) {
+            currentDeleteIndex = index; // Menyimpan index kategori yang akan diapus
+            const deleteCategoryModal = new bootstrap.Modal(document.getElementById('deleteCategoryModal'))
+            deleteCategoryModal.show()
         }
 
         // Event listener untuk tombol Tambah Kategori
@@ -267,6 +311,7 @@
 
         // Render daftar kategori saat halaman dimuat
         renderCategoryList();
+
     </script>
 </body>
 
