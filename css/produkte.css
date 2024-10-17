@@ -274,3 +274,49 @@ select {
 .add-variant-link:hover {
     color: #FFA500; /* Warna oranye saat hover */
 }
+.input-row {
+    display: flex;
+    gap: 20px; /* Atur jarak antara elemen */
+}
+
+.input-row .input-group {
+    flex: 1; /* Supaya masing-masing elemen mengambil porsi yang sama */
+}
+table {
+    width: 100%; /* Atur lebar tabel */
+    border-collapse: collapse; /* Menghilangkan celah antara sel */
+}
+
+th, td {
+    padding: 10px; /* Memberikan ruang di dalam sel */
+    text-align: left; /* Rata kiri */
+}
+
+th {
+    background-color: #f2f2f2; /* Warna latar belakang header */
+}
+
+td img {
+    width: 100px; /* Atur lebar gambar */
+    height: auto; /* Tinggi otomatis sesuai proporsi */
+}
+
+.action-buttons {
+    display: flex; /* Menggunakan flexbox untuk menata tombol */
+    gap: 5px; /* Jarak antara tombol */
+}
+
+.action-buttons button {
+    font-size: 12px; /* Ukuran font tombol kecil */
+    padding: 5px 10px; /* Ruang dalam tombol */
+}
+/* CSS tambahan untuk mengatur kolom gambar dan aksi */
+#productTable img {
+    width: 150px; /* Memperbesar gambar */
+    height: auto; /* Tinggi otomatis agar proporsional */
+    object-fit: cover; /* Menghindari distorsi gambar */
+}
+.action-buttons button {
+    font-size: 12px; /* Ukuran font kecil untuk tombol */
+    padding: 5px 8px; /* Ruang dalam tombol */
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -28,24 +28,27 @@
             </div>
             <h2 class="text-center">Edit Produk</h2>
 
-            <!-- Kategori Dropdown -->
-            <div class="input-group">
-                <select id="productCategory" required>
-                    <option value="" disabled selected>Pilih Kategori</option>
-                    <option value="Makanan">Makanan</option>
-                    <option value="Minuman">Minuman</option>
-                    <option value="Alat">Alat</option>
-                </select>
-                <label for="productCategory">Kategori</label>
+            <!-- Kategori dan Nama Produk (Sejajar) -->
+            <div class="input-row">
+                <!-- Kategori Dropdown -->
+                <div class="input-group">
+                    <select id="productCategory" required>
+                        <option value="" disabled selected>Pilih Kategori</option>
+                        <option value="Plastik Makanan">Plastik Makanan</option>
+                        <option value="Plastik Minuman">Plastik Minuman</option>
+                        <option value="Kemasan Kertas">Kemasan Kertas</option>
+                    </select>
+                    <label for="productCategory">Kategori</label>
+                </div>
+
+                <!-- Nama Produk -->
+                <div class="input-group">
+                    <input type="text" id="productName" required>
+                    <label for="productName">Nama Produk</label>
+                </div>
             </div>
 
-            <!-- Nama Produk -->
-            <div class="input-group">
-                <input type="text" id="productName" required>
-                <label for="productName">Nama Produk</label>
-            </div>
-
-            <!-- Deskripsi -->
+            <!-- Deskripsi Produk -->
             <div class="input-group">
                 <textarea id="productDescription" required></textarea>
                 <label for="productDescription">Deskripsi Produk</label>
@@ -83,38 +86,6 @@
     </div>
 
     <script>
-        // Ambil indeks produk yang akan diedit dari localStorage
-        const currentProductIndex = localStorage.getItem('currentProductIndex');
-        const products = JSON.parse(localStorage.getItem('products')) || [];
-        const productToEdit = products[currentProductIndex];
-
-        // Isi form dengan data produk yang ada
-        if (productToEdit) {
-            document.getElementById('productCategory').value = productToEdit.category;
-            document.getElementById('productName').value = productToEdit.name;
-            document.getElementById('productDescription').value = productToEdit.description;
-
-            // Isi varian produk
-            const variantsContainer = document.getElementById('variantsContainer');
-            productToEdit.variants.forEach(variant => {
-                const newVariant = document.createElement('div');
-                newVariant.classList.add('variant-input-group');
-                newVariant.innerHTML = `
-                    <input type="text" value="${variant.name}" placeholder="Varian" required>
-                    <input type="number" value="${variant.stock}" placeholder="Stok" required>
-                    <input type="number" value="${variant.price}" placeholder="Harga (Range)" required>
-                `;
-                variantsContainer.appendChild(newVariant);
-            });
-
-            // Menampilkan gambar jika ada
-            if (productToEdit.image) {
-                const imagePreview = document.getElementById('imagePreview');
-                imagePreview.src = productToEdit.image;
-                imagePreview.style.display = 'block'; // Menampilkan gambar preview
-            }
-        }
-
         // Fungsi untuk menambahkan input varian baru
         document.getElementById('addVariantLink').addEventListener('click', function(event) {
             event.preventDefault(); // Menghindari navigasi
@@ -130,11 +101,10 @@
         });
 
         // Fungsi untuk menyimpan perubahan produk
-        document.getElementById('editProductForm').onsubmit = function(event) {
+        document.getElementById('editProductForm').onsubmit = async function(event) {
             event.preventDefault();
-
-            // Update produk yang ada di localStorage
-            const updatedProduct = {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const newProduct = {
                 category: document.getElementById('productCategory').value,
                 name: document.getElementById('productName').value,
                 description: document.getElementById('productDescription').value,
@@ -147,7 +117,7 @@
                 const variantName = variant.children[0].value;
                 const variantStock = variant.children[1].value;
                 const variantPrice = variant.children[2].value;
-                updatedProduct.variants.push({
+                newProduct.variants.push({
                     name: variantName,
                     stock: variantStock,
                     price: variantPrice
@@ -155,19 +125,27 @@
             });
 
             // Menambahkan gambar
-            const fileInput = document.getElementById('productImage');
-            if (fileInput.files[0]) {
-                updatedProduct.image = URL.createObjectURL(fileInput.files[0]);
-            } else {
-                updatedProduct.image = productToEdit.image; // Tetap gunakan gambar lama jika tidak ada yang dipilih
+            const imageFile = document.getElementById('productImage').files[0];
+            if (imageFile) {
+                newProduct.image = await getBase64(imageFile);
             }
 
             // Simpan produk ke localStorage
-            products[currentProductIndex] = updatedProduct;
+            products.push(newProduct);
             localStorage.setItem('products', JSON.stringify(products));
             alert('Produk berhasil diupdate!');
             window.location.href = 'produk.html'; // Arahkan ke halaman produk
         };
+
+        // Fungsi untuk mengonversi gambar ke Base64
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
 
         // Menampilkan preview gambar saat dipilih
         document.getElementById('productImage').addEventListener('change', function(event) {
@@ -182,4 +160,5 @@
         });
     </script>
 </body>
+
 </html>
