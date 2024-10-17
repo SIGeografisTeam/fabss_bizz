@@ -9,6 +9,10 @@ html, body {
 	background: #f5f5fa;
 	font-family: 'Signika', Arial, sans-serif;
 }
+
+h2 {
+  color: #000;
+}
 .dashboard {
   display: grid;
   width: 100%;
@@ -509,6 +513,219 @@ table thead th {
   display: flex;
   justify-content: center !important;
   align-items: center !important;
+}
+
+td.action-column {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100%;
+  text-align: center !important;
+}
+
+td.action-column .btn {
+  display: inline-flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.action-column i {
+  margin: 0 5px;
+}
+
+td.action-column i {
+  margin: 0; /* Hilangkan margin default jika ada */
+}
+
+/* Styling untuk modal */
+.modal-content {
+  border-radius: 10px !important; /* Membuat sudut modal lebih bulat */
+  padding: 20px; /* Menambah padding di dalam modal */
+  font-family: 'signika', sans-serif;
+}
+
+.modal-content .category-title {
+  color: #84b8c6; /* Ganti dengan warna yang diinginkan */
+  font-weight: 700; /* Membuat teks lebih tebal */
+}
+
+/* Menyelaraskan modal di tengah secara vertikal dan horizontal */
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Buat modal dialog memenuhi tinggi viewport */
+}
+
+/* Menghapus margin default pada modal-content untuk sentralisasi lebih baik */
+.modal-content {
+  margin: 0 auto;
+}
+
+/* Untuk memastikan modal fade tetap ditampilkan di tengah layar */
+.modal.fade .modal-dialog {
+  transition: transform 0.3s ease-out;
+}
+
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.logo-img {
+  margin-right: 10px; /* Memberikan jarak antara logo dan teks */
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.brand .text-center {
+  color: #033043;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 50px;
+  font-family: 'Signika', sans-serif;
+}
+
+.input-group input {
+  width: 100%;
+  font-size: 16px;
+  border-radius: 5px!important; /* Membuat sudut input lebih bulat */
+  padding: 10px;
+  border: 1px solid #ccc; /* Border untuk input */
+  outline: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Ganti dengan warna yang diinginkan */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Membuat sudut tombol lebih bulat */
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: #dc3545; /* Ganti dengan warna yang diinginkan */
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.welcome-text {
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+  display: flex; /* Use flexbox for better alignment */
+  align-items: center;
+  justify-content: center;
+}
+
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  transition: 0.3s ease;
+  background-color: white;
+  padding: 0 5px;
+  color: #033043;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #84b8c6 !important;
+  border-radius: 5px 0 0 5px !important;
+  font-size: 16px;
+  background-color: transparent;
+  outline: none;
+  transition: all 0.3s ease;
+  color: #033043;
+}
+
+.submit-btn {
+  width: 100%; /* Keep submit button at 100% width */
+  padding: 10px;
+  background-color: #033043;
+  color: #E9E3D5;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #FDA521;
+  color: #033043;
+}
+
+.cancel-btn-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.cancel-btn {
+  font-size: 24px;
+  color: #84b8c6;
+  text-decoration: none;
+}
+
+.cancel-btn:hover {
+  color: #FDA521;
+}
+
+.register-text {
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+.register-link {
+  font-weight: bold;
+  color: #84b8c6;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  color: #FDA521;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    transform: translateY(0) !important;
+    font-size: 15px !important;
+    color: #84b8c6;
+    border-color: #033043 !important;
+}
+
+/* Ubah border saat input difokuskan atau diisi */
+.input-group input:focus,
+.input-group input:not(:placeholder-shown) {
+  border-color: #033043 !important; /* Warna border berubah */
+  border-width: 2px;  /* Ketebalan border berubah */
+  outline: none;      /* Hilangkan outline default */
+}
+
+/* Tambahan styling untuk input saat focus */
+.input-group input:focus {
+  border-color: #333; /*ubah warna border saat fokus */
 }
 
 @media (max-width: 576px) {
