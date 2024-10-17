@@ -21,7 +21,7 @@ html,
 }
 
 #productTable th, #productTable td {
-    border: 1px solid #ddd;
+    border: 1px solid #033043 ;
     padding: 12px;
     text-align: center;
 }
@@ -1007,4 +1007,12 @@ html, body {
   display: flex;
   justify-content: center;
   gap: 10px; /* Jarak antar tombol */
+}
+/*Mengubah warna background header table */
+table thead th {
+  background-color: #84b8c6 !important;
+  color: white;
+}
+.d-flex.justify-content-between {
+  gap: 5px; /* Atur jarak antar tombol di sini */
 }

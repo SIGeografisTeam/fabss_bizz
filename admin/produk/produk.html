@@ -45,10 +45,11 @@
                 <section class="dicover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i> Dasbor</a></li>
+                        <li><a href="/admin/dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i> Dasbor</a></li>
                         <li><a href="/admin/users.html"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i> Pengguna</a></li>
                         <li><a href="/admin/category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i> Kategori</a></li>
                         <li><a href="produk.html" class="active"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i> Produk</a></li>
+                        <li><a href="/admin/daftarpesanan.html"><i class="fa-solid fa-box" style="margin-right: 10px;"></i>Daftar Pesanan</a></li>
                         <li><a href="manage_finance.html"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i> Keuangan</a></li>
                     </ul>
                 </section>
@@ -98,13 +99,13 @@
             products.forEach((product, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${product.productName}</td>
-                    <td>${product.variant}</td>
-                    <td>${product.stock}</td>
-                    <td>${product.price}</td>
+                    <td>${product.name}</td>
+                    <td>${product.variants.map(v => v.name).join(", ")}</td>
+                    <td>${product.variants.map(v => v.stock).join(", ")}</td>
+                    <td>${product.variants.map(v => v.price).join(", ")}</td>
                     <td>${product.description}</td>
                     <td>${product.category}</td>
-                    <td><img src="${product.imageUrl}" alt="${product.productName}" style="width: 100px; height: 100px; object-fit: cover;"></td>
+                    <td><img src="${product.imageUrl}" alt="${product.name}" style="width: 100px; height: 100px; object-fit: cover;"></td>
                 `;
 
                 const actionCell = document.createElement('td');
@@ -134,7 +135,7 @@
 
         // Fungsi untuk mengarahkan ke halaman tambah produk
         function redirectToAdd() {
-            window.location.href = 'tambah.html';  // Jangan tambahkan query `index`
+            window.location.href = 'tambah.html';  // Jangan tambahkan query index
         }
 
         // Fungsi konfirmasi hapus
@@ -164,6 +165,48 @@
                 }
             });
         }
+
+        // Fungsi untuk mengonversi gambar ke Base64
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Tambahkan event listener untuk menyimpan produk
+        document.getElementById('productForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('productName').value;
+            const description = document.getElementById('productDescription').value;
+            const category = document.getElementById('productCategory').value;
+            const imageFile = document.getElementById('imageInput').files[0];
+
+            // Konversi gambar ke base64
+            let imageBase64 = '';
+            if (imageFile) {
+                imageBase64 = await getBase64(imageFile);
+            }
+
+            const newProduct = {
+                name: name,
+                description: description,
+                category: category,
+                image: imageBase64
+            };
+
+            // Tambahkan produk ke array
+            products.push(newProduct);
+
+            // Simpan ke localStorage
+            localStorage.setItem('products', JSON.stringify(products));
+
+            // Refresh tampilan produk
+            renderProductList();
+        });
     </script>
 </body>
 </html>
