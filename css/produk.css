@@ -121,7 +121,9 @@ body {
     line-height: 120%;
     font-family: Open Sans, Helvetica, sans-serif;
 }
-
+.dropdown .profile-icon i {
+  font-size: 23px; /* Ganti dengan ukuran yang diinginkan */
+}
 /* Layout dashboard dengan grid */
 .dashboard {
     display: grid;
