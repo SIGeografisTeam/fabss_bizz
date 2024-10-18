@@ -106,7 +106,9 @@
                             <td>johndoe@example.com</td>
                             <td>(123) 456-7890</td>
                             <td>123 Main St, Anytown, USA</td>
-                            <td><img src="https://via.placeholder.com/50" alt="Foto John" class="img-fluid"></td>
+                            <td><img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Foto Placeholder"
+                                    class="img-fluid">
+                            </td>
                             <td>
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
@@ -114,18 +116,13 @@
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-<<<<<<< HEAD
                                         <li>
                                             <a class="dropdown-item" href="#" onclick="openEditModal(0)">
                                                 <i class="fas fa-pen text-warning"></i> Ubah
                                             </a>
                                         </li>
-=======
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i>
-                                                Ubah</a></li>
->>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
-                                        <li><a class="dropdown-item" href="#"><i
-                                                    class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="openDeleteModal(0)">
+                                                <i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i>
                                                 Ganti Kata Sandi</a></li>
                                     </ul>
@@ -138,20 +135,14 @@
         </main>
     </div>
 
-<<<<<<< HEAD
     <!-- Popup Form untuk Edit User -->
     <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
-=======
-    <!-- Popup Form for Edit User -->
-    <div id="modal-fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
->>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="brand">
                     <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
                     <span class="text-center">Plastiqu.Co</span>
                 </div>
-<<<<<<< HEAD
                 <h2 class="text-center form-title">Ubah Pengguna</h2>
                 <p class="welcome-text">Ubah Pengguna!</p>
                 <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser()">
@@ -182,8 +173,9 @@
                     </div>
                     <!-- Input untuk Foto -->
                     <div class="input-group">
-                        <input type="text" id="edit-pengguna-foto" placeholder=" " required>
+                        <input type="file" id="edit-pengguna-foto" accept="assets/*">
                         <label for="edit-pengguna-foto">Foto</label>
+                        <span id="file-name" class="mt-2"></span> <!-- Tempat untuk menampilkan nama file -->
                     </div>
                     <!-- Submit Button -->
                     <button type="submit" class="submit-btn">Simpan Perubahan</button>
@@ -195,57 +187,29 @@
                     </div>
                 </form>
             </div>
-=======
-            </div>
-            <h2 class="text-center users-title">Ubah Pengguna</h2>
-            <p class="welcome-text">Ubah Pengguna!</p>
-            <form class="edit-form" id="edit-users-form" onsubmit="return ValidateCategory()">
-                <!--Input untuk Nama Depan-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-nama-depan" placeholder=" " required>
-                    <label for="edit-pengguna-nama-depan">Nama Depan</label>
-                </div>
+        </div>
+    </div>
 
-                <!--Input untuk Nama Belakang-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-nama-belakang" placeholder=" " required>
-                    <label for="edit-pengguna-nama-belakang">Nama Belakang</label>
+    <!-- popup untuk menghapus pengguna (Popup) -->
+    <div class="modal fade" id="deleteUsersModal" tabindex="-1" aria-labelledby="deleteUsersModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
                 </div>
-
-                <!--Input untuk Email-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-email" placeholder=" " required>
-                    <label for="edit-pengguna-email">Email</label>
-                </div>
-
-                <!--Input untuk No.telepon-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-telepon" placeholder=" " required>
-                    <label for="edit-pengguna-telepon">No.telepon</label>
-                </div>
-
-                <!--Input untuk Alamat-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-alamat" placeholder=" " required>
-                    <label for="edit-pengguna-alamat">Alamat</label>
-                </div>
-
-                <!--Input untuk Foto-->
-                <div class="input-group">
-                    <input type="text" id="edit-pengguna-foto" placeholder=" " required>
-                    <label for="edit-pengguna-foto">Foto</label>
-                </div>
-
-                <!--submit button-->
-                <button type="submit" class="submit-btn">Simpan Perubahan</button>
-                <!--cancel button-->
-                <div class="cancel-btn-container">
+                <h2 class="text-center category-title">Hapus Pengguna</h2>
+                <p class="welcome-text">Apakah Anda yakin ingin menghapus Pengguna ini?</p>
+                <div class="text-center">
+                    <!-- Konfirmasi Hapus -->
+                    <button id="confirm-delete-btn" class="submit-btn">Hapus</button>
+                    <!-- Cancel Button -->
                     <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-circle-xmark"></i>
+                        <i class="fa-solid fa-circle-xmark"></i> Batal
                     </button>
                 </div>
-            </form>
->>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
+            </div>
         </div>
     </div>
 
@@ -258,14 +222,14 @@
                 email: "johndoe@example.com",
                 phone: "(123) 456-7890",
                 address: "123 Main St, Anytown, USA",
-                photo: "https://via.placeholder.com/50"
+                photo: "https://randomuser.me/api/portraits/men/1.jpg"
             },
             // Tambahkan data pengguna lainnya di sini...
         ];
-        
-        let currentEditIndex = null; //untuk menyimpan index pengguna yang sedang diedit
 
-<<<<<<< HEAD
+        let deleteIndex = null; // Variable to store the index of the user to be deleted
+        let editIndex = null; // Variable to store the index of the user being edited
+
         function openEditModal(index) {
             const user = users[index];
             document.getElementById('edit-pengguna-nama-depan').value = user.firstName;
@@ -273,43 +237,76 @@
             document.getElementById('edit-pengguna-email').value = user.email;
             document.getElementById('edit-pengguna-telepon').value = user.phone;
             document.getElementById('edit-pengguna-alamat').value = user.address;
-            document.getElementById('edit-pengguna-foto').value = user.photo;
-=======
-        // Fungsi untuk menampilkan daftar pengguna
-        function renderUserList() {
-            const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Hapus daftar yang ada
-            users.forEach((user, index) => {
-                const row = document.createElement('tr');
-                const firstNameCell = document.createElement('td');
-                const lastNameCell = document.createElement('td');
-                const emailCell = document.createElement('td');
-                const phoneCell = document.createElement('td');
-                const addressCell = document.createElement('td');
-                const photoCell = document.createElement('td');
-                const actionCell = document.createElement('td');
-                actionCell.ClassList.add('text-center'); //Mengatur text di tengah
->>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
-
+            // Setel nilai foto ke input
+            document.getElementById('file-name').textContent = user.photo; // Menampilkan foto saat ini
+            // Reset input file foto, tidak perlu mengisinya
+            document.getElementById('edit-pengguna-foto').value = '';
             // Simpan indeks pengguna yang sedang diedit
-            document.getElementById('edit-users-form').dataset.index = index;
+            editIndex = index; // Pastikan editIndex diatur di sini
 
             const modal = new bootstrap.Modal(document.getElementById('editUsersModal'));
             modal.show();
         }
 
+        function openDeleteModal(index) {
+            deleteIndex = index; // Store the index of the user to be deleted
+            const modal = new bootstrap.Modal(document.getElementById('deleteUsersModal'));
+            modal.show();
+        }
+
+        // Fungsi untuk menghapus pengguna
+        function deleteUser() {
+            if (deleteIndex !== null) {
+                // Hapus pengguna dari array
+                users.splice(deleteIndex, 1);
+
+                // Perbarui tampilan tabel
+                renderUserList();
+
+                // Reset deleteIndex
+                deleteIndex = null;
+
+                // Tutup modal setelah dihapus
+                const modal = bootstrap.Modal.getInstance(document.getElementById('deleteUsersModal'));
+                modal.hide();
+            }
+        }
+
+        // Fungsi untuk memperbarui pengguna
         function ValidateUser() {
-            const index = document.getElementById('edit-users-form').dataset.index;
+            if (editIndex !== null) {  // Pastikan editIndex digunakan di sini
+                // Ambil data dari form edit
+                users[editIndex].firstName = document.getElementById('edit-pengguna-nama-depan').value;
+                users[editIndex].lastName = document.getElementById('edit-pengguna-nama-belakang').value;
+                users[editIndex].email = document.getElementById('edit-pengguna-email').value;
+                users[editIndex].phone = document.getElementById('edit-pengguna-telepon').value;
+                users[editIndex].address = document.getElementById('edit-pengguna-alamat').value;
 
-            // Ambil data dari form
-            users[index].firstName = document.getElementById('edit-pengguna-nama-depan').value;
-            users[index].lastName = document.getElementById('edit-pengguna-nama-belakang').value;
-            users[index].email = document.getElementById('edit-pengguna-email').value;
-            users[index].phone = document.getElementById('edit-pengguna-telepon').value;
-            users[index].address = document.getElementById('edit-pengguna-alamat').value;
-            users[index].photo = document.getElementById('edit-pengguna-foto').value;
+                // Simpan foto baru jika ada yang dipilih
+                const newPhotoInput = document.getElementById('edit-pengguna-foto');
+                if (newPhotoInput.files.length > 0) {
+                    // Anda dapat menambahkan logika untuk mengupload foto
+                    users[editIndex].photo = URL.createObjectURL(newPhotoInput.files[0]); // Simulasi pemuatan gambar
+                }
 
-            // Memperbarui tampilan tabel
+                // Perbarui tampilan tabel setelah data pengguna diedit
+                renderUserList();
+
+                // Tutup modal setelah menyimpan perubahan
+                const modal = bootstrap.Modal.getInstance(document.getElementById('editUsersModal'));
+                modal.hide();
+
+                alert("Data pengguna telah diperbarui!");
+
+                // Reset editIndex
+                editIndex = null;
+            }
+
+            return false; // Mencegah pengiriman form default
+        }
+
+        // Fungsi untuk menampilkan daftar pengguna di tabel
+        function renderUserList() {
             const userList = document.getElementById('user-list');
             userList.innerHTML = ''; // Kosongkan daftar pengguna
 
@@ -333,7 +330,11 @@
                                         <i class="fas fa-pen text-warning"></i> Ubah
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="openDeleteModal(${idx})">
+                                        <i class="fas fa-trash-alt text-danger"></i> Hapus
+                                    </a>
+                                </li>
                                 <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
                             </ul>
                         </div>
@@ -341,15 +342,31 @@
                 `;
                 userList.appendChild(row);
             });
-
-            // Menutup modal setelah menyimpan
-            const modal = bootstrap.Modal.getInstance(document.getElementById('editUsersModal'));
-            modal.hide();
-
-            alert("Data pengguna telah diperbarui!");
-            return false; // Mencegah pengiriman form
         }
+
+        // Panggil renderUserList() ketika halaman dimuat
+        document.addEventListener('DOMContentLoaded', renderUserList);
+
+        // Event listener untuk tombol konfirmasi hapus
+        document.getElementById('confirm-delete-btn').addEventListener('click', deleteUser);
+
+        document.getElementById('edit-pengguna-foto').addEventListener('change', updateFileName);
+
+
+        function updateFileName() {
+            const fileInput = document.getElementById('edit-pengguna-foto');
+            const fileNameDisplay = document.getElementById('file-name');
+
+            if (fileInput.files.length > 0) {
+                fileNameDisplay.textContent = fileInput.files[0].name; // Menampilkan nama file
+            } else {
+                fileNameDisplay.textContent = ''; // Kosongkan jika tidak ada file yang dipilih
+            }
+        }
+
     </script>
+
+
 </body>
 
 </html>

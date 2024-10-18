@@ -595,7 +595,7 @@ td.action-column i {
 
 .input-group input {
   width: 100%;
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 5px!important; /* Membuat sudut input lebih bulat */
   padding: 10px;
   border: 1px solid #ccc; /* Border untuk input */
@@ -623,6 +623,7 @@ td.action-column i {
 .welcome-text {
   font-weight: normal;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .input-group {
@@ -643,7 +644,7 @@ td.action-column i {
   padding: 0 5px;
   color: #033043;
   pointer-events: none;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 input {
@@ -665,7 +666,7 @@ input {
   color: #E9E3D5;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -710,7 +711,7 @@ input {
 .input-group input:not(:placeholder-shown) + label {
     top: -10px;
     transform: translateY(0) !important;
-    font-size: 16px !important;
+    font-size: 20px !important;
     color: #84b8c6;
     border-color: #033043 !important;
 }
@@ -732,6 +733,8 @@ input {
 .input-group input:focus {
   border-color: #333; /*ubah warna border saat fokus */
 }
+
+
 
 @media (max-width: 576px) {
   .username {
