@@ -114,11 +114,16 @@
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<<<<<<< HEAD
                                         <li>
                                             <a class="dropdown-item" href="#" onclick="openEditModal(0)">
                                                 <i class="fas fa-pen text-warning"></i> Ubah
                                             </a>
                                         </li>
+=======
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i>
+                                                Ubah</a></li>
+>>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
                                         <li><a class="dropdown-item" href="#"><i
                                                     class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
                                         <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i>
@@ -133,14 +138,20 @@
         </main>
     </div>
 
+<<<<<<< HEAD
     <!-- Popup Form untuk Edit User -->
     <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
+=======
+    <!-- Popup Form for Edit User -->
+    <div id="modal-fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
+>>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="brand">
                     <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
                     <span class="text-center">Plastiqu.Co</span>
                 </div>
+<<<<<<< HEAD
                 <h2 class="text-center form-title">Ubah Pengguna</h2>
                 <p class="welcome-text">Ubah Pengguna!</p>
                 <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser()">
@@ -184,6 +195,57 @@
                     </div>
                 </form>
             </div>
+=======
+            </div>
+            <h2 class="text-center users-title">Ubah Pengguna</h2>
+            <p class="welcome-text">Ubah Pengguna!</p>
+            <form class="edit-form" id="edit-users-form" onsubmit="return ValidateCategory()">
+                <!--Input untuk Nama Depan-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-nama-depan" placeholder=" " required>
+                    <label for="edit-pengguna-nama-depan">Nama Depan</label>
+                </div>
+
+                <!--Input untuk Nama Belakang-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-nama-belakang" placeholder=" " required>
+                    <label for="edit-pengguna-nama-belakang">Nama Belakang</label>
+                </div>
+
+                <!--Input untuk Email-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-email" placeholder=" " required>
+                    <label for="edit-pengguna-email">Email</label>
+                </div>
+
+                <!--Input untuk No.telepon-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-telepon" placeholder=" " required>
+                    <label for="edit-pengguna-telepon">No.telepon</label>
+                </div>
+
+                <!--Input untuk Alamat-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-alamat" placeholder=" " required>
+                    <label for="edit-pengguna-alamat">Alamat</label>
+                </div>
+
+                <!--Input untuk Foto-->
+                <div class="input-group">
+                    <input type="text" id="edit-pengguna-foto" placeholder=" " required>
+                    <label for="edit-pengguna-foto">Foto</label>
+                </div>
+
+                <!--submit button-->
+                <button type="submit" class="submit-btn">Simpan Perubahan</button>
+                <!--cancel button-->
+                <div class="cancel-btn-container">
+                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </form>
+>>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
         </div>
     </div>
 
@@ -200,7 +262,10 @@
             },
             // Tambahkan data pengguna lainnya di sini...
         ];
+        
+        let currentEditIndex = null; //untuk menyimpan index pengguna yang sedang diedit
 
+<<<<<<< HEAD
         function openEditModal(index) {
             const user = users[index];
             document.getElementById('edit-pengguna-nama-depan').value = user.firstName;
@@ -209,6 +274,22 @@
             document.getElementById('edit-pengguna-telepon').value = user.phone;
             document.getElementById('edit-pengguna-alamat').value = user.address;
             document.getElementById('edit-pengguna-foto').value = user.photo;
+=======
+        // Fungsi untuk menampilkan daftar pengguna
+        function renderUserList() {
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = ''; // Hapus daftar yang ada
+            users.forEach((user, index) => {
+                const row = document.createElement('tr');
+                const firstNameCell = document.createElement('td');
+                const lastNameCell = document.createElement('td');
+                const emailCell = document.createElement('td');
+                const phoneCell = document.createElement('td');
+                const addressCell = document.createElement('td');
+                const photoCell = document.createElement('td');
+                const actionCell = document.createElement('td');
+                actionCell.ClassList.add('text-center'); //Mengatur text di tengah
+>>>>>>> f24ed862800384a923b6a92635cbf54ff74b7828
 
             // Simpan indeks pengguna yang sedang diedit
             document.getElementById('edit-users-form').dataset.index = index;

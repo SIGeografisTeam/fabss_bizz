@@ -14,32 +14,46 @@
     <link rel="stylesheet" href="/components/header.css">
     <link rel="stylesheet" href="/components/footer.css">
     <style>
-        html,
         body {
-            height: 100%;
-            margin: 0;
+            font-family: 'Signika', sans-serif;
+            background-color: #f8f9fa;
+            color: black; /* Mengubah warna font menjadi hitam */
+        }
+
+        .section-background {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: black; /* Mengubah warna judul menjadi hitam */
+        }
+
+        .cart-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
             display: flex;
-            flex-direction: column;
-            font-family: Open Sans, Helvetica, sans-serif;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .main-content {
-            flex: 1;
+        .cart-item img {
+            max-width: 80px;
+            margin-right: 15px;
         }
 
-        .table thead th {
-            background-color: #033043;
-            color: white;
-            text-align: center;
+        .cart-item-details {
+            flex-grow: 1;
+            margin-right: 15px;
         }
 
-        .table tbody td {
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .table tbody img {
-            max-height: 80px;
+        .cart-item-price {
+            font-weight: bold;
+            color: #e63946;
         }
 
         .btn-quantity {
@@ -50,46 +64,13 @@
             line-height: 30px;
         }
 
-        .cart-summary {
-            margin-top: 20px;
-        }
-
-        .cart-summary h4 {
-            margin-bottom: 20px;
-        }
-
-        .cart-summary .total {
-            font-weight: bold;
-        }
-
-        .select-all-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 15px;
-        }
-
-        .total-price-display {
-            font-weight: bold;
-            color: #033043;
-        }
-
-        h2 {
-            color: #033043;
-        }
-
-        .form-check-label {
-            color: #033043;
-        }
-
         .sticky-footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background-color: white;
-            padding: 20px;
+            padding: 15px;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -99,22 +80,15 @@
             border-color: #033043;
         }
 
-        .btn-clear-cart {
-            background-color: #aacdd0;
-            border-color: #aacdd0;
-            color: black;
+        .btn-delete {
+            color: black; /* Tombol hapus warna hitam */
+            border: none;
+            background: none;
+            cursor: pointer;
         }
 
-        .btn-clear-cart:hover {
-            background-color: red;
-            border-color: red;
-            color: white;
-        }
-
-        .section-background {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
+        .btn-delete:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -142,7 +116,7 @@
                                 <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
                                 <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
                                 <li><a class="dropdown-item" href="#">Kemasan kertas</a></li>
-                                <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
+                                <li><a class="dropdown-item" href="#">dll</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -180,85 +154,48 @@
         <section class="container py-5 section-background">
             <h2 class="text-center mb-5">Keranjang Belanja</h2>
 
-            <!-- Pilih Semua & Hapus -->
-            <div class="select-all-container">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="selectAll" onclick="toggleSelectAll()">
-                    <label class="form-check-label" for="selectAll">Pilih Semua</label>
-                </div>
-                <button class="btn btn-clear-cart" onclick="clearCart()">Hapus Semua</button>
-            </div>
+            <div id="cartItemsContainer"></div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="cartTable">
-                            <thead>
-                                <tr>
-                                    <th>Pilih</th>
-                                    <th>Produk</th>
-                                    <th>Harga Satuan</th>
-                                    <th>Kuantitas</th>
-                                    <th>Total Harga</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="sticky-footer">
+                <span class="total-price-display">Total Pembayaran: <span id="totalPrice">Rp 0</span></span>
+                <button class="btn btn-success btn-checkout" onclick="proceedToCheckout()">Lanjutkan Pembayaran</button>
             </div>
         </section>
-    </div>
-
-    <!-- Checkout Sticky Footer -->
-    <div class="sticky-footer">
-        <span class="total-price-display">Total Pembayaran: <span id="totalPrice">Rp 0</span></span>
-        <button class="btn btn-success btn-checkout" onclick="proceedToCheckout()">Lanjutkan Pembayaran</button>
     </div>
 
     <script>
         window.onload = function () {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartTable = document.getElementById('cartTable').getElementsByTagName('tbody')[0];
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
 
             cart.forEach((item, index) => {
-                const row = cartTable.insertRow();
-                row.insertCell(0).innerHTML = `<input type="checkbox" class="select-item" onclick="updateTotal()">`;
-                row.insertCell(1).innerHTML = '<img src="' + item.image + '" alt="' + item.name + '"> ' + item.name;
-                row.insertCell(2).innerText = 'Rp ' + item.price.toLocaleString();
-                row.insertCell(3).innerHTML = `
-                    <button class="btn btn-secondary btn-sm btn-quantity" onclick="updateQuantity(${index}, -1)">-</button>
-                    <span class="mx-2">${item.quantity}</span>
-                    <button class="btn btn-secondary btn-sm btn-quantity" onclick="updateQuantity(${index}, 1)">+</button>
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h5>${item.name}</h5>
+                        <div class="cart-item-price">Rp ${item.price.toLocaleString()}</div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button class="btn btn-secondary btn-sm btn-quantity" onclick="updateQuantity(${index}, -1)">-</button>
+                        <span class="mx-2">${item.quantity}</span>
+                        <button class="btn btn-secondary btn-sm btn-quantity" onclick="updateQuantity(${index}, 1)">+</button>
+                        <button class="btn-delete" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
                 `;
-                const itemTotal = item.price * item.quantity;
-                row.insertCell(4).innerText = 'Rp ' + itemTotal.toLocaleString();
-                row.insertCell(5).innerHTML = `<button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Hapus</button>`;
+                cartItemsContainer.appendChild(cartItem);
             });
 
-            updateTotal();
-        }
-
-        function toggleSelectAll() {
-            const selectAllCheckbox = document.getElementById('selectAll');
-            const itemCheckboxes = document.querySelectorAll('.select-item');
-            itemCheckboxes.forEach(checkbox => {
-                checkbox.checked = selectAllCheckbox.checked;
-            });
             updateTotal();
         }
 
         function updateTotal() {
-            const itemCheckboxes = document.querySelectorAll('.select-item');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
             let total = 0;
-            itemCheckboxes.forEach((checkbox, index) => {
-                if (checkbox.checked) {
-                    const row = checkbox.closest('tr');
-                    const price = parseInt(row.cells[2].innerText.replace('Rp ', '').replace(/\./g, ''));
-                    const quantity = parseInt(row.cells[3].querySelector('span').innerText);
-                    total += price * quantity;
-                }
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
             });
             document.getElementById('totalPrice').innerText = 'Rp ' + total.toLocaleString();
         }
@@ -267,9 +204,9 @@
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
             if (cart[index].quantity + change >= 1) {
                 cart[index].quantity += change;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                location.reload();
             }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload();
         }
 
         function removeItem(index) {
@@ -279,15 +216,9 @@
             location.reload();
         }
 
-        function clearCart() {
-            localStorage.removeItem('cart');
-            location.reload();
-        }
-
         function proceedToCheckout() {
             const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const selectedItems = cart.filter((_, index) => document.querySelectorAll('.select-item')[index].checked);
-            localStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+            localStorage.setItem('selectedItems', JSON.stringify(cart));
             window.location.href = 'checkout.html';
         }
     </script>

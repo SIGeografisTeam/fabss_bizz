@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Pengiriman</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .input-container input[type="text"] {
+            width: 75%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-container input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .input-container button {
+            padding: 12px 20px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .status-box {
+            margin-top: 40px;
+        }
+
+        .status-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .status-step::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 30px;
+            width: 2px;
+            height: 100%;
+            background-color: #e0e0e0;
+            z-index: -1;
+        }
+
+        .status-step:last-child::before {
+            display: none;
+        }
+
+        .status-icon {
+            width: 25px;
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: #fff;
+            margin-right: 20px;
+        }
+
+        .status-icon.active {
+            background-color: #007bff;
+        }
+
+        .status-content {
+            flex-grow: 1;
+        }
+
+        .status-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .status-description {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .loading {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .loading img {
+            width: 60px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                margin: 30px 15px;
+            }
+
+            .input-container input[type="text"] {
+                width: 65%;
+            }
+
+            .input-container button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+
+<div class="container">
+    <h1>Cek Status Pengiriman</h1>
+    
+    <div class="input-container">
+        <input type="text" id="resiInput" placeholder="Masukkan nomor resi">
+        <button onclick="cekStatus()">Cek Status</button>
+    </div>
+
+    <div class="status-box" id="statusBox" style="display: none;">
+        <div class="status-step">
+            <div class="status-icon" id="step1">1</div>
+            <div class="status-content">
+                <div class="status-title">Diproses</div>
+                <div class="status-description">Pesanan sedang diproses, masih dalam antrian.</div>
+            </div>
+        </div>
+
+        <div class="status-step">
+            <div class="status-icon" id="step2">2</div>
+            <div class="status-content">
+                <div class="status-title">Dikirim</div>
+                <div class="status-description">Driver sedang menuju alamat Anda.</div>
+            </div>
+        </div>
+
+        <div class="status-step">
+            <div class="status-icon" id="step3">3</div>
+            <div class="status-content">
+                <div class="status-title">Menuju Alamat</div>
+                <div class="status-description">Driver hampir sampai di tujuan.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading">
+        <img src="loading.gif" alt="Loading...">
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 - E-Commerce Anda. All Rights Reserved.
+</footer>
+
+<script>
+    function cekStatus() {
+        var resi = document.getElementById('resiInput').value;
+        var statusBox = document.getElementById('statusBox');
+        var loading = document.getElementById('loading');
+        var step1 = document.getElementById('step1');
+        var step2 = document.getElementById('step2');
+        var step3 = document.getElementById('step3');
+
+        if (resi === "") {
+            alert("Silakan masukkan nomor resi!");
+            return;
+        }
+
+        // Tampilkan loading
+        loading.style.display = 'block';
+        statusBox.style.display = 'none';
+
+        // Reset status
+        step1.classList.remove('active');
+        step2.classList.remove('active');
+        step3.classList.remove('active');
+
+        // Simulasi pengambilan data status pengiriman
+        setTimeout(function() {
+            loading.style.display = 'none';
+            statusBox.style.display = 'block';
+
+            // Contoh logika status pengiriman
+            var statusPengiriman = 2; // Contoh status (1: Diproses, 2: Dikirim, 3: Menuju Alamat)
+
+            if (statusPengiriman >= 1) {
+                step1.classList.add('active');
+            }
+            if (statusPengiriman >= 2) {
+                step2.classList.add('active');
+            }
+            if (statusPengiriman === 3) {
+                step3.classList.add('active');
+            }
+        }, 2000); // Simulasi delay 2 detik
+    }
+</script>
+
+</body>
+</html>

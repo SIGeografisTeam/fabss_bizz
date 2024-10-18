@@ -23,7 +23,7 @@
     <!-- Form Tambah Produk -->
     <div class="form-container">
         <form id="addProductForm" action="#" method="POST">
-            <!-- Header with logo and "Tambah Produk" -->
+            <!-- Header dengan logo dan "Tambah Produk" -->
             <div class="brand">
                 <img src="/assets/logo_only_vector.png" alt="Logo">
                 <span class="text-center">Plastiqu.Co</span>
@@ -32,7 +32,6 @@
 
             <!-- Kategori Dropdown -->
             <div class="input-row">
-                <!-- Kategori Dropdown -->
                 <div class="input-group">
                     <select id="productCategory" required>
                         <option value="" disabled selected>Pilih Kategori</option>
@@ -65,7 +64,9 @@
                     <input type="number" placeholder="Harga (Range)" required>
                 </div>
             </div>
-            <a href="#" id="addVariantLink" class="add-variant-link">Tambah Varian</a>
+            <a href="#" id="addVariantLink" class="add-variant-link">
+                <i class="fa-solid fa-plus"></i> Tambah Varian
+            </a>
 
             <!-- Gambar Produk -->
             <div class="input-group">
@@ -110,7 +111,7 @@
                 name: document.getElementById('productName').value.trim(),
                 description: document.getElementById('productDescription').value.trim(),
                 variants: [],
-                imageUrl: ''
+                image: '' // Ganti 'imageUrl' dengan 'image'
             };
 
             // Mengambil data varian
@@ -129,24 +130,25 @@
             // Menambahkan gambar
             const imageFile = document.getElementById('productImage').files[0];
             if (imageFile) {
-                newProduct.imageUrl = await getBase64(imageFile);
+                newProduct.image = await getBase64(imageFile); // Ganti 'imageUrl' dengan 'image'
             }
 
             // Simpan produk baru ke localStorage
             products.push(newProduct);
             localStorage.setItem('products', JSON.stringify(products));
 
-            // Menampilkan Swal produk berhasil ditambahkan
+            // Menampilkan Swal produk berhasil ditambahkan dengan tombol OK
             Swal.fire({
                 icon: 'success',
                 title: 'Produk berhasil ditambahkan!',
-                showConfirmButton: false,
-                timer: 1500
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'produk.html'; // Arahkan ke halaman produk setelah tombol OK ditekan
+                }
             });
-
-            setTimeout(function(){
-                window.location.href = 'produk.html'; // Arahkan ke halaman produk setelah 1.5 detik
-            }, 1500);
         };
 
         // Fungsi untuk mengonversi gambar ke Base64
