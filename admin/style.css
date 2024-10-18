@@ -710,7 +710,7 @@ input {
 .input-group input:not(:placeholder-shown) + label {
     top: -10px;
     transform: translateY(0) !important;
-    font-size: 15px !important;
+    font-size: 16px !important;
     color: #84b8c6;
     border-color: #033043 !important;
 }
@@ -721,6 +721,11 @@ input {
   border-color: #033043 !important; /* Warna border berubah */
   border-width: 2px;  /* Ketebalan border berubah */
   outline: none;      /* Hilangkan outline default */
+}
+
+.form-title {
+  color: #84b8c6; /* Ganti dengan warna yang Anda inginkan */
+  font-weight: 700;
 }
 
 /* Tambahan styling untuk input saat focus */

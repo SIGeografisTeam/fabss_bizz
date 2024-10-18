@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pengguna - Dashboard</title>
+    <title>Pengguna | Plastiqu.Co</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
@@ -28,20 +28,24 @@
             </div>
 
             <form class="d-flex mx-auto my-2 search-form">
-                <input class="form-control me-2 search-input" type="search" placeholder="Cari pengguna..." aria-label="Search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Cari pengguna..."
+                    aria-label="Search">
                 <button class="btn btn-warning" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
 
             <div class="dropdown">
-                <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-circle-user"></i>
                     <span class="username ms-2">Nama Pengguna</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah
+                            Profil</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                            Logout</a></li>
                 </ul>
             </div>
         </aside>
@@ -49,7 +53,7 @@
         <header class="menu-wrap">
             <figure class="user">
                 <div class="user-avatar">
-					<img src="/assets/logo_only_vector.png" alt="Plastiqu.Co">
+                    <img src="/assets/logo_only_vector.png" alt="Plastiqu.Co">
                 </div>
                 <figcaption>Plastiqu.Co</figcaption>
             </figure>
@@ -58,12 +62,18 @@
                 <section class="dicover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i>Dasbor</a></li>
-                        <li><a href="users.html" class="active"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>Pengguna</a></li>
-                        <li><a href="category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i>Kategori</a></li>
-                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i>Produk</a></li>
-                        <li><a href="daftarpesanan.html"><i class="fa-solid fa-box" style="margin-right: 10px;"></i>Daftar Pesanan</a></li>
-                        <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>Keuangan</a></li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house"
+                                    style="margin-right: 10px;"></i>Dasbor</a></li>
+                        <li><a href="users.html" class="active"><i class="fa-solid fa-user-gear"
+                                    style="margin-right: 10px;"></i>Pengguna</a></li>
+                        <li><a href="category.html"><i class="fa-solid fa-list"
+                                    style="margin-right: 10px;"></i>Kategori</a></li>
+                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen"
+                                    style="margin-right: 10px;"></i>Produk</a></li>
+                        <li><a href="daftarpesanan.html"><i class="fa-solid fa-box"
+                                    style="margin-right: 10px;"></i>Daftar Pesanan</a></li>
+                        <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar"
+                                    style="margin-right: 10px;"></i>Keuangan</a></li>
                     </ul>
                 </section>
             </nav>
@@ -99,13 +109,20 @@
                             <td><img src="https://via.placeholder.com/50" alt="Foto John" class="img-fluid"></td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="openEditModal(0)">
+                                                <i class="fas fa-pen text-warning"></i> Ubah
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#"><i
+                                                    class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i>
+                                                Ganti Kata Sandi</a></li>
                                     </ul>
                                 </div>
                             </td>
@@ -116,68 +133,135 @@
         </main>
     </div>
 
+    <!-- Popup Form untuk Edit User -->
+    <div class="modal fade" id="editUsersModal" tabindex="-1" aria-labelledby="editUsersModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
+                </div>
+                <h2 class="text-center form-title">Ubah Pengguna</h2>
+                <p class="welcome-text">Ubah Pengguna!</p>
+                <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser()">
+                    <!-- Input untuk Nama Depan -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-nama-depan" placeholder=" " required>
+                        <label for="edit-pengguna-nama-depan">Nama Depan</label>
+                    </div>
+                    <!-- Input untuk Nama Belakang -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-nama-belakang" placeholder=" " required>
+                        <label for="edit-pengguna-nama-belakang">Nama Belakang</label>
+                    </div>
+                    <!-- Input untuk Email -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-email" placeholder=" " required>
+                        <label for="edit-pengguna-email">Email</label>
+                    </div>
+                    <!-- Input untuk No.telepon -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-telepon" placeholder=" " required>
+                        <label for="edit-pengguna-telepon">No.telepon</label>
+                    </div>
+                    <!-- Input untuk Alamat -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-alamat" placeholder=" " required>
+                        <label for="edit-pengguna-alamat">Alamat</label>
+                    </div>
+                    <!-- Input untuk Foto -->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-foto" placeholder=" " required>
+                        <label for="edit-pengguna-foto">Foto</label>
+                    </div>
+                    <!-- Tombol Simpan -->
+                    <button type="submit" class="btn btn-warning">Simpan Perubahan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Array untuk menyimpan data pengguna
+        // Data pengguna
         const users = [
             {
-                firstName: 'John',
-                lastName: 'Doe',
-                email: 'johndoe@example.com',
-                phone: '(123) 456-7890',
-                address: '123 Main St, Anytown, USA',
-                photo: 'https://via.placeholder.com/50'
-            }
+                firstName: "John",
+                lastName: "Doe",
+                email: "johndoe@example.com",
+                phone: "(123) 456-7890",
+                address: "123 Main St, Anytown, USA",
+                photo: "https://via.placeholder.com/50"
+            },
+            // Tambahkan data pengguna lainnya di sini...
         ];
 
-        // Fungsi untuk menampilkan daftar pengguna
-        function renderUserList() {
-            const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Hapus daftar yang ada
-            users.forEach((user) => {
-                const row = document.createElement('tr');
-                const firstNameCell = document.createElement('td');
-                const lastNameCell = document.createElement('td');
-                const emailCell = document.createElement('td');
-                const phoneCell = document.createElement('td');
-                const addressCell = document.createElement('td');
-                const photoCell = document.createElement('td');
-                const actionCell = document.createElement('td');
+        function openEditModal(index) {
+            const user = users[index];
+            document.getElementById('edit-pengguna-nama-depan').value = user.firstName;
+            document.getElementById('edit-pengguna-nama-belakang').value = user.lastName;
+            document.getElementById('edit-pengguna-email').value = user.email;
+            document.getElementById('edit-pengguna-telepon').value = user.phone;
+            document.getElementById('edit-pengguna-alamat').value = user.address;
+            document.getElementById('edit-pengguna-foto').value = user.photo;
 
-                firstNameCell.textContent = user.firstName;
-                lastNameCell.textContent = user.lastName;
-                emailCell.textContent = user.email;
-                phoneCell.textContent = user.phone;
-                addressCell.textContent = user.address;
-                photoCell.innerHTML = `<img src="${user.photo}" alt="Foto ${user.firstName}" class="img-fluid" style="width: 50px;">`;
+            // Simpan indeks pengguna yang sedang diedit
+            document.getElementById('edit-users-form').dataset.index = index;
 
-                const dropdown = document.createElement('div');
-                dropdown.className = 'dropdown';
-                dropdown.innerHTML = `
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Aksi
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
-                    </ul>
-                `;
-                actionCell.appendChild(dropdown);
-
-                row.appendChild(firstNameCell);
-                row.appendChild(lastNameCell);
-                row.appendChild(emailCell);
-                row.appendChild(phoneCell);
-                row.appendChild(addressCell);
-                row.appendChild(photoCell);
-                row.appendChild(actionCell);
-
-                userList.appendChild(row);
-            });
+            const modal = new bootstrap.Modal(document.getElementById('editUsersModal'));
+            modal.show();
         }
 
-        // Rendering awal daftar pengguna
-        renderUserList();
+        function ValidateUser() {
+            const index = document.getElementById('edit-users-form').dataset.index;
+
+            // Ambil data dari form
+            users[index].firstName = document.getElementById('edit-pengguna-nama-depan').value;
+            users[index].lastName = document.getElementById('edit-pengguna-nama-belakang').value;
+            users[index].email = document.getElementById('edit-pengguna-email').value;
+            users[index].phone = document.getElementById('edit-pengguna-telepon').value;
+            users[index].address = document.getElementById('edit-pengguna-alamat').value;
+            users[index].photo = document.getElementById('edit-pengguna-foto').value;
+
+            // Memperbarui tampilan tabel
+            const userList = document.getElementById('user-list');
+            userList.innerHTML = ''; // Kosongkan daftar pengguna
+
+            users.forEach((user, idx) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                    <td>${user.address}</td>
+                    <td><img src="${user.photo}" alt="Foto ${user.firstName}" class="img-fluid"></td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Aksi
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="openEditModal(${idx})">
+                                        <i class="fas fa-pen text-warning"></i> Ubah
+                                    </a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                `;
+                userList.appendChild(row);
+            });
+
+            // Menutup modal setelah menyimpan
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editUsersModal'));
+            modal.hide();
+
+            alert("Data pengguna telah diperbarui!");
+            return false; // Mencegah pengiriman form
+        }
     </script>
 </body>
 
