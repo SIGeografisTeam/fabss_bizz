@@ -78,6 +78,18 @@
             text-align: center;
             vertical-align: middle;
         }
+
+        .custom-file-input {
+            border: 2px solid #007bff; /* Warna biru untuk border */
+            border-radius: 5px; /* Agar sudut border menjadi melengkung */
+            padding: 5px; /* Tambahkan sedikit padding */
+            transition: border-color 0.3s; /* Efek transisi saat border berubah */
+        }
+
+        .custom-file-input:focus {
+            border-color: #0056b3; /* Warna border saat fokus */
+            outline: none; /* Menghilangkan outline default */
+        }
     </style>
 </head>
 
@@ -110,7 +122,7 @@
                 <p class="form-control" id="telepon"></p>
             </div>
             <div class="form-group section-left">
-                <label for="telepon">No Rekening</label>
+                <label for="rekening">No Rekening</label>
                 <p class="form-control" id="rekening">0123456789</p>
             </div>
 
@@ -145,13 +157,11 @@
             <h4 class="section-left">Bukti Pembayaran</h4>
             <div class="form-group section-left">
                 <label for="bukti-transaksi">Upload Bukti Transaksi</label>
-                <input type="file" class="form-control" id="bukti-transaksi" accept="image/*">
+                <input type="file" class="form-control custom-file-input" id="bukti-transaksi" accept="image/*">
             </div>
 
-            <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Konfirmasi
-                Pesanan</button>
-            <button type="button" class="btn btn-secondary btn-submit" onclick="saveOrderForLater()">Bayar
-                Nanti</button>
+            <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Lanjutkan Pesanan</button>
+            <button type="button" class="btn btn-secondary btn-submit" onclick="saveOrderForLater()">Bayar Nanti</button>
         </form>
     </div>
 
@@ -171,7 +181,7 @@
         document.getElementById('nama').textContent = currentUser.recipientName;
         document.getElementById('alamat').textContent = currentUser.recipientAddress;
         document.getElementById('telepon').textContent = currentUser.telephone;
-        document.getElementById('totalAmount').textContent = `Rp ${totalAmount}`;
+        document.getElementById('totalAmount').textContent = 'Rp ' + totalAmount;
 
         // Displaying order details
         const orderDetails = document.getElementById('orderDetails');
@@ -213,7 +223,6 @@
                 alert("Silakan upload bukti pembayaran sebelum melanjutkan.");
             }
         }
-
 
         function saveOrderForLater() {
             // Create an order object to store with status "belum dibayar"
