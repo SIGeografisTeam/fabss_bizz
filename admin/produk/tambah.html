@@ -64,7 +64,9 @@
                     <input type="number" placeholder="Harga (Range)" required>
                 </div>
             </div>
-            <a href="#" id="addVariantLink" class="add-variant-link">Tambah Varian</a>
+            <a href="#" id="addVariantLink" class="add-variant-link">
+                <i class="fa-solid fa-plus"></i> Tambah Varian
+            </a>
 
             <!-- Gambar Produk -->
             <div class="input-group">
@@ -109,7 +111,7 @@
                 name: document.getElementById('productName').value.trim(),
                 description: document.getElementById('productDescription').value.trim(),
                 variants: [],
-                imageUrl: ''
+                image: '' // Ganti 'imageUrl' dengan 'image'
             };
 
             // Mengambil data varian
@@ -128,7 +130,7 @@
             // Menambahkan gambar
             const imageFile = document.getElementById('productImage').files[0];
             if (imageFile) {
-                newProduct.imageUrl = await getBase64(imageFile);
+                newProduct.image = await getBase64(imageFile); // Ganti 'imageUrl' dengan 'image'
             }
 
             // Simpan produk baru ke localStorage

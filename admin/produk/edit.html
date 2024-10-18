@@ -15,6 +15,7 @@
 
     <!-- FA Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
 </head>
 
 <body>
@@ -57,19 +58,14 @@
             <!-- Varian Produk -->
             <div id="variantsContainer">
                 <h3>Varian Produk</h3>
-                <div class="variant-input-group">
-                    <input type="text" placeholder="Varian" required>
-                    <input type="number" placeholder="Stok" required>
-                    <input type="number" placeholder="Harga (Range)" required>
-                </div>
+                <!-- Varian akan ditambahkan secara dinamis -->
             </div>
             <a href="#" id="addVariantLink" class="add-variant-link">Tambah Varian</a>
 
             <!-- Gambar Produk -->
             <div class="input-group">
-                <input type="file" id="productImage" accept="image/*" required>
+                <input type="file" id="productImage" accept="image/*">
                 <label for="productImage">Gambar Produk</label>
-                <img id="imagePreview" src="" alt="Preview Gambar" style="display:none;">
                 <small style="color: #999; margin-top: 5px; display: block;">* Pilih gambar produk untuk preview</small>
             </div>
 
@@ -86,6 +82,41 @@
     </div>
 
     <script>
+        // Ambil produk dari localStorage
+        const products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // Fungsi untuk mengambil parameter dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Ambil index produk dari query parameter
+        const productIndex = getQueryParam('index');
+
+        // Ambil data produk berdasarkan index
+        const product = products[productIndex];
+
+        // Jika produk ditemukan, isi form dengan datanya
+        if (product) {
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productDescription').value = product.description;
+
+            // Isi varian produk
+            const variantsContainer = document.getElementById('variantsContainer');
+            product.variants.forEach(variant => {
+                const variantDiv = document.createElement('div');
+                variantDiv.classList.add('variant-input-group');
+                variantDiv.innerHTML = `
+                    <input type="text" placeholder="Varian" value="${variant.name}" required>
+                    <input type="number" placeholder="Stok" value="${variant.stock}" required>
+                    <input type="number" placeholder="Harga (Range)" value="${variant.price}" required>
+                `;
+                variantsContainer.appendChild(variantDiv);
+            });
+        }
+
         // Fungsi untuk menambahkan input varian baru
         document.getElementById('addVariantLink').addEventListener('click', function(event) {
             event.preventDefault(); // Menghindari navigasi
@@ -103,8 +134,8 @@
         // Fungsi untuk menyimpan perubahan produk
         document.getElementById('editProductForm').onsubmit = async function(event) {
             event.preventDefault();
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            const newProduct = {
+
+            const updatedProduct = {
                 category: document.getElementById('productCategory').value,
                 name: document.getElementById('productName').value,
                 description: document.getElementById('productDescription').value,
@@ -117,24 +148,34 @@
                 const variantName = variant.children[0].value;
                 const variantStock = variant.children[1].value;
                 const variantPrice = variant.children[2].value;
-                newProduct.variants.push({
+                updatedProduct.variants.push({
                     name: variantName,
                     stock: variantStock,
                     price: variantPrice
                 });
             });
 
-            // Menambahkan gambar
+            // Jika gambar diubah, tambahkan gambar baru
             const imageFile = document.getElementById('productImage').files[0];
             if (imageFile) {
-                newProduct.image = await getBase64(imageFile);
+                updatedProduct.image = await getBase64(imageFile);
+            } else {
+                updatedProduct.image = product.image; // Menggunakan gambar yang lama
             }
 
-            // Simpan produk ke localStorage
-            products.push(newProduct);
+            // Perbarui produk di localStorage
+            products[productIndex] = updatedProduct;
             localStorage.setItem('products', JSON.stringify(products));
-            alert('Produk berhasil diupdate!');
-            window.location.href = 'produk.html'; // Arahkan ke halaman produk
+
+            // Tampilkan SweetAlert setelah berhasil menyimpan
+            Swal.fire({
+                title: 'Sukses!',
+                text: 'Produk berhasil diubah!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = 'produk.html'; // Kembali ke halaman produk setelah menekan OK
+            });
         };
 
         // Fungsi untuk mengonversi gambar ke Base64
@@ -146,19 +187,6 @@
                 reader.onerror = error => reject(error);
             });
         }
-
-        // Menampilkan preview gambar saat dipilih
-        document.getElementById('productImage').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const imagePreview = document.getElementById('imagePreview');
-                imagePreview.src = e.target.result;
-                imagePreview.style.display = 'block'; // Menampilkan gambar preview
-            };
-            reader.readAsDataURL(file);
-        });
     </script>
 </body>
-
 </html>

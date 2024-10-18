@@ -48,6 +48,7 @@ h2 {
 
 .brand .logo-img {
     margin-right: 10px;
+    
 }
 
 .brand .text-center {
@@ -122,7 +123,9 @@ input:focus {
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
-
+.submit-btn:hover {
+    color: #FDA521;
+}
 
 .cancel-btn-container {
     position: absolute;
@@ -320,3 +323,30 @@ td img {
     font-size: 12px; /* Ukuran font kecil untuk tombol */
     padding: 5px 8px; /* Ruang dalam tombol */
 }
+.dropdown .profile-icon .ms-2 {
+    font-size: 20px; /* Ganti dengan ukuran yang diinginkan */
+  }
+  
+  .dropdown .profile-icon i {
+    font-size: 23px; /* Ganti dengan ukuran yang diinginkan */
+  }
+  .fa-solif, .fas {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+  }
+  .menu-wrap .user figcaption {
+    color: #033043;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    font-family: 'signika';
+  }
+  .menu-wrap .user {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 1em 3em;
+  }
+ 
