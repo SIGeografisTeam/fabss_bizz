@@ -38,13 +38,16 @@
 			</form>
 
 			<div class="dropdown">
-				<a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown"
+					role="button" data-bs-toggle="dropdown" aria-expanded="false">
 					<i class="fa-solid fa-circle-user"></i>
 					<span class="username ms-2">Nama Pengguna</span> <!-- Tambahkan kelas 'username' untuk styling -->
 				</a>
 				<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-					<li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-					<li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+					<li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah
+							Profil</a></li>
+					<li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+							Logout</a></li>
 				</ul>
 			</div>
 		</aside>
@@ -68,9 +71,21 @@
 							</a>
 						</li>
 						<li>
+							<a href="feedback.html">
+								<i class="fa-solid fa-comment" style="margin-right: 10px;"></i>
+								Umpan Balik
+							</a>
+						</li>
+						<li>
 							<a href="users.html">
 								<i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
 								Pengguna
+							</a>
+						</li>
+						<li>
+							<a href="alamatpengguna.html">
+								<i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+								Alamat Pengguna
 							</a>
 						</li>
 						<li>
@@ -109,49 +124,89 @@
 
 			<div class="content">
 				<section class="info-boxes d-flex justify-content-between flex-wrap">
+					<!-- Umpan Balik -->
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+						<div class="box-icon">
+							<i class="fa-solid fa-comment" style="font-size: 40px;"></i>
+						</div>
+						<div class="box-content text-left">
+							<span class="big d-block" style="font-size: 50px;">15</span>
+							<p>Umpan Balik</p>
+						</div>
+					</div>
 					<!-- Pengguna -->
-					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3" style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
 						<div class="box-icon">
 							<i class="fa-solid fa-user-gear" style="font-size: 40px;"></i>
 						</div>
 						<div class="box-content text-left">
-							<span class="big d-block" style="font-size: 24px;">18</span>
+							<span class="big d-block" style="font-size: 50px;">18</span>
 							<p>Pengguna</p>
 						</div>
 					</div>
 
+					<!-- Alamat Pengguna -->
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+						<div class="box-icon">
+							<i class="fa-solid fa-map" style="font-size: 40px;"></i>
+						</div>
+						<div class="box-content text-left">
+							<span class="big d-block" style="font-size: 50px;">25</span>
+							<p>Alamat Pengguna</p>
+						</div>
+					</div>
+
 					<!-- Kategori -->
-					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3" style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
 						<div class="box-icon">
 							<i class="fa-solid fa-list" style="font-size: 40px;"></i>
 						</div>
 						<div class="box-content text-left">
-							<span class="big d-block" style="font-size: 24px;">7</span>
+							<span class="big d-block" style="font-size: 50px;">7</span>
 							<p>Kategori</p>
 						</div>
 					</div>
 
 					<!-- Produk -->
-					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3" style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
 						<div class="box-icon">
 							<i class="fa-solid fa-pen" style="font-size: 40px;"></i>
 						</div>
 						<div class="box-content text-left">
-							<span class="big d-block" style="font-size: 24px;">10</span>
+							<span class="big d-block" style="font-size: 50px;">10</span>
 							<p>Produk</p>
 						</div>
 					</div>
 
+					<!-- Daftar Pesanan -->
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+						<div class="box-icon">
+							<i class="fa-solid fa-box" style="font-size: 40px;"></i>
+						</div>
+						<div class="box-content text-left">
+							<span class="big d-block" style="font-size: 50px;">20</span>
+							<p>Daftar Pesanan</p>
+						</div>
+					</div>
+
 					<!-- Keuangan -->
-					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3" style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
+					<div class="info-box border p-3 d-flex justify-content-center align-items-center gap-3"
+						style="flex-grow: 1; min-width: 250px; max-width: 350px; height: 150px; margin: 10px;">
 						<div class="box-icon">
 							<i class="fa-solid fa-hand-holding-dollar" style="font-size: 40px;"></i>
 						</div>
 						<div class="box-content text-left">
-							<span class="big d-block" style="font-size: 24px;">24</span>
+							<span class="big d-block small-font" style="font-size: 30px;">Rp.15.000.000</span>
 							<p>Keuangan</p>
 						</div>
 					</div>
+
 				</section>
 			</div>
 		</main>
