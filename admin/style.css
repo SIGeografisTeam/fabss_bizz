@@ -1,18 +1,21 @@
 * {
   box-sizing: border-box;
 }
-html, body {
-	color: #99a0b0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-	background: #f5f5fa;
-	font-family: 'Signika', Arial, sans-serif;
+
+html,
+body {
+  color: #99a0b0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f5f5fa;
+  font-family: 'Signika', Arial, sans-serif;
 }
 
 h2 {
   color: #000;
 }
+
 .dashboard {
   display: grid;
   width: 100%;
@@ -22,11 +25,13 @@ h2 {
   grid-template-rows: 80px auto;
   grid-template-areas: 'menu search' 'menu content';
 }
+
 .dashboard-tittle {
   font-family: 'signika';
   font-weight: 700;
   font-size: 2rem;
 }
+
 .search-wrap {
   grid-area: search;
   background: #84b8c6;
@@ -37,46 +42,60 @@ h2 {
   justify-content: space-between;
   padding: 0 3em;
 }
+
 .search-form {
   margin-left: 0px;
-  max-width: 500px; /*menyesuaikan lebar */
+  max-width: 500px;
+  /*menyesuaikan lebar */
   width: 100%
 }
 
 .search-input {
-  border: 5px solid #ced4da; /* Warna border */
-  border-radius: 5px; /* Sudut melengkung */
+  border: 5px solid #ced4da;
+  /* Warna border */
+  border-radius: 5px 5px 5px 5px !important;
+  /* Sudut melengkung */
 }
 
 .search-input:focus {
-  border-color: #ffc107; /* Warna border saat fokus */
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25); /* Bayangan saat fokus */
+  border-color: #ffc107;
+  /* Warna border saat fokus */
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+  /* Bayangan saat fokus */
 }
 
 .btn-warning {
-  background-color: #ffc107; /* Warna latar belakang tombol */
-  border: none; /* Hapus border */
+  background-color: #ffc107;
+  /* Warna latar belakang tombol */
+  border: none;
+  /* Hapus border */
 }
 
 .btn-warning:hover {
-  background-color: #e0a800; /* Warna saat hover */
+  background-color: #e0a800;
+  /* Warna saat hover */
 }
+
 .search-wrap .search {
   height: 40px;
 }
+
 .search-wrap .search label {
   display: flex;
   align-items: center;
   height: 100%;
 }
+
 .search-wrap .search label svg {
   display: block;
 }
+
 .search-wrap .search label svg path,
 .search-wrap .search label svg circle {
   fill: #b6bbc6;
   transition: fill 0.15s ease;
 }
+
 .search-wrap .search label input {
   display: block;
   padding-left: 1em;
@@ -85,13 +104,16 @@ h2 {
   border: 0;
   width: 80%;
 }
+
 .search-wrap .search label input:focus {
   background: #f5f5fa;
 }
+
 .search-wrap .search label:hover svg path,
 .search-wrap .search label:hover svg circle {
   fill: #2b3a60;
 }
+
 .search-wrap .user-actions button {
   border: 0;
   background: none;
@@ -101,15 +123,18 @@ h2 {
   padding: 0;
   margin-left: 0.5em;
 }
+
 .search-wrap .user-actions button svg {
   position: relative;
   top: 2px;
 }
+
 .search-wrap .user-actions button svg path,
 .search-wrap .user-actions button svg circle {
   fill: #b6bbc6;
   transition: fill 0.15s ease;
 }
+
 .search-wrap .user-actions button:hover svg path,
 .search-wrap .user-actions button:hover svg circle {
   fill: #2b3a60;
@@ -123,6 +148,7 @@ h2 {
   border-right: 1px solid #ede8f0;
   font-family: "Signika", Arial, sans-serif;
 }
+
 .menu-wrap .user {
   height: 80px;
   display: flex;
@@ -131,18 +157,21 @@ h2 {
   margin: 0;
   padding: 1em 3em;
 }
+
 .menu-wrap .user .user-avatar {
   width: 60px;
   height: 60px;
   overflow: hidden;
 }
+
 .menu-wrap .user .user-avatar img {
   display: block;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 .menu-wrap .user figcaption {
   color: #033043;
   font-weight: 700;
@@ -150,14 +179,17 @@ h2 {
   line-height: 100%;
   font-family: 'signika';
 }
+
 .menu-wrap nav {
   display: block;
   padding: 0 3em;
 }
+
 .menu-wrap nav section {
   display: block;
   padding: 3em 0 0;
 }
+
 .menu-wrap nav h3 {
   margin: 0;
   font-size: 17px;
@@ -165,18 +197,21 @@ h2 {
   color: #033043;
   font-weight: 600;
 }
+
 .menu-wrap nav ul {
   display: block;
   padding: 0;
   margin: 0.75em 0;
   margin-top: 1em;
 }
+
 .menu-wrap nav li {
   display: block;
   padding: 0.25em 0;
   margin: 1em 0 0;
   margin-bottom: 8px;
 }
+
 .menu-wrap nav li a {
   display: flex;
   align-items: center;
@@ -188,15 +223,18 @@ h2 {
   transition: color 0.15s ease;
   padding-left: 0em;
 }
+
 .menu-wrap nav ul li {
   display: block;
   padding: 0.25em 0;
   margin: 0em 0;
 }
+
 .menu-wrap nav li a {
   padding: 8px 15px;
   margin-bottom: 5px;
 }
+
 .menu-wrap nav ul li a.active {
   background-color: #033043;
   color: white;
@@ -206,40 +244,49 @@ h2 {
   margin-bottom: 5px;
   padding: 10px 15px;
 }
+
 .menu-wrap nav li a svg {
   display: block;
   margin-right: 1em;
 }
+
 .menu-wrap nav li a svg path,
 .menu-wrap nav li a svg circle {
   fill: #b6bbc6;
   transition: fill 0.15s ease;
 }
+
 .menu-wrap nav li a:hover {
   color: #1b253d;
 }
+
 .menu-wrap nav li a:hover svg path,
 .menu-wrap nav li a:hover svg circle {
   fill: #2b3a60;
 }
+
 .menu-wrap nav li a.active {
   color: #4b84fe;
 }
+
 .menu-wrap nav li a.active svg path,
 .menu-wrap nav li a.active svg circle {
   fill: #4b84fe;
 }
+
 .content-wrap {
   background-color: #ffff;
   grid-area: content;
   padding: 3em;
   overflow: auto;
 }
+
 .content-wrap .content-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .content-wrap .content-head h1 {
   font-size: 2em;
   line-height: 100%;
@@ -248,6 +295,7 @@ h2 {
   margin: 0;
   padding: 0;
 }
+
 .content-wrap .content-head .action button {
   border: 0;
   background: #4b84fe;
@@ -261,19 +309,23 @@ h2 {
   font-weight: 600;
   transition: background-color 0.15s ease;
 }
+
 .content-wrap .content-head .action button:hover {
   background-color: #1861fe;
 }
+
 .content-wrap .content-head .action button:hover:active {
   background-color: #0149e2;
   transition: none;
 }
+
 .content-wrap .info-boxes {
   padding: 3em 0 2em;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 2em;
 }
+
 .content-wrap .info-boxes .info-box {
   background: #fff;
   height: 160px;
@@ -284,37 +336,43 @@ h2 {
   border: 3px solid #84b8c6 !important;
   border-radius: 5px;
 }
+
 .content-wrap .info-boxes .info-box .box-icon svg {
   display: block;
   width: 48px;
   height: 48px;
 }
+
 .content-wrap .info-boxes .info-box .box-icon svg path,
 .content-wrap .info-boxes .info-box .box-icon svg circle {
   fill: #99a0b0;
 }
+
 .content-wrap .info-boxes .info-box .box-content {
   padding-left: 1.25em;
   white-space: nowrap;
   font-size: 20px !important;
 }
+
 .content-wrap .info-boxes .info-box .box-content .big {
   display: block;
-  font-size: 50px !important;
   font-weight: bold !important;
   line-height: 150%;
   color: #1b253d;
 }
+
 .content-wrap .info-boxes .info-box.active svg circle,
 .content-wrap .info-boxes .info-box.active svg path {
   fill: #4b84fe;
 }
+
 .content-wrap .person-boxes {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 2em;
 }
+
 .content-wrap .person-boxes .person-box {
   background: #fff;
   height: 320px;
@@ -323,12 +381,15 @@ h2 {
   border: 1px solid #ede8f0;
   border-radius: 5px;
 }
+
 .content-wrap .person-boxes .person-box:nth-child(2n) .box-avatar .no-name {
   background: #4b84fe;
 }
+
 .content-wrap .person-boxes .person-box:nth-child(5n) .box-avatar .no-name {
   background: #ffbb09;
 }
+
 .content-wrap .person-boxes .person-box .box-avatar {
   width: 100px;
   height: 100px;
@@ -336,13 +397,15 @@ h2 {
   margin: 0px auto;
   overflow: hidden;
 }
+
 .content-wrap .person-boxes .person-box .box-avatar img {
   display: block;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 .content-wrap .person-boxes .person-box .box-avatar .no-name {
   display: flex;
   align-items: center;
@@ -356,9 +419,11 @@ h2 {
   height: 100%;
   background: #fa5b67;
 }
+
 .content-wrap .person-boxes .person-box .box-bio {
   white-space: no-wrap;
 }
+
 .content-wrap .person-boxes .person-box .box-bio .bio-name {
   margin: 2em 0 0.75em;
   color: #1b253d;
@@ -366,11 +431,13 @@ h2 {
   font-weight: 700;
   line-height: 100%;
 }
+
 .content-wrap .person-boxes .person-box .box-bio .bio-position {
   margin: 0;
   font-size: 0.875em;
   line-height: 100%;
 }
+
 .content-wrap .person-boxes .person-box .box-actions {
   margin-top: 1.25em;
   padding-top: 1.25em;
@@ -380,6 +447,7 @@ h2 {
   align-items: center;
   justify-content: space-between;
 }
+
 .content-wrap .person-boxes .person-box .box-actions button {
   border: 0;
   background: none;
@@ -388,15 +456,18 @@ h2 {
   margin: 0;
   padding: 0;
 }
+
 .content-wrap .person-boxes .person-box .box-actions button svg {
   position: relative;
   top: 2px;
 }
+
 .content-wrap .person-boxes .person-box .box-actions button svg path,
 .content-wrap .person-boxes .person-box .box-actions button svg circle {
   fill: #b6bbc6;
   transition: fill 0.15s ease;
 }
+
 .content-wrap .person-boxes .person-box .box-actions button:hover svg path,
 .content-wrap .person-boxes .person-box .box-actions button:hover svg circle {
   fill: #2b3a60;
@@ -408,11 +479,13 @@ h2 {
 }
 
 .dropdown.show .dropdown-menu {
-  display: block; /* Menampilkan dropdown saat aktif */
+  display: block;
+  /* Menampilkan dropdown saat aktif */
 }
 
 .profile-icon {
-  color: #333; /* Ubah sesuai kebutuhan */
+  color: #333;
+  /* Ubah sesuai kebutuhan */
   text-decoration: none;
   padding: 10px;
   border-radius: 5px;
@@ -421,64 +494,89 @@ h2 {
 
 .profile-icon:hover {
   /*background-color: #f8f9fa;  Ubah warna latar belakang saat hover */
-  color: #ffff; /* Ubah warna teks saat hover */
+  color: #ffff;
+  /* Ubah warna teks saat hover */
 }
 
 .dropdown .profile-icon .ms-2 {
-  font-size: 20px; /* Ganti dengan ukuran yang diinginkan */
+  font-size: 20px;
+  /* Ganti dengan ukuran yang diinginkan */
 }
 
 .dropdown .profile-icon i {
-  font-size: 23px; /* Ganti dengan ukuran yang diinginkan */
+  font-size: 23px;
+  /* Ganti dengan ukuran yang diinginkan */
 }
 
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* Tempatkan dropdown di bawah tombol */
-  right: 0; /* Agar dropdown muncul di sisi kanan */
-  z-index: 1000; /* Pastikan dropdown berada di atas elemen lainnya */
-  display: none; /* Sembunyikan dropdown secara default */
-  width: 200px; /* Atur lebar dropdown */
-  padding: 0; /* Hapus padding */
-  margin: 0; /* Hapus margin */
-  border: 1px solid #ddd; /* Tambahkan border */
-  border-radius: 5px; /* Sudut membulat */
-  background-color: white; /* Warna latar belakang dropdown */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan */
+  top: 100%;
+  /* Tempatkan dropdown di bawah tombol */
+  right: 0;
+  /* Agar dropdown muncul di sisi kanan */
+  z-index: 1000;
+  /* Pastikan dropdown berada di atas elemen lainnya */
+  display: none;
+  /* Sembunyikan dropdown secara default */
+  width: 200px;
+  /* Atur lebar dropdown */
+  padding: 0;
+  /* Hapus padding */
+  margin: 0;
+  /* Hapus margin */
+  border: 1px solid #ddd;
+  /* Tambahkan border */
+  border-radius: 5px;
+  /* Sudut membulat */
+  background-color: white;
+  /* Warna latar belakang dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Tambahkan bayangan */
   background-color: #033043 !important;
   border: none;
 }
 
 .dropdown-menu.show {
-  display: block; /* Tampilkan dropdown ketika aktif */
+  display: block;
+  /* Tampilkan dropdown ketika aktif */
 }
 
 .dropdown-item {
   display: block;
-  padding: 10px 15px; /* Padding dalam item dropdown */
-  color: #ffff !important; /* Warna teks item dropdown */
-  text-decoration: none; /* Hapus garis bawah */
+  padding: 10px 15px;
+  /* Padding dalam item dropdown */
+  color: #ffff !important;
+  /* Warna teks item dropdown */
+  text-decoration: none;
+  /* Hapus garis bawah */
 }
 
 .dropdown-item:hover {
-  background-color: #FDA521 !important; /* Ubah warna latar belakang item saat hover */
-  color: #fff ; /* Ubah warna teks item saat hover */
+  background-color: #FDA521 !important;
+  /* Ubah warna latar belakang item saat hover */
+  color: #fff;
+  /* Ubah warna teks item saat hover */
 }
 
 .profile-edit {
-  font-weight: bold; ;/* Bold untuk item edit profil */
+  font-weight: bold;
+  ;
+  /* Bold untuk item edit profil */
 }
 
 .logout {
-  color: #d9534f; /* Warna merah untuk logout */
+  color: #d9534f;
+  /* Warna merah untuk logout */
 }
 
 .logout:hover {
-  color: #c9302c; /* Warna lebih gelap saat hover */
+  color: #c9302c;
+  /* Warna lebih gelap saat hover */
 }
 
 .username {
-  font-size: 1rem; /* Ukuran font default */
+  font-size: 1rem;
+  /* Ukuran font default */
 }
 
 /* Mengubah warna border seluruh tabel */
@@ -494,7 +592,8 @@ table th {
 }
 
 /* Mengubah warna border pada sel-sel tabel */
-table th, table td {
+table th,
+table td {
   border: 1px solid #033043 !important;
 }
 
@@ -503,6 +602,7 @@ table thead th {
   background-color: #84b8c6 !important;
   color: white;
 }
+
 /*Membuat isi kolom aksi berada di tengah */
 .action-column {
   text-align: center !important;
@@ -534,19 +634,24 @@ td.action-column .btn {
 }
 
 td.action-column i {
-  margin: 0; /* Hilangkan margin default jika ada */
+  margin: 0;
+  /* Hilangkan margin default jika ada */
 }
 
 /* Styling untuk modal */
 .modal-content {
-  border-radius: 10px !important; /* Membuat sudut modal lebih bulat */
-  padding: 20px; /* Menambah padding di dalam modal */
+  border-radius: 10px !important;
+  /* Membuat sudut modal lebih bulat */
+  padding: 20px;
+  /* Menambah padding di dalam modal */
   font-family: 'signika', sans-serif;
 }
 
 .modal-content .category-title {
-  color: #84b8c6; /* Ganti dengan warna yang diinginkan */
-  font-weight: 700; /* Membuat teks lebih tebal */
+  color: #84b8c6;
+  /* Ganti dengan warna yang diinginkan */
+  font-weight: 700;
+  /* Membuat teks lebih tebal */
 }
 
 /* Menyelaraskan modal di tengah secara vertikal dan horizontal */
@@ -554,7 +659,8 @@ td.action-column i {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Buat modal dialog memenuhi tinggi viewport */
+  height: 100%;
+  /* Buat modal dialog memenuhi tinggi viewport */
 }
 
 /* Menghapus margin default pada modal-content untuk sentralisasi lebih baik */
@@ -576,7 +682,8 @@ td.action-column i {
 }
 
 .logo-img {
-  margin-right: 10px; /* Memberikan jarak antara logo dan teks */
+  margin-right: 10px;
+  /* Memberikan jarak antara logo dan teks */
 }
 
 .input-group {
@@ -595,27 +702,32 @@ td.action-column i {
 
 .input-group input {
   width: 100%;
-  font-size: 20px;
-  border-radius: 5px!important; /* Membuat sudut input lebih bulat */
+  font-size: 18px;
+  border-radius: 5px !important;
+  /* Membuat sudut input lebih bulat */
   padding: 10px;
-  border: 1px solid #ccc; /* Border untuk input */
+  border: 1px solid #ccc;
+  /* Border untuk input */
   outline: none;
 }
 
 .submit-btn {
   width: 100%;
   padding: 10px;
-  background-color: #007bff; /* Ganti dengan warna yang diinginkan */
+  background-color: #007bff;
+  /* Ganti dengan warna yang diinginkan */
   color: white;
   border: none;
-  border-radius: 5px; /* Membuat sudut tombol lebih bulat */
+  border-radius: 5px;
+  /* Membuat sudut tombol lebih bulat */
   cursor: pointer;
 }
 
 .cancel-btn {
   background: none;
   border: none;
-  color: #dc3545; /* Ganti dengan warna yang diinginkan */
+  color: #dc3545;
+  /* Ganti dengan warna yang diinginkan */
   cursor: pointer;
   margin-top: 10px;
 }
@@ -629,7 +741,8 @@ td.action-column i {
 .input-group {
   position: relative;
   margin-bottom: 20px;
-  display: flex; /* Use flexbox for better alignment */
+  display: flex;
+  /* Use flexbox for better alignment */
   align-items: center;
   justify-content: center;
 }
@@ -644,7 +757,7 @@ td.action-column i {
   padding: 0 5px;
   color: #033043;
   pointer-events: none;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 input {
@@ -660,7 +773,8 @@ input {
 }
 
 .submit-btn {
-  width: 100%; /* Keep submit button at 100% width */
+  width: 100%;
+  /* Keep submit button at 100% width */
   padding: 10px;
   background-color: #033043;
   color: #E9E3D5;
@@ -707,56 +821,76 @@ input {
   color: #FDA521;
 }
 
-.input-group input:focus + label,
-.input-group input:not(:placeholder-shown) + label {
-    top: -10px;
-    transform: translateY(0) !important;
-    font-size: 20px !important;
-    color: #84b8c6;
-    border-color: #033043 !important;
+.input-group input:focus+label,
+.input-group input:not(:placeholder-shown)+label {
+  top: -10px;
+  transform: translateY(0) !important;
+  font-size: 18px !important;
+  color: #84b8c6;
+  border-color: #033043 !important;
 }
 
 /* Ubah border saat input difokuskan atau diisi */
 .input-group input:focus,
 .input-group input:not(:placeholder-shown) {
-  border-color: #033043 !important; /* Warna border berubah */
-  border-width: 2px;  /* Ketebalan border berubah */
-  outline: none;      /* Hilangkan outline default */
+  border-color: #033043 !important;
+  /* Warna border berubah */
+  border-width: 2px;
+  /* Ketebalan border berubah */
+  outline: none;
+  /* Hilangkan outline default */
 }
 
 .form-title {
-  color: #84b8c6; /* Ganti dengan warna yang Anda inginkan */
+  color: #84b8c6;
+  /* Ganti dengan warna yang Anda inginkan */
   font-weight: 700;
 }
 
 /* Tambahan styling untuk input saat focus */
 .input-group input:focus {
-  border-color: #333; /*ubah warna border saat fokus */
+  border-color: #333;
+  /*ubah warna border saat fokus */
 }
+
+/* Positioning for the eye icon */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
 
 
 
 @media (max-width: 576px) {
   .username {
-      font-size: 0.8rem; /* Ukuran font untuk perangkat kecil */
+    font-size: 0.8rem;
+    /* Ukuran font untuk perangkat kecil */
   }
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
   .username {
-      font-size: 0.9rem; /* Ukuran font untuk perangkat menengah */
+    font-size: 0.9rem;
+    /* Ukuran font untuk perangkat menengah */
   }
 }
 
 @media (min-width: 768px) {
   .username {
-      font-size: 1rem; /* Ukuran font untuk perangkat besar */
+    font-size: 1rem;
+    /* Ukuran font untuk perangkat besar */
   }
 }
 
 .medium-big {
-  font-size: 28px; /* Ukuran antara medium dan big */
-  font-weight: bold; /* Untuk memastikan font tetap bold */
+  font-size: 28px;
+  /* Ukuran antara medium dan big */
+  font-weight: bold;
+  /* Untuk memastikan font tetap bold */
 }
 
 
@@ -774,5 +908,5 @@ input {
 
 .dropdown .dropdown-toggle:hover {
   background-color: #aacdd0 !important; /* Mengubah warna latar belakang saat hover */
-  /*color: #fff; Mengubah warna teks jika perlu */
+/*color: #fff; Mengubah warna teks jika perlu */
 /*}

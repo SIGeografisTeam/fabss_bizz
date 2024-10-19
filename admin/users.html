@@ -59,24 +59,60 @@
             </figure>
 
             <nav>
-                <section class="dicover">
-                    <h3>Kelola</h3>
-                    <ul>
-                        <li><a href="dashboard.html"><i class="fa-solid fa-house"
-                                    style="margin-right: 10px;"></i>Dasbor</a></li>
-                        <li><a href="users.html" class="active"><i class="fa-solid fa-user-gear"
-                                    style="margin-right: 10px;"></i>Pengguna</a></li>
-                        <li><a href="category.html"><i class="fa-solid fa-list"
-                                    style="margin-right: 10px;"></i>Kategori</a></li>
-                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen"
-                                    style="margin-right: 10px;"></i>Produk</a></li>
-                        <li><a href="daftarpesanan.html"><i class="fa-solid fa-box"
-                                    style="margin-right: 10px;"></i>Daftar Pesanan</a></li>
-                        <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar"
-                                    style="margin-right: 10px;"></i>Keuangan</a></li>
-                    </ul>
-                </section>
-            </nav>
+				<section class="dicover">
+					<h3>Kelola</h3>
+					<ul>
+						<li>
+							<a href="dashboard.html">
+								<i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+								Dasbor
+							</a>
+						</li>
+						<li>
+							<a href="feedback.html">
+								<i class="fa-solid fa-comment" style="margin-right: 10px;"></i>
+								Umpan Balik
+							</a>
+						</li>
+						<li>
+							<a href="users.html" class="active">
+								<i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+								Pengguna
+							</a>
+						</li>
+						<li>
+							<a href="alamatpengguna.html">
+								<i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+								Alamat Pengguna
+							</a>
+						</li>
+						<li>
+							<a href="category.html">
+								<i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+								Kategori
+							</a>
+						</li>
+						<li>
+							<a href="produk/produk.html">
+								<i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+								Produk
+							</a>
+						</li>
+						<li>
+							<a href="daftarpesanan.html">
+								<i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+								Daftar Pesanan
+							</a>
+						</li>
+						<li>
+							<a href="keuangan.html">
+								<i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
+								Keuangan
+							</a>
+						</li>
+					</ul>
+				</section>
+			</nav>
         </header>
 
         <main class="content-wrap">
@@ -123,8 +159,11 @@
                                         </li>
                                         <li><a class="dropdown-item" href="#" onclick="openDeleteModal(0)">
                                                 <i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
-                                        <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i>
-                                                Ganti Kata Sandi</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="openChangePasswordModal(0)">
+                                                <i class="fas fa-key text-success"></i> Ganti Kata Sandi
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
@@ -213,6 +252,51 @@
         </div>
     </div>
 
+    <!-- Popup untuk Ganti Kata Sandi -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
+                </div>
+                <h2 class="text-center form-title">Ganti Kata Sandi</h2>
+                <p class="welcome-text">Ganti Kata Sandi Anda!</p>
+                <form class="register-form" id="change-password-form" onsubmit="return changePassword()">
+                    <div class="input-group">
+                        <input type="password" id="now-password" placeholder=" " required>
+                        <label for="now-password">Kata Sandi Saat Ini</label>
+                        <span class="toggle-password" onclick="togglePasswordVisibility('now-password')">
+                            <i class="fa-solid fa-eye" id="eye-now-password"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="new-password" placeholder=" " required>
+                        <label for="new-password">Kata Sandi Baru</label>
+                        <span class="toggle-password" onclick="togglePasswordVisibility('new-password')">
+                            <i class="fa-solid fa-eye" id="eye-new-password"></i>
+                        </span>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirm-password" placeholder=" " required>
+                        <label for="confirm-password">Konfirmasi Kata Sandi</label>
+                        <span class="toggle-password" onclick="togglePasswordVisibility('confirm-password')">
+                            <i class="fa-solid fa-eye" id="eye-confirm-password"></i>
+                        </span>
+                    </div>
+                    <button type="submit" class="submit-btn">Simpan Kata Sandi</button>
+                    <div class="cancel-btn-container">
+                        <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         // Data pengguna
         const users = [
@@ -229,6 +313,8 @@
 
         let deleteIndex = null; // Variable to store the index of the user to be deleted
         let editIndex = null; // Variable to store the index of the user being edited
+        let changePasswordIndex = null; // Variable to store the index of the user whose password is being changed
+
 
         function openEditModal(index) {
             const user = users[index];
@@ -335,7 +421,11 @@
                                         <i class="fas fa-trash-alt text-danger"></i> Hapus
                                     </a>
                                 </li>
-                                <li><a class="dropdown-item" href="#"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
+<li>                            <li>
+                                    <a class="dropdown-item" href="#" onclick="openChangePasswordModal(${idx})">
+                                        <i class="fas fa-key text-success"></i> Ganti Kata Sandi
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </td>
@@ -363,6 +453,64 @@
                 fileNameDisplay.textContent = ''; // Kosongkan jika tidak ada file yang dipilih
             }
         }
+
+        function openChangePasswordModal(index) {
+            changePasswordIndex = index; // Simpan indeks pengguna yang kata sandinya akan diubah
+            const modal = new bootstrap.Modal(document.getElementById('changePasswordModal'));
+            modal.show();
+        }
+
+        function changePassword() {
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (newPassword === confirmPassword) {
+                // Proses perubahan kata sandi (di sini bisa ditambahkan logika untuk menyimpan kata sandi baru)
+
+                alert("Kata sandi telah diubah!");
+
+                // Tutup modal setelah menyimpan kata sandi
+                const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
+                modal.hide();
+
+                // Reset input
+                document.getElementById('new-password').value = '';
+                document.getElementById('confirm-password').value = '';
+
+                return false; // Mencegah pengiriman form default
+            } else {
+                alert("Kata sandi tidak cocok!");
+            }
+
+            return false; // Mencegah pengiriman form default
+        }
+
+        // Fungsi untuk menampilkan/menyembunyikan password
+        function togglePasswordVisibility(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById('eye-' + fieldId);
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+
+            }
+        }
+
+        // Event listener untuk mencegah penempelan (paste) pada input password
+        document.getElementById('register-password').addEventListener('paste', function (e) {
+            e.preventDefault();
+            alert("Penempelan password tidak diizinkan.");
+        });
+        document.getElementById('register-confirm-password').addEventListener('paste', function (e) {
+            e.preventDefault();
+            alert("Penempelan password tidak diizinkan.");
+        });
 
     </script>
 
