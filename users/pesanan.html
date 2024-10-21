@@ -100,13 +100,19 @@
                 kodeTransaksi: "TRX123456",
                 recipientName: "John Doe",
                 status: "belum dibayar",
-                totalAmount: 100000
+                totalAmount: 100000,
+                items: [
+                    { name: "Produk A", quantity: 1, price: 100000 }
+                ]
             },
             {
                 kodeTransaksi: "TRX654321",
                 recipientName: "Jane Smith",
                 status: "selesai",
-                totalAmount: 150000
+                totalAmount: 150000,
+                items: [
+                    { name: "Produk B", quantity: 1, price: 150000 }
+                ]
             }
         ];
 
@@ -122,6 +128,12 @@
                         <h5 class="card-title">Nama Pembeli: ${order.recipientName}</h5>
                         <p class="card-text">Status: ${order.status}</p>
                         <p class="card-text">Total Bayar: Rp ${order.totalAmount.toLocaleString()}</p>
+                        <h6>Detail Produk:</h6>
+                        <ul>
+                            ${order.items.map(item => `
+                                <li>${item.name} (Jumlah: ${item.quantity}, Harga Satuan: Rp ${item.price.toLocaleString()})</li>
+                            `).join('')}
+                        </ul>
                         <button class="btn btn-pay" onclick='viewDetails(${JSON.stringify(order)})'>Lihat Detail</button>
                         ${order.status === 'belum dibayar' ? `
                             <button class="btn btn-danger float-end" onclick='payNow("${order.kodeTransaksi}")'>Bayar Sekarang</button>
