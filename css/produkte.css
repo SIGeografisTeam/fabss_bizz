@@ -38,6 +38,18 @@ h2 {
     margin-bottom: 10px;
     color: #84b8c6;
 }
+h3, .variant-input-group input, .add-variant-link {
+    font-family: 'Signika', sans-serif; /* Mengubah font menjadi Signika */
+}
+
+.input-group input, .input-group label {
+    font-family: 'Signika', sans-serif; /* Mengubah font menjadi Signika */
+}
+
+.input-group select, .input-group label {
+    font-family: 'Signika', sans-serif; /* Mengubah font menjadi Signika */
+}
+
 
 .brand {
     display: flex;
@@ -182,6 +194,10 @@ body {
     font-size: 1.5em;
     margin: 10px 0;
 }
+.title-spacing {
+    margin-top: -30px; /* Atur margin atas khusus untuk h2 */
+}
+
 
 .input-group {
     margin-bottom: 20px; /* Spasi antar input */
@@ -190,13 +206,15 @@ body {
 
 .input-group label {
     position: absolute;
-    top: 12px; /* Menyesuaikan posisi label */
-    left: 12px;
-    font-size: 0.9em;
-    color: #050505; /* Warna label yang lebih lembut */
+    top: 5px; /* Menyesuaikan posisi label */
+    left: 5px;
+    font-size: 18.72px;
+    font-weight: bold;
+    color: #033043; /* Warna label yang lebih lembut */
     pointer-events: none; /* Menghindari interaksi dengan label */
     transition: 0.2s ease all; /* Transisi halus untuk label */
 }
+
 
 .input-group input,
 .input-group textarea,
@@ -208,12 +226,6 @@ select {
     box-sizing: border-box; /* Pastikan padding termasuk dalam ukuran */
     margin-top: 20px; /* Memberikan jarak antara kolom dan label */
     outline: none; /* Menghilangkan outline default */
-}
-
-
-.input-group textarea {
-    resize: vertical; /* Allow resizing vertically */
-    height: 100px; /* Height for textarea */
 }
 
 .submit-btn {
@@ -279,7 +291,7 @@ select {
 }
 .input-row {
     display: flex;
-    gap: 20px; /* Atur jarak antara elemen */
+    gap: 10px; /* Atur jarak antara elemen */
 }
 
 .input-row .input-group {
