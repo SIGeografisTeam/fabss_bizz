@@ -37,7 +37,7 @@
             margin-bottom: 20px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            border: 1px solid blue; /* Warna border card menjadi biru */
+            border: 1px solid #84b8c6; /* Warna border card menjadi biru */
         }
 
         .card:hover {
@@ -126,6 +126,10 @@
                         <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle" id="cart-count">0</span>
                     </a>
 
+                    <a href="pesanan.html" class="orders-icon mx-2">
+                        <i class="fa-solid fa-box"></i>
+                    </a>
+
                     <a href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
                         <i class="fa-solid fa-question-circle help-icon-black"></i>
                     </a>
@@ -142,9 +146,6 @@
                     updateCartIcon();
                     </script>
                     
-                    <a href="pesanan.html" class="orders-icon mx-2">
-                        <i class="fa-solid fa-box"></i>
-                    </a>
                     <div class="dropdown">
                         <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-circle-user"></i>
@@ -284,6 +285,7 @@
 
         // Panggil fungsi untuk menampilkan produk saat halaman dimuat
         window.onload = displayProducts;
+
     </script>
 </body>
 </html>

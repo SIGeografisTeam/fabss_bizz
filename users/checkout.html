@@ -194,7 +194,7 @@
 
     <script>
         function renderCartItems() {
-            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
             const cartContainer = document.getElementById('cartItems');
             cartContainer.innerHTML = '';
 
@@ -204,31 +204,32 @@
                 cartItemDiv.classList.add('cart-item');
                 cartItemDiv.innerHTML = `
                     <h5>${item.name}</h5>
-                    <p>Harga: Rp ${item.price} | Jumlah: ${item.quantity}</p>
+                    <p>Harga: Rp ${item.price.toLocaleString()} | Jumlah: ${item.quantity}</p>
                 `;
                 cartContainer.appendChild(cartItemDiv);
                 totalAmount += item.price * item.quantity;
             });
 
-            document.getElementById('totalPrice').innerText = `Total: Rp ${totalAmount}`;
+            document.getElementById('totalPrice').innerText = `Total: Rp ${totalAmount.toLocaleString()}`;
         }
 
         function submitOrder() {
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-            if (paymentMethod === 'COD') {
-                window.location.href = 'invoice.html';
-            } else if (paymentMethod === 'Bank Transfer') {
-                window.location.href = 'bank-transfer.html';
+            if (paymentMethod === "Bank Transfer") {
+                window.location.href = "bank-transfer.html";
+            } else {
+                // Logic untuk memproses pembayaran dengan metode COD
+                alert('Order telah diproses dengan metode COD!');
             }
         }
 
-        document.getElementById('addRecipientInfo').addEventListener('click', () => {
-            const modal = new bootstrap.Modal(document.getElementById('recipientInfoModal'));
-            modal.show();
+        document.getElementById('addRecipientInfo').addEventListener('click', function() {
+            const myModal = new bootstrap.Modal(document.getElementById('recipientInfoModal'));
+            myModal.show();
         });
 
-        document.getElementById('saveRecipientInfo').addEventListener('click', () => {
+        document.getElementById('saveRecipientInfo').addEventListener('click', function() {
             const name = document.getElementById('recipientName').value;
             const address = document.getElementById('recipientAddress').value;
             const phone = document.getElementById('recipientPhone').value;
@@ -237,11 +238,13 @@
             document.getElementById('recipientAddressDisplay').innerText = address;
             document.getElementById('recipientPhoneDisplay').innerText = phone;
 
-            const modal = bootstrap.Modal.getInstance(document.getElementById('recipientInfoModal'));
-            modal.hide();
+            const myModal = bootstrap.Modal.getInstance(document.getElementById('recipientInfoModal'));
+            myModal.hide();
         });
 
-        window.onload = renderCartItems;
+        window.onload = function() {
+            renderCartItems();
+        };
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
