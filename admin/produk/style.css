@@ -119,7 +119,7 @@ body {
     background: #f5f5fa;
     font-size: 16px;
     line-height: 120%;
-    font-family: Open Sans, Helvetica, sans-serif;
+    font-family: "Signika", Arial, sans-serif;
 }
 
 /* Layout dashboard dengan grid */
@@ -208,34 +208,35 @@ body {
 
 /* Menu sidebar */
 .menu-wrap {
-    grid-area: menu;
-    padding-bottom: 3em;
-    overflow: auto;
-    background: #fff;
-    border-right: 1px solid #ede8f0;
+  grid-area: menu;
+  padding-bottom: 3em;
+  overflow: auto;
+  background: #84b8c6;
+  border-right: 1px solid #ede8f0;
+  font-family: "Signika", Arial, sans-serif;
 }
 
 .menu-wrap .user {
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 0;
-    padding: 0 3em;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 1em 3em;
 }
 
 .menu-wrap .user .user-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
 }
 
 .menu-wrap .user .user-avatar img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .menu-wrap .user figcaption {
@@ -331,6 +332,7 @@ body {
 }
 
 .content-wrap .content-head h1 {
+  font-family: "Signika", Arial, sans-serif;
     font-size: 1.375em;
     float: left;
     margin-left: 0;
@@ -426,7 +428,7 @@ body {
   }
   
   body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Signika", 'Arial', sans-serif;
     background-color: #f4f4f4;
     display: flex;
     justify-content: center;
