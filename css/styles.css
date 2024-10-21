@@ -1,0 +1,188 @@
+/* General Styles */
+body {
+    font-family: Arial, "Signika", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #E9E3D5;
+}
+  
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #033043;
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        display: none;
+    }
+}
+
+/* Navbar */
+header {
+    background-color: #aacdd0;
+}
+
+
+
+.navbar-brand {
+    font-family: "Signika", Arial, sans-serif;
+    color: #033043;
+  }
+
+.navbar-nav {
+    color: white;
+}
+  .dropdown-toggle {
+    font-size: 20px; /* Set font size to 20px */
+   
+}
+
+.navbar .dropdown-toggle#kategoriDropdown + .dropdown-menu {
+    background-color: #033043; /* Set background color to #033043 */
+    color: #E9E3D5; /* Set text color for dropdown items */
+    border: none;
+  }
+
+.dropdown-menu .dropdown-item {
+    font-size: 14px; /* Perkecil ukuran dropdown */
+    padding: 10px 15px; /* Atur jarak padding */
+    margin-right: 8px;
+    color: white;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: #FDA521;
+    color: #033043;
+}
+
+.navbar .search-form {
+    margin-left: 0px; 
+    width: 500px; 
+}
+.navbar .search-form .btn {
+    color: #033043;
+}
+.navbar .search-form .btn:hover {
+    background-color: #E9E3D5; /* Warna hover */
+}
+/* Button Daftar */
+.daftar {
+    background-color: #033043; /* Warna dasar */
+    color: #E9E3D5; /* Warna teks */
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.daftar:hover {
+    background-color: #E9E3D5; /* Warna hover */
+    color: #033043; /* Warna teks saat hover */
+}
+
+/* Button Masuk */
+.masuk {
+    background-color: #FDA521; /* Warna dasar */
+    color: #033043; /* Warna teks */
+    padding: 8px 20px;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.masuk:hover {
+    background-color: #E9E3D5; /* Warna hover */
+    color: #FDA521; /* Warna teks saat hover */
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+}
+
+.slider {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    display: flex;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background-color: #033043;
+    color: #E9E3D5;
+    text-align: center;
+    padding: 20px;
+}
+
+section.bg-light h2 {
+    color: #033043; 
+}
+
+.text-highlight {
+    color: #84b8c6;
+    text-align: justify; 
+}
+
+h1 {
+    color: #84b8c6; 
+    text-align: center; 
+    font-family: "Signika", Arial, sans-serif;
+}
+
+.about-title {
+    color: #033043; 
+    text-align: center;
+}
+
+.logo {
+    margin-top: 20px; 
+    margin-left: 20px; 
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.col-md-6 img {
+    max-width: 100%; 
+    height: auto; 
+    min-height: 250px;
+    object-fit: cover;
+}
+.small-img {
+    max-width: 50px;
+    height: auto; 
+}
+
+.logo {
+    margin-bottom: 40px;
+    margin-left: 50px;
+}
+
+.tentang {
+    background-image: linear-gradient(to bottom, #aacdd0, #f8f9fa);
+    font-family: "Signika", Arial, sans-serif;
+}
+
+.text-highlight {
+    color: #033043;
+    font-weight: medium;
+}
