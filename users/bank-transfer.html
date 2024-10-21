@@ -80,15 +80,15 @@
         }
 
         .custom-file-input {
-            border: 2px solid #007bff; /* Warna biru untuk border */
-            border-radius: 5px; /* Agar sudut border menjadi melengkung */
-            padding: 5px; /* Tambahkan sedikit padding */
-            transition: border-color 0.3s; /* Efek transisi saat border berubah */
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            padding: 5px;
+            transition: border-color 0.3s;
         }
 
         .custom-file-input:focus {
-            border-color: #0056b3; /* Warna border saat fokus */
-            outline: none; /* Menghilangkan outline default */
+            border-color: #0056b3;
+            outline: none;
         }
     </style>
 </head>
@@ -166,7 +166,6 @@
     </div>
 
     <script>
-        // Sample data retrieval for displaying
         const currentUser = {
             username: "User123",
             recipientName: "Nama Penerima",
@@ -183,7 +182,6 @@
         document.getElementById('telepon').textContent = currentUser.telephone;
         document.getElementById('totalAmount').textContent = 'Rp ' + totalAmount;
 
-        // Displaying order details
         const orderDetails = document.getElementById('orderDetails');
         cartItems.forEach(item => {
             const orderRow = `
@@ -201,31 +199,6 @@
 
         function confirmOrder() {
             const receipt = document.getElementById('bukti-transaksi').files[0];
-            if (receipt) {
-                // Create an order object to store
-                const order = {
-                    kodeTransaksi: document.getElementById('kode-transaksi').textContent,
-                    recipientName: currentUser.recipientName,
-                    recipientAddress: currentUser.recipientAddress,
-                    telephone: currentUser.telephone,
-                    items: cartItems,
-                    totalAmount: totalAmount,
-                    paymentMethod: paymentMethod,
-                    status: "menunggu konfirmasi" // Set status to "menunggu konfirmasi" when receipt is uploaded
-                };
-
-                // Store the order in localStorage
-                localStorage.setItem('newOrder', JSON.stringify(order));
-
-                // Redirect to pesanan.html
-                window.location.href = 'pesanan.html';
-            } else {
-                alert("Silakan upload bukti pembayaran sebelum melanjutkan.");
-            }
-        }
-
-        function saveOrderForLater() {
-            // Create an order object to store with status "belum dibayar"
             const order = {
                 kodeTransaksi: document.getElementById('kode-transaksi').textContent,
                 recipientName: currentUser.recipientName,
@@ -234,15 +207,34 @@
                 items: cartItems,
                 totalAmount: totalAmount,
                 paymentMethod: paymentMethod,
-                status: "belum dibayar" // Set status to "belum dibayar"
+                status: receipt ? "menunggu konfirmasi" : "belum dibayar" // Status ditentukan oleh keberadaan bukti pembayaran
             };
 
-            // Store the order in localStorage
             let existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
             existingOrders.push(order);
             localStorage.setItem('orders', JSON.stringify(existingOrders));
 
-            // Redirect to pesanan.html
+            // Redirect ke pesanan.html
+            window.location.href = 'pesanan.html';
+        }
+
+        function saveOrderForLater() {
+            const order = {
+                kodeTransaksi: document.getElementById('kode-transaksi').textContent,
+                recipientName: currentUser.recipientName,
+                recipientAddress: currentUser.recipientAddress,
+                telephone: currentUser.telephone,
+                items: cartItems,
+                totalAmount: totalAmount,
+                paymentMethod: paymentMethod,
+                status: "belum dibayar"
+            };
+
+            let existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            existingOrders.push(order);
+            localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+            // Redirect ke pesanan.html
             window.location.href = 'pesanan.html';
         }
     </script>
