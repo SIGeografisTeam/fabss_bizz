@@ -258,10 +258,10 @@ body {
 }
 
 .menu-wrap .user .user-avatar img {
+  display: block;
   width: auto;
   height: 100%;
   object-fit: cover;
-  border-radius: 0; /* Tambahkan ini untuk memastikan gambar tidak bulat */
 }
 
 .menu-wrap .user figcaption {
@@ -823,7 +823,7 @@ html, body {
   border-left: 5px solid #4b84fe;
   padding-left: 15px;
   margin-bottom: 5px;
-  padding: 10px 15px;
+  padding: 8px 15px;
 }
 .menu-wrap nav li a svg {
   display: block;
