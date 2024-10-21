@@ -59,6 +59,28 @@
         .btn-pay:hover {
             background-color: #5a8a90;
         }
+
+        .rating {
+            display: flex;
+            direction: row-reverse;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 30px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .rating input:checked ~ label,
+        .rating input:checked ~ label ~ label {
+            color: #f39c12; /* Warna bintang yang aktif */
+        }
     </style>
 </head>
 
@@ -73,7 +95,21 @@
     </div>
 
     <script>
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        const orders = JSON.parse(localStorage.getItem('orders')) || [
+            {
+                kodeTransaksi: "TRX123456",
+                recipientName: "John Doe",
+                status: "belum dibayar",
+                totalAmount: 100000
+            },
+            {
+                kodeTransaksi: "TRX654321",
+                recipientName: "Jane Smith",
+                status: "selesai",
+                totalAmount: 150000
+            }
+        ];
+
         const orderList = document.getElementById('orderList');
 
         orders.forEach(order => {
@@ -85,9 +121,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Nama Pembeli: ${order.recipientName}</h5>
                         <p class="card-text">Status: ${order.status}</p>
-                        <p class="card-text">Total Bayar: Rp ${order.totalAmount}</p>
+                        <p class="card-text">Total Bayar: Rp ${order.totalAmount.toLocaleString()}</p>
                         <button class="btn btn-pay" onclick='viewDetails(${JSON.stringify(order)})'>Lihat Detail</button>
-                        ${order.status === 'belum dibayar' ? `<button class="btn btn-danger float-end" onclick='payNow("${order.kodeTransaksi}")'>Bayar Sekarang</button>` : ''}
+                        ${order.status === 'belum dibayar' ? `
+                            <button class="btn btn-danger float-end" onclick='payNow("${order.kodeTransaksi}")'>Bayar Sekarang</button>
+                        ` : `
+                            <button class="btn btn-info float-end" onclick='writeReview("${order.kodeTransaksi}")'>Ulasan</button>
+                        `}
                     </div>
                 </div>
             `;
@@ -101,6 +141,62 @@
         function payNow(transactionCode) {
             alert(`Pembayaran untuk kode transaksi ${transactionCode} telah diproses.`);
             // Logika pembayaran dapat ditambahkan di sini
+        }
+
+        function writeReview(transactionCode) {
+            // Membuat modal untuk rating
+            const modalContent = `
+                <div class="modal-header">
+                    <h5 class="modal-title">Ulasan untuk ${transactionCode}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="rating">
+                        <input type="radio" name="rating" id="star5" value="5"><label for="star5" title="5 stars">★</label>
+                        <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars">★</label>
+                        <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars">★</label>
+                        <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars">★</label>
+                        <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star">★</label>
+                    </div>
+                    <textarea id="reviewText" class="form-control" rows="3" placeholder="Tulis ulasan..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" onclick='submitReview("${transactionCode}")'>Kirim Ulasan</button>
+                </div>
+            `;
+            showModal(modalContent);
+        }
+
+        function showModal(content) {
+            const modalHtml = `
+                <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            ${content}
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            const modal = new bootstrap.Modal(document.getElementById('reviewModal'));
+            modal.show();
+            document.getElementById('reviewModal').addEventListener('hidden.bs.modal', () => {
+                document.getElementById('reviewModal').remove();
+            });
+        }
+
+        function submitReview(transactionCode) {
+            const rating = document.querySelector('input[name="rating"]:checked');
+            const reviewText = document.getElementById('reviewText').value;
+
+            if (rating) {
+                alert(`Ulasan untuk transaksi ${transactionCode} telah disimpan:\nRating: ${rating.value} bintang\nUlasan: ${reviewText}`);
+                // Logika untuk menyimpan ulasan dan rating dapat ditambahkan di sini
+                document.querySelector('.modal.fade').modal('hide');
+            } else {
+                alert('Silakan pilih rating bintang sebelum mengirim ulasan.');
+            }
         }
     </script>
 </body>

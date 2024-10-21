@@ -203,49 +203,45 @@
                 const cartItemDiv = document.createElement('div');
                 cartItemDiv.classList.add('cart-item');
                 cartItemDiv.innerHTML = `
-                    <strong>${item.name}</strong> - Rp ${item.price} x ${item.quantity} <span class="float-end">Rp ${item.price * item.quantity}</span>
+                    <h5>${item.name}</h5>
+                    <p>Harga: Rp ${item.price} | Jumlah: ${item.quantity}</p>
                 `;
                 cartContainer.appendChild(cartItemDiv);
                 totalAmount += item.price * item.quantity;
             });
 
-            document.getElementById('totalPrice').textContent = `Total: Rp ${totalAmount}`;
+            document.getElementById('totalPrice').innerText = `Total: Rp ${totalAmount}`;
         }
 
         function submitOrder() {
             const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-            const totalAmount = document.getElementById('totalPrice').textContent;
 
-            alert(`Order submitted! Total: ${totalAmount} with payment method: ${paymentMethod}`);
-            // Redirect to order confirmation or relevant page
-            // window.location.href = "order-confirmation.html";
+            if (paymentMethod === 'COD') {
+                window.location.href = 'invoice.html';
+            } else if (paymentMethod === 'Bank Transfer') {
+                window.location.href = 'bank-transfer.html';
+            }
         }
 
-        document.getElementById('addRecipientInfo').addEventListener('click', function () {
+        document.getElementById('addRecipientInfo').addEventListener('click', () => {
             const modal = new bootstrap.Modal(document.getElementById('recipientInfoModal'));
             modal.show();
         });
 
-        document.getElementById('saveRecipientInfo').addEventListener('click', function () {
-            const newName = document.getElementById('recipientName').value;
-            const newAddress = document.getElementById('recipientAddress').value;
-            const newPhone = document.getElementById('recipientPhone').value;
+        document.getElementById('saveRecipientInfo').addEventListener('click', () => {
+            const name = document.getElementById('recipientName').value;
+            const address = document.getElementById('recipientAddress').value;
+            const phone = document.getElementById('recipientPhone').value;
 
-            if (newName && newAddress && newPhone) {
-                document.getElementById('recipientNameDisplay').textContent = newName;
-                document.getElementById('recipientAddressDisplay').textContent = newAddress;
-                document.getElementById('recipientPhoneDisplay').textContent = newPhone;
+            document.getElementById('recipientNameDisplay').innerText = name;
+            document.getElementById('recipientAddressDisplay').innerText = address;
+            document.getElementById('recipientPhoneDisplay').innerText = phone;
 
-                // Clear the input fields
-                document.getElementById('recipientInfoForm').reset();
-                const modal = bootstrap.Modal.getInstance(document.getElementById('recipientInfoModal'));
-                modal.hide();
-            } else {
-                alert("Harap lengkapi semua informasi.");
-            }
+            const modal = bootstrap.Modal.getInstance(document.getElementById('recipientInfoModal'));
+            modal.hide();
         });
 
-        renderCartItems();
+        window.onload = renderCartItems;
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
