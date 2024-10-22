@@ -862,8 +862,26 @@ input {
   cursor: pointer;
 }
 
+/* Custom styling for active pagination */
+.pagination .page-item.active .page-link {
+  background-color: #033043; /* Custom blue color */
+  border-color: #033043; /* Border warna biru */
+  color: white; /* Warna teks */
+}
 
+/* Custom border color for pagination */
+.pagination .page-item .page-link {
+  border-color: #033043; /* Custom green border */
+  color: #033043; /* Custom text color for non-active links */
+}
 
+/* Custom background and border for Previous and Next buttons */
+.pagination .page-item:first-child .page-link, 
+.pagination .page-item:last-child .page-link {
+    background-color: #84b8c6; /* Custom orange background */
+    color: white;
+    border-color: #033043; /* Custom orange border */
+}
 
 @media (max-width: 576px) {
   .username {
