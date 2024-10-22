@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ulasan Produk | Plasqtiqu.Co</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Signika', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .review {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .review h1 {
+            color: #033043;
+        }
+
+        .card {
+            margin: 15px 0;
+        }
+
+        .btn-submit {
+            background-color: #6BA3B1;
+            border: none;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #5a8a90;
+        }
+
+        .product-link {
+            text-decoration: none;
+            color: #033043;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="review">
+        <h1>Ulasan Produk</h1>
+        <div id="productList"></div>
+    </div>
+
+    <script>
+        const orders = JSON.parse(localStorage.getItem('orders')) || [
+            {
+                kodeTransaksi: "TRX123456",
+                recipientName: "John Doe",
+                status: "selesai",
+                totalAmount: 100000,
+                items: [
+                { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
+                { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
+                { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
+                { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
+                { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
+                { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
+            ]
+            },
+            {
+                kodeTransaksi: "TRX654321",
+                recipientName: "Jane Smith",
+                status: "selesai",
+                totalAmount: 150000,
+                items: [
+                    { name: "Plastik Ziplock", quantity: 1, price: 10000, id: 3 }
+                ]
+            }
+        ];
+
+        const productList = document.getElementById('productList');
+
+        let hasProduct = false; // Untuk mengecek apakah ada produk yang ditampilkan
+        orders.forEach(order => {
+            if (order.status === "menunggu konfirmasi") { // Mengubah kondisi untuk hanya menampilkan produk dengan status 'selesai'
+                order.items.forEach(item => {
+                    hasProduct = true; // Set menjadi true jika ada produk
+                    const productCard = `
+                        <div class="card">
+                            <div class="card-header">
+                                <a href="product-detail.html?id=${item.id}" class="product-link">${item.name}</a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Harga: Rp ${item.price.toLocaleString()}</p>
+                                <label for="rating-${order.kodeTransaksi}-${item.name}">Rating:</label>
+                                <select id="rating-${order.kodeTransaksi}-${item.name}">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <textarea class="form-control mt-2" placeholder="Tulis ulasan..." rows="3"></textarea>
+                                <button class="btn btn-submit mt-2" onclick="submitReview('${order.kodeTransaksi}', '${item.name}', ${item.id})">Kirim Ulasan</button>
+                            </div>
+                        </div>
+                    `;
+                    productList.insertAdjacentHTML('beforeend', productCard);
+                });
+            }
+        });
+
+        if (!hasProduct) {
+            productList.innerHTML = '<p>Tidak ada produk untuk diulas.</p>'; // Pesan jika tidak ada produk
+        }
+
+        function submitReview(transactionCode, productName, productId) {
+            const rating = document.getElementById(`rating-${transactionCode}-${productName}`).value;
+            const comment = document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value;
+
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push({ username: "Nama Pengguna", rating, comment, productId });
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+
+            alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
+            window.location.href = `product-detail.html?id=${productId}`; // Mengarahkan ke halaman detail produk
+        }
+    </script>
+</body>
+
+</html>

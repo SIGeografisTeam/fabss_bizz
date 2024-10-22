@@ -33,6 +33,7 @@
         .quantity-control input { width: 50px; text-align: center; }
         .quantity-control button { width: 40px; }
         .dropdown-menu { background-color: #033043; }
+        .review-card { margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -80,7 +81,6 @@
                     <i class="fa-solid fa-question-circle help-icon-black"></i>
                 </a>
                 
-                
                 <script>
                 // Fungsi untuk memperbarui angka di ikon keranjang
                 function updateCartIcon() {
@@ -109,6 +109,8 @@
 
 <div class="container product-detail-container">
     <div id="product-detail" class="row"></div>
+    <h3 class="mt-5">Ulasan Produk</h3>
+    <div id="product-reviews" class="mt-4"></div> <!-- Div untuk menampilkan ulasan -->
 </div>
 
 <script>
@@ -127,82 +129,88 @@
         return urlParams.get('id');
     }
 
-    function displayProductDetail() {
-        const productId = getProductIdFromURL();
-        const product = products.find(p => p.id == productId);
-
-        if (product) {
-            const productDetailHTML = `
-                <div class="col-md-6">
-                    <img src="${product.image}" alt="${product.name}" class="product-image">
+    function displayProductDetail(product) {
+        const productDetailDiv = document.getElementById('product-detail');
+        productDetailDiv.innerHTML = `
+            <div class="col-md-6">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+            </div>
+            <div class="col-md-6">
+                <h1 class="product-name">${product.name}</h1>
+                <p class="product-price">Rp ${product.price}</p>
+                <p class="product-description">${product.description}</p>
+                <div class="product-info">
+                    <p><strong>Kategori:</strong> ${product.category}</p>
+                    <p><strong>Berat:</strong> ${product.weight}</p>
+                    <p><strong>Ketersediaan:</strong> ${product.availability}</p>
                 </div>
-                <div class="col-md-6">
-                    <h1 class="product-name">${product.name}</h1>
-                    <p class="product-price">Rp ${product.price.toLocaleString()}</p>
-                    <div class="product-info">
-                        <p><strong>Kategori:</strong> ${product.category}</p>
-                        <p><strong>Berat:</strong> ${product.weight}</p>
-                        <p><strong>Ketersediaan:</strong> ${product.availability}</p>
-                    </div>
-                    <p class="product-description">${product.description}</p>
-                    <div class="quantity-control">
-                        <button class="btn btn-outline-secondary" onclick="changeQuantity(-1)">-</button>
-                        <input type="number" id="quantity" value="1" min="1" max="10">
-                        <button class="btn btn-outline-secondary" onclick="changeQuantity(1)">+</button>
-                    </div>
-                    <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
-                    <button class="btn btn-cart" onclick="addToCart(${product.id})">Tambahkan ke Keranjang</button>
+                <div class="quantity-control">
+                    <button onclick="changeQuantity(-1)">-</button>
+                    <input type="number" id="quantity" value="1" min="1">
+                    <button onclick="changeQuantity(1)">+</button>
                 </div>
-            `;
-            document.getElementById('product-detail').innerHTML = productDetailHTML;
-        } else {
-            document.getElementById('product-detail').innerHTML = '<p>Produk tidak ditemukan.</p>';
-        }
+                <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
+                <button class="btn btn-cart" onclick="addToCart(${product.id})">Tambah ke Keranjang</button>
+            </div>
+        `;
     }
 
-    function changeQuantity(amount) {
+    function changeQuantity(change) {
         const quantityInput = document.getElementById('quantity');
         let currentValue = parseInt(quantityInput.value);
-        currentValue += amount;
-
+        currentValue += change;
         if (currentValue < 1) currentValue = 1;
-        if (currentValue > 10) currentValue = 10;
-
         quantityInput.value = currentValue;
     }
 
     function addToCart(productId) {
-        const product = products.find(p => p.id === productId);
-        const quantity = parseInt(document.getElementById('quantity').value);
-
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let existingProduct = cart.find(item => item.id === productId);
+        const quantity = parseInt(document.getElementById('quantity').value);
+        const existingProductIndex = cart.findIndex(item => item.id === productId);
 
-        if (existingProduct) {
-            existingProduct.quantity += quantity;
+        if (existingProductIndex > -1) {
+            cart[existingProductIndex].quantity += quantity;
         } else {
-            cart.push({ ...product, quantity });
+            const productToAdd = products.find(product => product.id === productId);
+            productToAdd.quantity = quantity;
+            cart.push(productToAdd);
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert(`Produk ${product.name} dengan jumlah ${quantity} telah ditambahkan ke keranjang.`);
+        alert('Produk telah ditambahkan ke keranjang!');
+        updateCartIcon();
     }
 
-    window.onload = displayProductDetail;
+    function displayReviews() {
+        const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        const reviewsDiv = document.getElementById('product-reviews');
+        reviewsDiv.innerHTML = '';
+
+        reviews.forEach(review => {
+            const reviewCard = document.createElement('div');
+            reviewCard.classList.add('review-card', 'card', 'p-3');
+            reviewCard.innerHTML = `
+                <h5>${review.username}</h5>
+                <p>Rating: ${'bintang '.repeat(review.rating)}</p> <!-- Menampilkan "bintang" untuk rating -->
+                <p>${review.comment}</p>
+            `;
+            reviewsDiv.appendChild(reviewCard);
+        });
+
+        if (reviews.length === 0) {
+            reviewsDiv.innerHTML = '<p>Tidak ada ulasan untuk produk ini.</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const productId = getProductIdFromURL();
+        const product = products.find(prod => prod.id == productId);
+        displayProductDetail(product);
+        displayReviews();
+    });
 </script>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <p>&copy; 2024 Plastiqu.Co. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- Bootstrap 5 JS Bundle -->
+<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
