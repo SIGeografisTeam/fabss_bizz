@@ -155,8 +155,7 @@
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -165,15 +164,25 @@
                                                 <i class="fas fa-pen text-warning"></i> Ubah
                                             </a>
                                         </li>
-                                        <li><a class="dropdown-item" href="#" onclick="openDeleteModal(0)">
-                                                <i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="openDeleteModal(0)">
+                                                <i class="fas fa-trash-alt text-danger"></i> Hapus
+                                            </a>
+                                        </li>
                                         <li>
                                             <a class="dropdown-item" href="#" onclick="openChangePasswordModal(0)">
                                                 <i class="fas fa-key text-success"></i> Ganti Kata Sandi
                                             </a>
                                         </li>
+                                        <!-- Button Upgrade to Admin -->
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="upgradeToAdmin(0)">
+                                                <i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
+                                
                             </td>
                         </tr>
                     </tbody>
@@ -313,7 +322,7 @@
                 email: "johndoe@example.com",
                 phone: "(123) 456-7890",
                 address: "123 Main St, Anytown, USA",
-                photo: "https://randomuser.me/api/portraits/men/1.jpg"
+                photo: "https://randomuser.me/api/portraits/men/1.jpg",
             },
             // Tambahkan data pengguna lainnya di sini...
         ];
@@ -450,6 +459,11 @@
                                         <i class="fas fa-key text-success"></i> Ganti Kata Sandi
                                     </a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="upgradeToAdmin(${idx})">
+                                        <i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </td>
@@ -457,6 +471,34 @@
                 userList.appendChild(row);
             });
         }
+// upgrade to admin
+        function upgradeToAdmin(userId) {
+    // Konfirmasi tindakan pengguna
+    if (confirm("Apakah Anda yakin ingin meng-upgrade user ini menjadi admin?")) {
+        // Kirimkan permintaan ke server untuk mengubah peran pengguna
+        fetch(`/upgrade-to-admin/${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Jika menggunakan CSRF Token
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Pengguna berhasil di-upgrade menjadi admin!");
+                // Lakukan reload atau perbarui tampilan setelah sukses
+                location.reload();
+            } else {
+                alert("Terjadi kesalahan: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Terjadi kesalahan saat meng-upgrade pengguna menjadi admin.");
+        });
+    }
+}
 
         // Panggil renderUserList() ketika halaman dimuat
         document.addEventListener('DOMContentLoaded', renderUserList);
