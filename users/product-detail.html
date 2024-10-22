@@ -40,13 +40,69 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img src="/assets/logo.png" alt="" height="50"> Plastiqu.Co</a>
+            <a class="navbar-brand" href="index.html">
+                <img src="/assets/logo.png" alt="Plastiqu.Co" height="50">
+                Plastiqu.Co
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- other nav elements -->
-            </div>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Kategori
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
+                            <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
+                            <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
+                            <li><a class="dropdown-item" href="#">Kemasan Kertas</a></li>
+                            <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex mx-auto my-2 search-form">
+                    <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..." aria-label="Search">
+                    <button class="btn btn-warning" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <a href="cart.html" class="cart-icon mx-2 position-relative">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle" id="cart-count">0</span>
+                </a>
+
+                <a href="pesanan.html" class="orders-icon mx-2">
+                    <i class="fa-solid fa-box"></i>
+                </a>
+
+                <a href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
+                    <i class="fa-solid fa-question-circle help-icon-black"></i>
+                </a>
+                
+                
+                <script>
+                // Fungsi untuk memperbarui angka di ikon keranjang
+                function updateCartIcon() {
+                    let cartItemCount = localStorage.getItem('cartItemCount') || 0;
+                    document.getElementById('cart-count').textContent = cartItemCount;
+                }
+                
+                // Panggil fungsi ini setiap kali halaman dimuat
+                updateCartIcon();
+                </script>
+                
+                <div class="dropdown">
+                    <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="ms-2">Nama Pengguna</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                        <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>                    
         </div>
     </nav>
 </header>
@@ -58,7 +114,11 @@
 <script>
     const products = [
         { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
-        { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' }
+        { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
+        { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
+        { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
+        { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
+        { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
     ];
 
     function getProductIdFromURL() {
