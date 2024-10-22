@@ -17,6 +17,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        .content-head {
+            margin-bottom: 20px;
+            /* Tambahkan margin bawah di sini */
+        }
+    </style>
 </head>
 
 <body>
@@ -127,6 +134,31 @@
             <header class="content-head">
                 <h1 class="dashboard-tittle">Umpan Balik Pengguna</h1>
             </header>
+
+
+            <!-- Statistik Kunci -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Statistik Kunci</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>Total Pengunjung:</h6>
+                            <p>10,000</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Bounce Rate:</h6>
+                            <p>25%</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Durasi Rata-rata Sesi:</h6>
+                            <p>2 menit 30 detik</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="container mt-4">
                 <!-- Line Chart Produk Terlaris -->
                 <div class="card mb-4">
@@ -149,37 +181,6 @@
                     </div>
                     <div class="card-body">
                         <canvas id="bestSellerChart" width="400" height="200"></canvas>
-                    </div>
-                </div>
-
-                <!-- Feedback Table -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>Ulasan Pelanggan</h5>
-                        <p id="feedbackSummary">Bintang 5: 20 | Total Ulasan: 50</p>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Ulasan</th>
-                                    <th>Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>John Doe</td>
-                                    <td>Produk berkualitas tinggi!</td>
-                                    <td>⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>Jane Smith</td>
-                                    <td>Pelayanan sangat baik.</td>
-                                    <td>⭐⭐⭐⭐</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
 
@@ -221,6 +222,16 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <!-- Durasi Rata-rata Sesi -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Durasi Sesi Rata-rata</h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="sessionDurationChart" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
@@ -279,6 +290,36 @@
                 }
                 myChart.update(); // Update chart dengan data baru
             }
+
+            const sessionCtx = document.getElementById('sessionDurationChart').getContext('2d');
+            let sessionChart = new Chart(sessionCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mobile', 'Desktop', 'Tablet'],
+                    datasets: [{
+                        label: 'Durasi Sesi (menit)',
+                        data: [2.5, 3, 1.8], // Data dummy, sesuaikan dengan data real
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         </script>
 
         <!-- Bootstrap JS dan Popper.js -->
