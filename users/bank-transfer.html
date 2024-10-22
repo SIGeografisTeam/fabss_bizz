@@ -159,30 +159,22 @@
     </div>
 
     <script>
+        // Mengambil data pengguna dan keranjang dari localStorage
         const currentUser = {
             username: "User123",
-            recipientName: "Nama Penerima",
-            recipientAddress: "Jalan Alamat Penerima, Kota, Provinsi",
-            telephone: "081234567890"
+            recipientName: localStorage.getItem('recipientName') || "Nama Penerima",
+            recipientAddress: localStorage.getItem('recipientAddress') || "Jalan Alamat Penerima, Kota, Provinsi",
+            telephone: localStorage.getItem('recipientPhone') || "081234567890"
         };
 
         const cartItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
-        const totalAmount = localStorage.getItem('totalAmount');
-        const paymentMethod = localStorage.getItem('paymentMethod');
+        const totalAmount = localStorage.getItem('totalAmount') || 0;
+        const paymentMethod = localStorage.getItem('paymentMethod') || "Transfer Bank";
 
         // Tampilkan data pembeli
         document.getElementById('nama').textContent = currentUser.recipientName;
         document.getElementById('alamat').textContent = currentUser.recipientAddress;
         document.getElementById('telepon').textContent = currentUser.telephone;
-
-        // Fungsi untuk menghitung total harga dari item di keranjang
-        function calculateTotal() {
-            let total = 0;
-            cartItems.forEach(item => {
-                total += item.price * item.quantity;
-            });
-            return total;
-        }
 
         // Tampilkan detail pesanan
         const orderDetails = document.getElementById('orderDetails');
@@ -203,8 +195,7 @@
         }
 
         // Hitung dan tampilkan total harga
-        const calculatedTotal = calculateTotal();
-        document.getElementById('totalAmount').textContent = 'Rp ' + calculatedTotal.toLocaleString();
+        document.getElementById('totalAmount').textContent = 'Rp ' + totalAmount.toLocaleString();
 
         function confirmOrder() {
             const receipt = document.getElementById('bukti-transaksi').files[0];
@@ -214,7 +205,7 @@
                 recipientAddress: currentUser.recipientAddress,
                 telephone: currentUser.telephone,
                 items: cartItems,
-                totalAmount: calculatedTotal,
+                totalAmount: totalAmount,
                 paymentMethod: paymentMethod,
                 status: receipt ? "menunggu konfirmasi" : "belum dibayar"
             };
@@ -233,7 +224,7 @@
                 recipientAddress: currentUser.recipientAddress,
                 telephone: currentUser.telephone,
                 items: cartItems,
-                totalAmount: calculatedTotal,
+                totalAmount: totalAmount,
                 paymentMethod: paymentMethod,
                 status: "belum dibayar"
             };
