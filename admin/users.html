@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
 </head>
 
 <body>
@@ -59,6 +60,7 @@
             </figure>
 
             <nav>
+<<<<<<< HEAD
 				<section class="dicover">
 					<h3>Kelola</h3>
 					<ul>
@@ -119,6 +121,62 @@
 					</ul>
 				</section>
 			</nav>
+=======
+                <section class="dicover">
+                    <h3>Kelola</h3>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">
+                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+                                Dasbor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="feedback.html">
+                                <i class="fa-solid fa-comment" style="margin-right: 10px;"></i>
+                                Umpan Balik
+                            </a>
+                        </li>
+                        <li>
+                            <a href="users.html" class="active">
+                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+                                Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="alamatpengguna.html">
+                                <i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+                                Alamat Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="category.html">
+                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+                                Kategori
+                            </a>
+                        </li>
+                        <li>
+                            <a href="produk/produk.html">
+                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Produk
+                            </a>
+                        </li>
+                        <li>
+                            <a href="daftarpesanan.html">
+                                <i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+                                Daftar Pesanan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="keuangan.html">
+                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
+                                Keuangan
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+>>>>>>> 9037facf148f9caf426ce4891d9eb40e2f062b4f
         </header>
 
         <main class="content-wrap">
@@ -190,8 +248,7 @@
                 </div>
                 <h2 class="text-center form-title">Ubah Pengguna</h2>
                 <p class="welcome-text">Ubah Pengguna!</p>
-                <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser()">
-                    <!-- Input untuk Nama Depan -->
+                <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser(event)">
                     <div class="input-group">
                         <input type="text" id="edit-pengguna-nama-depan" placeholder=" " required>
                         <label for="edit-pengguna-nama-depan">Nama Depan</label>
@@ -358,14 +415,24 @@
                 // Reset deleteIndex
                 deleteIndex = null;
 
-                // Tutup modal setelah dihapus
-                const modal = bootstrap.Modal.getInstance(document.getElementById('deleteUsersModal'));
-                modal.hide();
+                // Tampilkan pemberitahuan sukses dengan SweetAlert2
+                Swal.fire({
+                    title: 'Pengguna Dihapus!',
+                    text: 'Data pengguna berhasil dihapus.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Tutup modal setelah menekan OK di SweetAlert2
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('deleteUsersModal'));
+                    modal.hide();
+                });
             }
         }
 
         // Fungsi untuk memperbarui pengguna
-        function ValidateUser() {
+        function ValidateUser(event) {
+            event.preventDefault(); // Mencegah pengiriman form default
+
             if (editIndex !== null) {  // Pastikan editIndex digunakan di sini
                 // Ambil data dari form edit
                 users[editIndex].firstName = document.getElementById('edit-pengguna-nama-depan').value;
@@ -384,11 +451,17 @@
                 // Perbarui tampilan tabel setelah data pengguna diedit
                 renderUserList();
 
-                // Tutup modal setelah menyimpan perubahan
-                const modal = bootstrap.Modal.getInstance(document.getElementById('editUsersModal'));
-                modal.hide();
-
-                alert("Data pengguna telah diperbarui!");
+                // Tampilkan pemberitahuan sukses dengan SweetAlert2
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Data pengguna berhasil diubah!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Tutup modal setelah menekan OK di SweetAlert2
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('editUsersModal'));
+                    modal.hide();
+                });
 
                 // Reset editIndex
                 editIndex = null;
@@ -396,6 +469,7 @@
 
             return false; // Mencegah pengiriman form default
         }
+
 
         // Fungsi untuk menampilkan daftar pengguna di tabel
         function renderUserList() {
@@ -427,7 +501,7 @@
                                         <i class="fas fa-trash-alt text-danger"></i> Hapus
                                     </a>
                                 </li>
-<li>                            <li>
+                                <li>
                                     <a class="dropdown-item" href="#" onclick="openChangePasswordModal(${idx})">
                                         <i class="fas fa-key text-success"></i> Ganti Kata Sandi
                                     </a>
@@ -473,23 +547,36 @@
             if (newPassword === confirmPassword) {
                 // Proses perubahan kata sandi (di sini bisa ditambahkan logika untuk menyimpan kata sandi baru)
 
-                alert("Kata sandi telah diubah!");
+                // Tampilkan SweetAlert2 setelah kata sandi berhasil diubah
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Kata sandi berhasil diubah.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    // Tutup modal setelah menekan OK di SweetAlert2
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
+                    modal.hide();
 
-                // Tutup modal setelah menyimpan kata sandi
-                const modal = bootstrap.Modal.getInstance(document.getElementById('changePasswordModal'));
-                modal.hide();
-
-                // Reset input
-                document.getElementById('new-password').value = '';
-                document.getElementById('confirm-password').value = '';
+                    // Reset input kata sandi setelah modal ditutup
+                    document.getElementById('new-password').value = '';
+                    document.getElementById('confirm-password').value = '';
+                });
 
                 return false; // Mencegah pengiriman form default
             } else {
-                alert("Kata sandi tidak cocok!");
+                // Jika kata sandi tidak cocok, tampilkan alert
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: 'Kata sandi tidak cocok.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
             }
 
             return false; // Mencegah pengiriman form default
         }
+
 
         // Fungsi untuk menampilkan/menyembunyikan password
         function togglePasswordVisibility(fieldId) {

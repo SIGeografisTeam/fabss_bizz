@@ -80,7 +80,7 @@
         }
 
         .custom-file-input {
-            border: 2px solid #007bff;
+            border: 2px solid #84b8c6;
             border-radius: 5px;
             padding: 5px;
             transition: border-color 0.3s;
@@ -146,13 +146,6 @@
                 </tfoot>
             </table>
 
-            <!-- Metode Pembayaran -->
-            <h4 class="section-left">Metode Pembayaran</h4>
-            <div class="form-group section-left">
-                <label for="metode-pembayaran">Metode Pembayaran</label>
-                <p class="form-control" id="metode-pembayaran"></p>
-            </div>
-
             <!-- Bukti Pembayaran -->
             <h4 class="section-left">Bukti Pembayaran</h4>
             <div class="form-group section-left">
@@ -177,25 +170,41 @@
         const totalAmount = localStorage.getItem('totalAmount');
         const paymentMethod = localStorage.getItem('paymentMethod');
 
+        // Tampilkan data pembeli
         document.getElementById('nama').textContent = currentUser.recipientName;
         document.getElementById('alamat').textContent = currentUser.recipientAddress;
         document.getElementById('telepon').textContent = currentUser.telephone;
-        document.getElementById('totalAmount').textContent = 'Rp ' + totalAmount;
 
+        // Fungsi untuk menghitung total harga dari item di keranjang
+        function calculateTotal() {
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.price * item.quantity;
+            });
+            return total;
+        }
+
+        // Tampilkan detail pesanan
         const orderDetails = document.getElementById('orderDetails');
-        cartItems.forEach(item => {
-            const orderRow = `
-                <tr>
-                    <td>${item.name}</td>
-                    <td>${item.quantity}</td>
-                    <td>Rp ${item.price.toLocaleString()}</td>
-                    <td>Rp ${(item.price * item.quantity).toLocaleString()}</td>
-                </tr>
-            `;
-            orderDetails.innerHTML += orderRow;
-        });
+        if (cartItems.length > 0) {
+            cartItems.forEach(item => {
+                const orderRow = `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>Rp ${item.price.toLocaleString()}</td>
+                        <td>Rp ${(item.price * item.quantity).toLocaleString()}</td>
+                    </tr>
+                `;
+                orderDetails.innerHTML += orderRow;
+            });
+        } else {
+            orderDetails.innerHTML = '<tr><td colspan="4">Tidak ada item di keranjang</td></tr>';
+        }
 
-        document.getElementById('metode-pembayaran').textContent = paymentMethod;
+        // Hitung dan tampilkan total harga
+        const calculatedTotal = calculateTotal();
+        document.getElementById('totalAmount').textContent = 'Rp ' + calculatedTotal.toLocaleString();
 
         function confirmOrder() {
             const receipt = document.getElementById('bukti-transaksi').files[0];
@@ -205,16 +214,15 @@
                 recipientAddress: currentUser.recipientAddress,
                 telephone: currentUser.telephone,
                 items: cartItems,
-                totalAmount: totalAmount,
+                totalAmount: calculatedTotal,
                 paymentMethod: paymentMethod,
-                status: receipt ? "menunggu konfirmasi" : "belum dibayar" // Status ditentukan oleh keberadaan bukti pembayaran
+                status: receipt ? "menunggu konfirmasi" : "belum dibayar"
             };
 
             let existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
             existingOrders.push(order);
             localStorage.setItem('orders', JSON.stringify(existingOrders));
 
-            // Redirect ke pesanan.html
             window.location.href = 'pesanan.html';
         }
 
@@ -225,7 +233,7 @@
                 recipientAddress: currentUser.recipientAddress,
                 telephone: currentUser.telephone,
                 items: cartItems,
-                totalAmount: totalAmount,
+                totalAmount: calculatedTotal,
                 paymentMethod: paymentMethod,
                 status: "belum dibayar"
             };
@@ -234,7 +242,6 @@
             existingOrders.push(order);
             localStorage.setItem('orders', JSON.stringify(existingOrders));
 
-            // Redirect ke pesanan.html
             window.location.href = 'pesanan.html';
         }
     </script>

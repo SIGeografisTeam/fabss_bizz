@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="form.css"> <!-- Link ke CSS terpisah untuk form -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
 </head>
 
 <body>
@@ -60,6 +61,7 @@
             </figure>
 
             <nav>
+<<<<<<< HEAD
 				<section class="dicover">
 					<h3>Kelola</h3>
 					<ul>
@@ -77,10 +79,24 @@
 						</li>
                          <li>
                             <a href="umpanbalik.html">
+=======
+                <section class="dicover">
+                    <h3>Kelola</h3>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">
+                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+                                Dasbor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="feedback.html">
+>>>>>>> 9037facf148f9caf426ce4891d9eb40e2f062b4f
                                 <i class="fa-solid fa-comment" style="margin-right: 10px;"></i>
                                 Umpan Balik
                             </a>
                         </li>
+<<<<<<< HEAD
 						<li>
 							<a href="users.html">
 								<i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
@@ -120,6 +136,47 @@
 					</ul>
 				</section>
 			</nav>
+=======
+                        <li>
+                            <a href="users.html">
+                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+                                Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="alamatpengguna.html">
+                                <i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+                                Alamat Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="category.html" class="active">
+                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+                                Kategori
+                            </a>
+                        </li>
+                        <li>
+                            <a href="produk/produk.html">
+                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Produk
+                            </a>
+                        </li>
+                        <li>
+                            <a href="daftarpesanan.html">
+                                <i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+                                Daftar Pesanan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="keuangan.html">
+                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
+                                Keuangan
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+>>>>>>> 9037facf148f9caf426ce4891d9eb40e2f062b4f
         </header>
 
         <!-- Konten utama untuk halaman manajemen kategori -->
@@ -300,8 +357,17 @@
             categories.push({ name: categoryName });
             document.getElementById('add-category-form').reset();
             renderCategoryList();
-            const addCategoryModal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
-            addCategoryModal.hide();
+
+            // Tampilkan SweetAlert2 setelah kategori berhasil ditambahkan
+            Swal.fire({
+                title: 'Sukses!',
+                text: 'Kategori berhasil ditambahkan.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                const addCategoryModal = bootstrap.Modal.getInstance(document.getElementById('addCategoryModal'));
+                addCategoryModal.hide();
+            });
         });
 
         // Menangani submit form untuk mengubah kategori
@@ -311,8 +377,16 @@
             categories[currentEditIndex].name = categoryName;
             document.getElementById('edit-category-form').reset();
             renderCategoryList();
-            const editCategoryModal = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
-            editCategoryModal.hide();
+            // Tampilkan SweetAlert2 setelah kategori berhasil diubah
+            Swal.fire({
+                title: 'Sukses!',
+                text: 'Kategori berhasil diubah.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                const editCategoryModal = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
+                editCategoryModal.hide();
+            });
         });
 
         // Fungsi untuk menghapus kategori setelah konfirmasi
@@ -320,11 +394,21 @@
             if (currentDeleteIndex !== null) {
                 categories.splice(currentDeleteIndex, 1); //Hapus kategori dari array
                 renderCategoryList(); //Render ulang daftar kategori
-                const deleteCategoryModal = bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal'));
-                deleteCategoryModal.hide(); //Tutup modal hapus
-                currentDeleteIndex = null; //Reset index setelah penghapusan
+
+                // Tampilkan SweetAlert2 setelah kategori berhasil dihapus
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: 'Kategori berhasil dihapus.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    const deleteCategoryModal = bootstrap.Modal.getInstance(document.getElementById('deleteCategoryModal'));
+                    deleteCategoryModal.hide(); //Tutup modal hapus
+                    currentDeleteIndex = null; //Reset index setelah penghapusan
+                });
             }
-        })
+        });
+
 
         // Fungsi untuk membuka modal edit kategori
         function openEditModal(index) {

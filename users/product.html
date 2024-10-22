@@ -37,7 +37,7 @@
             margin-bottom: 20px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            border: 1px solid blue; /* Warna border card menjadi biru */
+            border: 1px solid #84b8c6; /* Warna border card menjadi biru */
         }
 
         .card:hover {
@@ -83,6 +83,10 @@
             margin-top: 2px; /* Jarak antara header dan tombol filter */
             margin-bottom: 20px; /* Tambahan jarak ke bawah agar tidak terlalu mepet dengan konten */
         }
+        .help-icon-black {
+            color: black; /* Mengatur warna ikon menjadi hitam */
+        }
+        
     </style>
 </head>
 <body>
@@ -121,6 +125,15 @@
                         <i class="fa-solid fa-shopping-cart"></i>
                         <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle" id="cart-count">0</span>
                     </a>
+
+                    <a href="pesanan.html" class="orders-icon mx-2">
+                        <i class="fa-solid fa-box"></i>
+                    </a>
+
+                    <a href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
+                        <i class="fa-solid fa-question-circle help-icon-black"></i>
+                    </a>
+                    
                     
                     <script>
                     // Fungsi untuk memperbarui angka di ikon keranjang
@@ -133,23 +146,17 @@
                     updateCartIcon();
                     </script>
                     
-                        
+                    <div class="dropdown">
+                        <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span class="ms-2">Nama Pengguna</span>
                         </a>
-                        <a href="/orders" class="orders-icon mx-2">
-                            <i class="fa-solid fa-box"></i>
-                        </a>
-                        <div class="dropdown">
-                            <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa-solid fa-circle-user"></i>
-                                <span class="ms-2">Nama Pengguna</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                                <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>                    
-                </div>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                            <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>                    
             </div>
         </nav>
     </header>
@@ -199,7 +206,7 @@
         <div class="container text-center">
             <div class="mb-2">
                 <a href="about.html" class="text-light me-3">Tentang Kami</a>
-                <a href="wa.me/" class="text-light me-3">Kontak</a>
+                <a href="https://wa.me/+62887435359524" class="text-light me-3">Kontak</a>
                 <a href=""><i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45</a>
             </div>
             <p>Plastiqu.Co &copy; 2024 All rights reserved.</p>
@@ -278,6 +285,7 @@
 
         // Panggil fungsi untuk menampilkan produk saat halaman dimuat
         window.onload = displayProducts;
+
     </script>
 </body>
 </html>
