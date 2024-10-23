@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,58 +21,62 @@
 
     <style>
         /* Styling untuk membuat konten dan footer */
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             display: flex;
             flex-direction: column;
         }
-    
+
         /* Container utama agar minimal memenuhi seluruh halaman */
         .main-content {
             flex: 1;
         }
-    
+
         /* Card Styling */
         .card {
             margin-bottom: 20px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            border: 1px solid #84b8c6; /* Warna border card menjadi biru */
+            border: 1px solid #84b8c6;
+            /* Warna border card menjadi biru */
         }
-    
+
         .card:hover {
             transform: scale(1.05);
         }
-    
-        .card-title, .card-text {
+
+        .card-title,
+        .card-text {
             text-align: center;
         }
-    
+
         .card-title {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-    
+
         .card-img-top {
             width: 100%;
             height: 150px;
             object-fit: cover;
         }
-    
+
         /* Layout */
         .product-container {
-            margin-top: 40px; /* Jarak antara header dan container */
+            margin-top: 40px;
+            /* Jarak antara header dan container */
         }
-    
+
         /* Responsive grid */
         @media (min-width: 1200px) {
             .col-lg-2 {
                 max-width: 16.66667%;
             }
         }
-    
+
         /* Sticky Footer */
         footer {
             background-color: #343a40;
@@ -79,63 +84,44 @@
             padding: 20px 0;
             text-align: center;
         }
-    
+
         .filter-container {
-            margin-top: 2px; /* Jarak antara header dan tombol filter */
-            margin-bottom: 20px; /* Tambahan jarak ke bawah agar tidak terlalu mepet dengan konten */
+            margin-top: 2px;
+            /* Jarak antara header dan tombol filter */
+            margin-bottom: 20px;
+            /* Tambahan jarak ke bawah agar tidak terlalu mepet dengan konten */
         }
-    
+
         .help-icon-black {
-            color: black; /* Mengatur warna ikon menjadi hitam */
+            color: black;
+            /* Mengatur warna ikon menjadi hitam */
         }
-    
-        /* Styling untuk ikon dan badge */
-        .cart-icon i,
-        .orders-icon i,
-        .profile-icon i ,
-        .help-icon i {
-            font-size: 30px; /* Ukuran ikon lebih besar */
-        }
-    
-        .badge {
-            font-size: 12px; /* Ukuran teks badge */
-            padding: 5px 10px; /* Padding badge */
-        }
-        .navbar-brand {
-            font-size: 25px; /* Memperbesar ukuran teks merek */
-        }
-        .navbar-brand img {
-            height: 75px; /* Memperbesar logo */
-        }
-        .nav-link {
-            font-size: 1.2rem; /* Memperbesar ukuran teks link navigasi */
-        }
-        .search-form {
-            max-width: 400px; /* Memperbesar form pencarian */
-        }
-    
-        .search-input {
-            font-size: 1.1rem; /* Memperbesar ukuran teks input pencarian */
-            padding: 10px; /* Menambah padding agar lebih nyaman */
-        }
-    
-        .btn.btn-warning {
-            font-size: 25px; /* Memperbesar ikon pencarian */
-            padding: 8px 12px; /* Menambah padding pada tombol pencarian */
-        }
-    
-        .dropdown-item {
-            font-size: 25px; /* Memperbesar ukuran teks dropdown kategori */
-        }
-        #kategoriDropdown {
-            font-size: 25px; /* Ukuran teks menjadi 30px */
-        }
-        .ms-2 {
-            font-size: 25px; /* Ukuran font menjadi 25px */
+
+        .cart-icon,
+        .orders-icon,
+        .help-icon {
+            font-size: 24px;
+            /* Ubah ukuran sesuai kebutuhan */
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Top Bar -->
+    <div class="container-fluid top-bar text-light py-2 d-none d-md-block">
+        <div class="row">
+            <div class="col-md-8 text-center text-md-start">
+                <a class="nav-link text-light d-inline-block me-3" href="about.html"><i
+                        class="fa-solid fa-info-circle"></i> Tentang Kami</a>
+                <a class="nav-link text-light d-inline-block" href="https://wa.me/123456789"><i
+                        class="fa-solid fa-phone"></i> Kontak</a>
+            </div>
+            <div class="col-md-4 text-center text-md-end">
+                <i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45
+            </div>
+        </div>
+    </div>
     <!-- Include Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
@@ -150,7 +136,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Kategori
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
@@ -162,14 +149,16 @@
                         </li>
                     </ul>
                     <form class="d-flex mx-auto my-2 search-form">
-                        <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..." aria-label="Search">
+                        <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..."
+                            aria-label="Search">
                         <button class="btn btn-warning" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
                     <a href="cart.html" class="cart-icon mx-2 position-relative">
                         <i class="fa-solid fa-shopping-cart"></i>
-                        <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle" id="cart-count">0</span>
+                        <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle"
+                            id="cart-count">0</span>
                     </a>
 
                     <a href="pesanan.html" class="orders-icon mx-2">
@@ -179,30 +168,33 @@
                     <a href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
                         <i class="fa-solid fa-question-circle help-icon-black"></i>
                     </a>
-                    
-                    
+
+
                     <script>
-                    // Fungsi untuk memperbarui angka di ikon keranjang
-                    function updateCartIcon() {
-                        let cartItemCount = localStorage.getItem('cartItemCount') || 0;
-                        document.getElementById('cart-count').textContent = cartItemCount;
-                    }
-                    
-                    // Panggil fungsi ini setiap kali halaman dimuat
-                    updateCartIcon();
+                        // Fungsi untuk memperbarui angka di ikon keranjang
+                        function updateCartIcon() {
+                            let cartItemCount = localStorage.getItem('cartItemCount') || 0;
+                            document.getElementById('cart-count').textContent = cartItemCount;
+                        }
+
+                        // Panggil fungsi ini setiap kali halaman dimuat
+                        updateCartIcon();
                     </script>
-                    
+
                     <div class="dropdown">
-                        <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2"
+                            id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-circle-user"></i>
                             <span class="ms-2">Nama Pengguna</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                            <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a class="dropdown-item profile-edit" href="/profile"><i
+                                        class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                            <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                                    Logout</a></li>
                         </ul>
                     </div>
-                </div>                    
+                </div>
             </div>
         </nav>
     </header>
@@ -217,7 +209,8 @@
             </div>
 
             <!-- Modal untuk Filter Kategori -->
-            <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+            <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -262,7 +255,7 @@
     <script>
         // Data produk plastik kemasan dengan rentang harga dan kategori
         const products = [
-            {id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 5.000 - Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
+            { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 5.000 - Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
             { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 4.000 - Rp 7.500', category: 'Minuman', image: '/img/plastik_minuman.jpg', description: 'Perfect for beverage packaging.' },
             { id: 3, name: 'Plastik Ziplock', price: 'Rp 10.000 - Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Convenient for storage and organization.' },
             { id: 4, name: 'Plastik Wrapping', price: 'Rp 7.500 - Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Versatile wrapping solutions.' },
@@ -334,4 +327,5 @@
 
     </script>
 </body>
+
 </html>
