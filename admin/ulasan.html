@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="/css/ulasan.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- Bootstrap 5 CSS -->
@@ -127,147 +127,47 @@
             </nav>
         </header>
 
-        <div class="content-wrap">
-            <header class="content-head">
-                <h1 class="dashboard-tittle">Ulasan</h1>
-            </header>
-            <div class="container mt-4">
-
-                <!-- Feedback Table -->
-                <div class="card mb-4">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h5>Ulasan Pelanggan</h5>
-                            <p id="feedbackSummary">Bintang 5: 20 | Total Ulasan: 50</p> <!-- Total tetap 50 -->
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <label for="sortOptions" class="me-2">Urutkan Berdasarkan:</label>
-                            <select id="sortOptions" class="form-select" onchange="sortTable()" style="width: auto;">
-                                <option value="date">Tanggal</option>
-                                <option value="name">Nama</option>
-                                <option value="rating">Rating</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped" id="reviewTable">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal</th>
-                                    <th>Nama</th>
-                                    <th>Ulasan</th>
-                                    <th>Rating</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2024-10-20</td>
-                                    <td>John Doe</td>
-                                    <td>Produk berkualitas tinggi!</td>
-                                    <td>⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-18</td>
-                                    <td>Jane Smith</td>
-                                    <td>Pelayanan sangat baik.</td>
-                                    <td>⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-19</td>
-                                    <td>Andi Wijaya</td>
-                                    <td>Harga bersaing dan kualitas tidak mengecewakan.</td>
-                                    <td>⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-17</td>
-                                    <td>Lina Sutanto</td>
-                                    <td>Packing rapi, produk sampai dengan cepat.</td>
-                                    <td>⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-16</td>
-                                    <td>Budi Santoso</td>
-                                    <td>Barang sesuai deskripsi, sangat memuaskan.</td>
-                                    <td>⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-15</td>
-                                    <td>Siti Aminah</td>
-                                    <td>Respon cepat, pengiriman sangat aman.</td>
-                                    <td>⭐⭐⭐⭐⭐</td>
-                                </tr>
-                                <tr>
-                                    <td>2024-10-14</td>
-                                    <td>Rizky Pratama</td>
-                                    <td>Produk sedikit berbeda dari yang diharapkan, tapi masih oke.</td>
-                                    <td>⭐⭐⭐</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="card-footer">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <!-- Halaman 1 aktif -->
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-            </div>
-
+        <div class="container">
+            <h1>Daftar Ulasan Produk</h1>
+            <table class="review-table">
+                <thead>
+                    <tr>
+                        <th>ID Ulasan</th>
+                        <th>Nama Pengguna</th>
+                        <th>Rating</th>
+                        <th>Teks Ulasan</th>
+                        <th>Gambar</th>
+                        <th>Dibuat Pada</th>
+                        <th>Diperbarui Pada</th>
+                        <th>Respons Admin</th>
+                        <th>Tanggal Respons</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>635a0f2c8d5b1a18c4f0e913</td>
+                        <td>JohnDoe</td>
+                        <td>5</td>
+                        <td>Produk ini sangat bagus!</td>
+                        <td><img src="review-image.jpg" alt="Gambar Ulasan" width="100"></td>
+                        <td>2024-10-21</td>
+                        <td>2024-10-22</td>
+                        <td>Terima kasih atas feedback-nya!</td>
+                        <td>2024-10-23</td>
+                    </tr>
+                    <tr>
+                        <td>635a0f2c8d5b1a18c4f0e914</td>
+                        <td>JaneDoe</td>
+                        <td>4</td>
+                        <td>Pengiriman sedikit terlambat, tapi produknya bagus.</td>
+                        <td><img src="review-image2.jpg" alt="Gambar Ulasan" width="100"></td>
+                        <td>2024-10-20</td>
+                        <td>2024-10-21</td>
+                        <td>Kami mohon maaf atas keterlambatan pengiriman.</td>
+                        <td>2024-10-22</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </div>
-
-    <script>
-        function sortTable() {
-            const table = document.getElementById("reviewTable");
-            const tbody = table.querySelector("tbody");
-            const rows = Array.from(tbody.querySelectorAll("tr"));
-
-            const sortOption = document.getElementById("sortOptions").value;
-
-            // Sort rows based on selected option
-            rows.sort((a, b) => {
-                const dateA = new Date(a.cells[0].innerText);
-                const dateB = new Date(b.cells[0].innerText);
-                const nameA = a.cells[1].innerText;
-                const nameB = b.cells[1].innerText;
-                const ratingA = getRatingValue(a.cells[3].innerText); // Dapatkan nilai rating
-                const ratingB = getRatingValue(b.cells[3].innerText); // Dapatkan nilai rating
-
-                if (sortOption === "date") {
-                    return dateB - dateA; // Latest first
-                } else if (sortOption === "name") {
-                    return nameA.localeCompare(nameB); // A-Z
-                } else if (sortOption === "rating") {
-                    return ratingB - ratingA; // Highest first
-                }
-            });
-
-            // Append sorted rows back to the table
-            rows.forEach(row => tbody.appendChild(row));
-        }
-
-        // Fungsi untuk mengonversi bintang menjadi nilai numerik
-        function getRatingValue(rating) {
-            const starCount = rating.split('⭐').length - 1; // Hitung jumlah bintang
-            return starCount; // Kembalikan jumlah bintang sebagai nilai rating
-        }
-
-
-    </script>
-</body>
-
-</html>
+    </body>
+    </html>
