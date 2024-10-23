@@ -34,10 +34,25 @@
         .quantity-control button { width: 40px; }
         .dropdown-menu { background-color: #033043; }
         .review-card { margin-top: 15px; }
+        .help-icon-black { color: black; }
+        .no-underline { text-decoration: none !important; }
+        .cart-icon, .orders-icon, .help-icon { font-size: 24px; /* Ubah ukuran sesuai kebutuhan */ }
     </style>
 </head>
 <body>
-<!-- Navbar -->
+<!-- Top Bar -->
+<div class="container-fluid top-bar text-light py-2 d-none d-md-block">
+    <div class="row">
+        <div class="col-md-8 text-center text-md-start">
+            <a class="nav-link text-light d-inline-block me-3" href="about.html"><i class="fa-solid fa-info-circle"></i> Tentang Kami</a>
+            <a class="nav-link text-light d-inline-block" href="https://wa.me/123456789"><i class="fa-solid fa-phone"></i> Kontak</a>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+            <i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45
+        </div>
+    </div>
+</div>
+<!-- Include Header -->
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -81,6 +96,7 @@
                     <i class="fa-solid fa-question-circle help-icon-black"></i>
                 </a>
                 
+                
                 <script>
                 // Fungsi untuk memperbarui angka di ikon keranjang
                 function updateCartIcon() {
@@ -93,7 +109,7 @@
                 </script>
                 
                 <div class="dropdown">
-                    <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2 no-underline" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-circle-user"></i>
                         <span class="ms-2">Nama Pengguna</span>
                     </a>
