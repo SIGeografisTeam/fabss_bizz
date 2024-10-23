@@ -47,6 +47,28 @@
             color: #033043;
             font-weight: bold;
         }
+
+        /* Star Rating CSS */
+        .star-rating {
+            display: inline-block;
+            font-size: 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 24px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #ffc107;
+        }
     </style>
 </head>
 
@@ -85,11 +107,11 @@
 
         const productList = document.getElementById('productList');
 
-        let hasProduct = false; // Untuk mengecek apakah ada produk yang ditampilkan
+        let hasProduct = false;
         orders.forEach(order => {
-            if (order.status === "menunggu konfirmasi") { // Mengubah kondisi untuk hanya menampilkan produk dengan status 'selesai'
+            if (order.status === "menunggu konfirmasi") { // Only for 'selesai' status
                 order.items.forEach(item => {
-                    hasProduct = true; // Set menjadi true jika ada produk
+                    hasProduct = true;
                     const productCard = `
                         <div class="card">
                             <div class="card-header">
@@ -97,14 +119,14 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">Harga: Rp ${item.price.toLocaleString()}</p>
-                                <label for="rating-${order.kodeTransaksi}-${item.name}">Rating:</label>
-                                <select id="rating-${order.kodeTransaksi}-${item.name}">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                                <label>Rating:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="5"><label for="star5-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star4-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="4"><label for="star4-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star3-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="3"><label for="star3-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star2-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="2"><label for="star2-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star1-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="1"><label for="star1-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                </div>
                                 <textarea class="form-control mt-2" placeholder="Tulis ulasan..." rows="3"></textarea>
                                 <button class="btn btn-submit mt-2" onclick="submitReview('${order.kodeTransaksi}', '${item.name}', ${item.id})">Kirim Ulasan</button>
                             </div>
@@ -116,11 +138,11 @@
         });
 
         if (!hasProduct) {
-            productList.innerHTML = '<p>Tidak ada produk untuk diulas.</p>'; // Pesan jika tidak ada produk
+            productList.innerHTML = '<p>Tidak ada produk untuk diulas.</p>';
         }
 
         function submitReview(transactionCode, productName, productId) {
-            const rating = document.getElementById(`rating-${transactionCode}-${productName}`).value;
+            const rating = document.querySelector(`input[name="rating-${transactionCode}-${productName}"]:checked`).value;
             const comment = document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value;
 
             const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
@@ -128,7 +150,7 @@
             localStorage.setItem('reviews', JSON.stringify(reviews));
 
             alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
-            window.location.href = `product-detail.html?id=${productId}`; // Mengarahkan ke halaman detail produk
+            window.location.href = `product-detail.html?id=${productId}`;
         }
     </script>
 </body>
