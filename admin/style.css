@@ -883,6 +883,41 @@ input {
     border-color: #033043; /* Custom orange border */
 }
 
+.banner-item {
+  border: 1px solid #ddd;  /* Border ringan di sekitar setiap banner */
+  padding: 15px;           /* Ruang di dalam border */
+  border-radius: 8px;      /* Sudut border melengkung */
+  background-color: #f9f9f9; /* Warna latar belakang untuk lebih jelas */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Membuat tombol berada di tengah */
+  gap: 10px;               /* Jarak antara tombol Ubah dan Hapus */
+}
+
+.banner-item img {
+  max-width: 100%;
+  height: auto;            /* Gambar menyesuaikan ukuran kontainer */
+  border-radius: 8px;      /* Sudut gambar melengkung agar sesuai dengan kontainer */
+}
+.banner-title {
+  font-size: 18px;
+  font-weight: 600;        /* Menebalkan teks judul banner */
+  margin-bottom: 10px;     /* Jarak antara teks dan gambar */
+  color: #333;             /* Warna teks */
+  font-family: 'Signika';
+}
+
+.content-head {
+  margin-bottom: 20px; /* Tambahkan jarak lebih besar antara judul dan elemen di bawahnya */
+}
+
+.d-flex.justify-content-between.align-items-center.mb-3 {
+  margin-top: 20px; /* Jika ingin memberikan jarak tambahan setelah elemen ini juga */
+}
+
+
 @media (max-width: 576px) {
   .username {
     font-size: 0.8rem;

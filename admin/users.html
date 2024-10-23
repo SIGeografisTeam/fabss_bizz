@@ -82,6 +82,12 @@
                             </a>
                         </li>
                         <li>
+                            <a href="banner.html">
+                                <i class="fa-solid fa-image" style="margin-right: 10px;"></i>
+                                Kustom Banner
+                            </a>
+                        </li>
+                        <li>
                             <a href="users.html" class="active">
                                 <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
                                 Pengguna
@@ -344,7 +350,7 @@
             document.getElementById('edit-pengguna-telepon').value = user.phone;
             document.getElementById('edit-pengguna-role').value = user.role;
             // Setel nilai foto ke input
-            document.getElementById('file-name').textContent = user.photo; // Menampilkan foto saat ini
+            document.getElementById('file-name').textContent = user.image; // Menampilkan foto saat ini
             // Reset input file foto, tidak perlu mengisinya
             document.getElementById('edit-pengguna-foto').value = '';
             // Simpan indeks pengguna yang sedang diedit
@@ -400,7 +406,7 @@
                 const newPhotoInput = document.getElementById('edit-pengguna-foto');
                 if (newPhotoInput.files.length > 0) {
                     // Anda dapat menambahkan logika untuk mengupload foto
-                    users[editIndex].photo = URL.createObjectURL(newPhotoInput.files[0]); // Simulasi pemuatan gambar
+                    users[editIndex].image = URL.createObjectURL(newPhotoInput.files[0]); // Simulasi pemuatan gambar
                 }
 
                 // Perbarui tampilan tabel setelah data pengguna diedit
@@ -430,50 +436,33 @@
         // Fungsi untuk menampilkan daftar pengguna di tabel
         function renderUserList() {
             const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Kosongkan daftar pengguna
+            userList.innerHTML = ''; // Kosongkan tabel sebelum memperbarui
 
-            users.forEach((user) => { // Menggunakan user, tidak perlu idx
-                const row = document.createElement('tr');
-                row.innerHTML = `
-            <td>${user.id}</td>
-            <td>${user.username}</td>
-            <td>${user.email}</td>
-            <td id="role-user-${user.id}">${user.role}</td> <!-- Menambahkan ID yang benar -->
-            <td>${user.phone}</td>
-            <td><img src="${user.image}" alt="Foto ${user.username}" class="img-fluid"></td>
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Aksi
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li>
-                            <a class="dropdown-item" href="#" onclick="openEditModal(${user.id})">
-                                <i class="fas fa-pen text-warning"></i> Ubah
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" onclick="openDeleteModal(${user.id})">
-                                <i class="fas fa-trash-alt text-danger"></i> Hapus
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" onclick="openChangePasswordModal(${user.id})">
-                                <i class="fas fa-key text-success"></i> Ganti Kata Sandi
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#" onclick="upgradeToAdmin(${user.id})"> <!-- Menggunakan user.id -->
-                                <i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </td>
+            users.forEach((user, index) => {
+                userList.innerHTML += `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td id="role-user-${user.id}">${user.role}</td>
+                <td>${user.phone}</td>
+                <td><img src="${user.image}" alt="Foto" class="img-fluid"></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Aksi</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#" onclick="openEditModal(${index})"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="openDeleteModal(${index})"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="openChangePasswordModal(${index})"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="upgradeToAdmin(${user.id})"><i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
         `;
-                userList.appendChild(row);
             });
         }
+
 
         // upgrade to admin
         function upgradeToAdmin(userId) {
