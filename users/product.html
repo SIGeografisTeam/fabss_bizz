@@ -28,7 +28,6 @@
             display: flex;
             flex-direction: column;
         }
-
         /* Container utama agar minimal memenuhi seluruh halaman */
         .main-content {
             flex: 1;
@@ -77,13 +76,6 @@
             }
         }
 
-        /* Sticky Footer */
-        footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
 
         .filter-container {
             margin-top: 2px;
@@ -108,96 +100,96 @@
 
 <body>
 
-    <!-- Top Bar -->
-    <div class="container-fluid top-bar text-light py-2 d-none d-md-block">
-        <div class="row">
-            <div class="col-md-8 text-center text-md-start">
-                <a class="nav-link text-light d-inline-block me-3" href="about.html"><i
-                        class="fa-solid fa-info-circle"></i> Tentang Kami</a>
-                <a class="nav-link text-light d-inline-block" href="https://wa.me/123456789"><i
-                        class="fa-solid fa-phone"></i> Kontak</a>
-            </div>
-            <div class="col-md-4 text-center text-md-end">
-                <i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45
-            </div>
+   <!-- Top Bar -->
+   <div class="container-fluid top-bar text-light py-2 d-none d-md-block">
+    <div class="row">
+        <div class="col-md-8 text-center text-md-start">
+            <a class="nav-link text-light d-inline-block me-3" href="about.html"><i
+                    class="fa-solid fa-info-circle"></i> Tentang Kami</a>
+            <a class="nav-link text-light d-inline-block me-3" href="https://wa.me/123456789"><i
+                    class="fa-solid fa-phone"></i> Kontak</a>
+                    <a class="nav-link text-light d-inline-block" href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
+                        <i class="fa-solid fa-question-circle help-icon-white"></i> Bantuan
+                    </a>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+            <i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45
         </div>
     </div>
-    <!-- Include Header -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="/assets/logo.png" alt="Plastiqu.Co" height="50">
-                    Plastiqu.Co
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Kategori
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
-                                <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
-                                <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
-                                <li><a class="dropdown-item" href="#">Kemasan Kertas</a></li>
-                                <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="d-flex mx-auto my-2 search-form">
-                        <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..."
-                            aria-label="Search">
-                        <button class="btn btn-warning" type="submit">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
-                    <a href="cart.html" class="cart-icon mx-2 position-relative">
-                        <i class="fa-solid fa-shopping-cart"></i>
-                        <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle"
-                            id="cart-count">0</span>
-                    </a>
-
-                    <a href="pesanan.html" class="orders-icon mx-2">
-                        <i class="fa-solid fa-box"></i>
-                    </a>
-
-                    <a href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
-                        <i class="fa-solid fa-question-circle help-icon-black"></i>
-                    </a>
-
-
-                    <script>
-                        // Fungsi untuk memperbarui angka di ikon keranjang
-                        function updateCartIcon() {
-                            let cartItemCount = localStorage.getItem('cartItemCount') || 0;
-                            document.getElementById('cart-count').textContent = cartItemCount;
-                        }
-
-                        // Panggil fungsi ini setiap kali halaman dimuat
-                        updateCartIcon();
-                    </script>
-
-                    <div class="dropdown">
-                        <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2"
-                            id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-circle-user"></i>
-                            <span class="ms-2">Nama Pengguna</span>
+</div>
+<!-- Include Header -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="product.html">
+                <img src="/assets/logo.png" alt="Plastiqu.Co" height="50">
+                Plastiqu.Co
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Kategori
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                            <li><a class="dropdown-item profile-edit" href="/profile"><i
-                                        class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                            <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
-                                    Logout</a></li>
+                        <ul class="dropdown-menu" aria-labelledby="kategoriDropdown">
+                            <li><a class="dropdown-item" href="#">Plastik Makanan</a></li>
+                            <li><a class="dropdown-item" href="#">Plastik Minuman</a></li>
+                            <li><a class="dropdown-item" href="#">Kemasan Kertas</a></li>
+                            <li><a class="dropdown-item" href="#">dan lain-lain</a></li>
                         </ul>
-                    </div>
+                    </li>
+                </ul>
+                <form class="d-flex mx-auto my-2 search-form">
+                    <input class="form-control me-2 search-input" type="search" placeholder="Cari produk..."
+                        aria-label="Search">
+                    <button class="btn btn-warning" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <a href="cart.html" class="cart-icon mx-2 position-relative">
+                    <i class="fa-solid fa-shopping-cart"></i>
+                    <span class="badge badge-pill bg-danger position-absolute top-0 start-100 translate-middle"
+                        id="cart-count">0</span>
+                </a>
+
+                <a href="pesanan.html" class="orders-icon mx-2">
+                    <i class="fa-solid fa-box"></i>
+                </a>
+
+               
+
+                <script>
+                    // Fungsi untuk memperbarui angka di ikon keranjang
+                    function updateCartIcon() {
+                        let cartItemCount = localStorage.getItem('cartItemCount') || 0;
+                        document.getElementById('cart-count').textContent = cartItemCount;
+                    }
+
+                    // Panggil fungsi ini setiap kali halaman dimuat
+                    updateCartIcon();
+                </script>
+
+                <div class="dropdown">
+                    <a href="#" class="profile-icon dropdown-toggle d-flex align-items-center mx-2 no-underline"
+                        id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="ms-2">Nama Pengguna</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item profile-edit" href="/profile"><i
+                                    class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
+                        <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                                Logout</a></li>
+                    </ul>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <!-- Main Content -->
     <div class="main-content">
@@ -240,15 +232,17 @@
     </div>
 
 
-    <!-- Include Footer -->
-    <footer>
+    <footer class="text-light py-4">
         <div class="container text-center">
             <div class="mb-2">
-                <a href="about.html" class="text-light me-3">Tentang Kami</a>
-                <a href="https://wa.me/+62887435359524" class="text-light me-3">Kontak</a>
-                <a href=""><i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45</a>
+                <a class="nav-link text-light d-inline-block me-3" href="about.html"><i class="fa-solid fa-info-circle"></i> Tentang Kami</a>
+                <a class="nav-link text-light d-inline-block me-3" href="https://wa.me/+62887435359524"><i class="fa-solid fa-phone"></i> Kontak</a>
+                <a class="nav-link text-light d-inline-block me-3" href="https://wa.me/+62887435359524" class="help-icon mx-2" title="Bantuan">
+                    <i class="fa-solid fa-question-circle help-icon-white"></i> Bantuan
+                </a>
+                <a class="nav-link text-light d-inline-block" href=""><i class="fa-solid fa-map-marker-alt"></i> Jalan Sejahtera No. 45</a>
             </div>
-            <p>Plastiqu.Co &copy; 2024 All rights reserved.</p>
+            <p>Plastiqu.Co &copy; 2024  All rights reserved.</p>
         </div>
     </footer>
 
