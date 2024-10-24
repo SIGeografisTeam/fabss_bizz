@@ -10,7 +10,7 @@ body {
 a {
     text-decoration: none;
     color: inherit;
-    font-size: small;
+    font-size: x-large;
 }
 
 /* Top Bar */
@@ -32,6 +32,7 @@ header {
 .navbar-brand {
     font-family: "Signika", Arial, sans-serif;
     color: #033043;
+    font-size: x-large;
   }
 
 .navbar .search-form {
@@ -107,6 +108,7 @@ header {
     color: #033043;
     display: flex;
     align-items: center;
+    
     transition: color 0.3s ease;
 }
 
@@ -114,16 +116,18 @@ header {
     color: white;
 }
 
+.profile-icon .ms-2 {
+    font-size: 20px;
+}
 /* Navbar - Kategori & Nama Pengguna Size */
-.navbar-nav .nav-link, 
-.profile-icon {
-    font-size: 18px; /* Sesuaikan ukuran dengan Nama Pengguna */
+.navbar-nav .nav-link {
+    font-size: 20px; /* Sesuaikan ukuran dengan Nama Pengguna */
     padding: 10px 15px; /* Memberi jarak yang cukup */
 }
 
 /* Dropdown Menu - Ubah Profil dan Logout */
 .dropdown-menu .dropdown-item {
-    font-size: 14px; /* Perkecil ukuran dropdown */
+    font-size: 16px; /* Perkecil ukuran dropdown */
     padding: 10px 15px; /* Atur jarak padding */
     margin-right: 8px;
     color: #033043;
