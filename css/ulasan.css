@@ -959,3 +959,94 @@ h1 {
 .review-table tbody tr:hover {
     background-color: #e9e9e9;
 }
+
+/* Gaya untuk modal balasan ulasan */
+.brand {
+  text-align: center; /* Pusatkan teks */
+  margin: 10px 0; /* Jarak vertikal */
+}
+
+.logo-img {
+  max-height: 50px; /* Mengatur tinggi maksimum logo */
+}
+
+.form-title {
+  font-size: 24px; /* Ukuran font untuk judul modal */
+  font-weight: bold; /* Menebalkan teks judul */
+  margin: 15px 0; /* Jarak vertikal dari elemen lainnya */
+}
+
+.welcome-text {
+  text-align: center; /* Pusatkan teks */
+  margin-bottom: 15px; /* Jarak bawah */
+}
+
+.input-group {
+  position: relative; /* Menyediakan posisi untuk label */
+  margin-bottom: 20px; /* Jarak antara input */
+}
+
+input, textarea {
+  width: 100%; /* Lebar penuh */
+  padding: 10px; /* Padding dalam input */
+  border: 1px solid #ccc; /* Border input */
+  border-radius: 5px; /* Sudut melengkung */
+}
+
+label {
+  position: absolute; /* Posisi absolut untuk label */
+  top: 10px; /* Jarak atas */
+  left: 10px; /* Jarak kiri */
+  transition: 0.2s; /* Transisi untuk efek fokus */
+}
+
+textarea {
+  resize: none; /* Menonaktifkan pengubahan ukuran textarea */
+  height: 100px; /* Tinggi textarea */
+}
+
+.submit-btn {
+  background-color: #28a745; /* Warna tombol kirim */
+  color: #fff; /* Warna teks tombol */
+  border: none; /* Menghapus border */
+  padding: 10px 20px; /* Padding dalam tombol */
+  border-radius: 5px; /* Sudut melengkung */
+  cursor: pointer; /* Menampilkan pointer saat hover */
+}
+
+.submit-btn:hover {
+  background-color: #218838; /* Warna tombol saat hover */
+}
+
+.cancel-btn-container {
+  text-align: center; /* Pusatkan tombol batal */
+}
+
+.cancel-btn {
+  background: none; /* Menghapus latar belakang */
+  border: none; /* Menghapus border */
+  color: #dc3545; /* Warna merah untuk tombol batal */
+  font-size: 20px; /* Ukuran font untuk ikon */
+  cursor: pointer; /* Menampilkan pointer saat hover */
+}
+.submit-btn {
+  background-color: #033043;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #FDA521; /* Warna orange saat hover */
+}
+textarea {
+  border: 1px solid #007bff; /* Warna border biru */
+  padding: 10px; /* Tambahkan padding jika perlu */
+  width: 100%; /* Lebar penuh */
+  height: 100px; /* Tinggi yang diinginkan */
+  border-radius: 5px; /* Menghaluskan sudut border */
+  resize: none; /* Menonaktifkan resize */
+  outline: none; /* Menghilangkan outline saat fokus */
+}
