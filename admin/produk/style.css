@@ -996,3 +996,104 @@ html, body {
 .content-wrap .person-boxes .person-box .box-actions button:hover svg circle {
   fill: #2b3a60;
 }
+/* Untuk teks pada ikon Plastiqu.Co */
+.user figcaption {
+  font-family: 'Signika', sans-serif;
+  font-weight: bold;
+
+}
+
+/* Untuk teks "Daftar Produk" */
+.dashboard-tittle {
+  font-family: 'Signika', sans-serif;
+}
+
+/* Untuk teks Nama Pengguna */
+.username {
+  font-family: 'Signika', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
+
+.profile-icon {
+  color: #333;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu {
+  min-width: 10rem;
+}
+.profile-edit, .logout {
+  display: flex;
+  align-items: center;
+}
+
+.profile-edit i, .logout i {
+  margin-right: 8px;
+}
+
+/* Style untuk dropdown nama pengguna */
+.dropdown {
+  position: relative;
+}
+
+.dropdown.show .dropdown-menu {
+  display: block;
+  /* Menampilkan dropdown saat aktif */
+}
+
+.profile-icon {
+  color: #333;
+  /* Ubah sesuai kebutuhan */
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-icon:hover {
+  color: #ffff;
+  /* Ubah warna teks saat hover */
+}
+
+.dropdown .profile-icon .ms-2 {
+  font-size: 20px;
+  /* Ganti dengan ukuran yang diinginkan */
+}
+
+.dropdown .profile-icon i {
+  font-size: 23px;
+  /* Ganti dengan ukuran yang diinginkan */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  /* Tempatkan dropdown di bawah tombol */
+  right: 0;
+  /* Agar dropdown muncul di sisi kanan */
+  z-index: 1000;
+  /* Pastikan dropdown berada di atas elemen lainnya */
+  display: none;
+  /* Sembunyikan dropdown secara default */
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  min-width: 200px;
+}
+
+.dropdown-menu a {
+  color: #333;
+  text-decoration: none;
+  padding: 8px 10px;
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f8f9fa;
+  /* Ubah warna latar belakang saat hover */
+}

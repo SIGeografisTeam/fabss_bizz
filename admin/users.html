@@ -60,66 +60,72 @@
             </figure>
 
             <nav>
-				<section class="dicover">
-					<h3>Kelola</h3>
-					<ul>
-						<li>
-							<a href="dashboard.html">
-								<i class="fa-solid fa-house" style="margin-right: 10px;"></i>
-								Dasbor
-							</a>
-						</li>
-						<li>
+                <section class="dicover">
+                    <h3>Kelola</h3>
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">
+                                <i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+                                Dasbor
+                            </a>
+                        </li>
+                        <li>
                             <a href="analitik.html">
                                 <i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i>
                                 Analitik
                             </a>
-                        </li>                        
+                        </li>
                         <li>
                             <a href="ulasan.html">
                                 <i class="fa-solid fa-comment" style="margin-right: 10px;"></i>
                                 Ulasan
                             </a>
                         </li>
-						<li>
-							<a href="users.html" class="active">
-								<i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
-								Pengguna
-							</a>
-						</li>
-						<li>
-							<a href="alamatpengguna.html">
-								<i class="fa-solid fa-map" style="margin-right: 10px;"></i>
-								Alamat Pengguna
-							</a>
-						</li>
-						<li>
-							<a href="category.html">
-								<i class="fa-solid fa-list" style="margin-right: 10px;"></i>
-								Kategori
-							</a>
-						</li>
-						<li>
-							<a href="produk/produk.html">
-								<i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
-								Produk
-							</a>
-						</li>
-						<li>
-							<a href="daftarpesanan.html">
-								<i class="fa-solid fa-box" style="margin-right: 10px;"></i>
-								Daftar Pesanan
-							</a>
-						</li>
-						<li>
-							<a href="keuangan.html">
-								<i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
-								Keuangan
-							</a>
-						</li>
-					</ul>
-				</section>
-			</nav>
+                        <li>
+                            <a href="banner.html">
+                                <i class="fa-solid fa-image" style="margin-right: 10px;"></i>
+                                Kustom Banner
+                            </a>
+                        </li>
+                        <li>
+                            <a href="users.html" class="active">
+                                <i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+                                Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="alamatpengguna.html">
+                                <i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+                                Alamat Pengguna
+                            </a>
+                        </li>
+                        <li>
+                            <a href="category.html">
+                                <i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+                                Kategori
+                            </a>
+                        </li>
+                        <li>
+                            <a href="produk/produk.html">
+                                <i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Produk
+                            </a>
+                        </li>
+                        <li>
+                            <a href="daftarpesanan.html">
+                                <i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+                                Daftar Pesanan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="keuangan.html">
+                                <i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i>
+                                Keuangan
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
 
         </header>
 
@@ -133,11 +139,11 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Nama Depan</th>
-                            <th>Nama Belakang</th>
+                            <th>ID</th>
+                            <th>Nama Pengguna</th>
                             <th>Email</th>
+                            <th>Peran</th>
                             <th>No. Telepon</th>
-                            <th>Alamat</th>
                             <th>Foto</th>
                             <th>Aksi</th>
                         </tr>
@@ -145,17 +151,18 @@
                     <tbody id="user-list">
                         <!-- Sample User Item -->
                         <tr>
-                            <td>John</td>
-                            <td>Doe</td>
+                            <td>1</td>
+                            <td>Johndoe</td>
                             <td>johndoe@example.com</td>
+                            <td id="role-user-1">User</td> <!--kolom role-->
                             <td>(123) 456-7890</td>
-                            <td>123 Main St, Anytown, USA</td>
                             <td><img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Foto Placeholder"
                                     class="img-fluid">
                             </td>
                             <td>
                                 <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                         Aksi
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -176,13 +183,13 @@
                                         </li>
                                         <!-- Button Upgrade to Admin -->
                                         <li>
-                                            <a class="dropdown-item" href="#" onclick="upgradeToAdmin(0)">
+                                            <a class="dropdown-item" href="#" onclick="upgradeToAdmin(1)">
                                                 <i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
-                                
+
                             </td>
                         </tr>
                     </tbody>
@@ -200,31 +207,34 @@
                     <span class="text-center">Plastiqu.Co</span>
                 </div>
                 <h2 class="text-center form-title">Ubah Pengguna</h2>
-                <p class="welcome-text">Ubah Pengguna!</p>
+                <p class="welcome-text">Ubah Data Pengguna!</p>
                 <form class="register-form" id="edit-users-form" onsubmit="return ValidateUser(event)">
+                    <!--Input untuk ID (Non-editable)-->
                     <div class="input-group">
-                        <input type="text" id="edit-pengguna-nama-depan" placeholder=" " required>
-                        <label for="edit-pengguna-nama-depan">Nama Depan</label>
+                        <input type="text" id="edit-pengguna-id" placeholder=" " readonly
+                            style="background-color: rgba(215, 237, 255, 0.533)">
+                        <label for="edit-pengguna-id">ID</label>
                     </div>
-                    <!-- Input untuk Nama Belakang -->
+                    <!-- Input untuk Nama Pengguna -->
                     <div class="input-group">
-                        <input type="text" id="edit-pengguna-nama-belakang" placeholder=" " required>
-                        <label for="edit-pengguna-nama-belakang">Nama Belakang</label>
+                        <input type="text" id="edit-pengguna-username" placeholder=" " required>
+                        <label for="edit-pengguna-nama-username">Nama Pengguna</label>
                     </div>
                     <!-- Input untuk Email -->
                     <div class="input-group">
                         <input type="text" id="edit-pengguna-email" placeholder=" " required>
                         <label for="edit-pengguna-email">Email</label>
                     </div>
+                    <!--Input untuk Peran (Non-editable)-->
+                    <div class="input-group">
+                        <input type="text" id="edit-pengguna-role" placeholder=" " readonly
+                            style="background-color: rgba(215, 237, 255, 0.533)">
+                        <label for="edit-pengguna-role">Peran</label>
+                    </div>
                     <!-- Input untuk No.telepon -->
                     <div class="input-group">
                         <input type="text" id="edit-pengguna-telepon" placeholder=" " required>
                         <label for="edit-pengguna-telepon">No.telepon</label>
-                    </div>
-                    <!-- Input untuk Alamat -->
-                    <div class="input-group">
-                        <input type="text" id="edit-pengguna-alamat" placeholder=" " required>
-                        <label for="edit-pengguna-alamat">Alamat</label>
                     </div>
                     <!-- Input untuk Foto -->
                     <div class="input-group">
@@ -317,12 +327,12 @@
         // Data pengguna
         const users = [
             {
-                firstName: "John",
-                lastName: "Doe",
+                id: 1,
+                username: "Johndoe",
                 email: "johndoe@example.com",
                 phone: "(123) 456-7890",
-                address: "123 Main St, Anytown, USA",
-                photo: "https://randomuser.me/api/portraits/men/1.jpg",
+                role: "User",
+                image: "https://randomuser.me/api/portraits/men/1.jpg",
             },
             // Tambahkan data pengguna lainnya di sini...
         ];
@@ -334,13 +344,13 @@
 
         function openEditModal(index) {
             const user = users[index];
-            document.getElementById('edit-pengguna-nama-depan').value = user.firstName;
-            document.getElementById('edit-pengguna-nama-belakang').value = user.lastName;
+            document.getElementById('edit-pengguna-id').value = user.id;
+            document.getElementById('edit-pengguna-username').value = user.username;
             document.getElementById('edit-pengguna-email').value = user.email;
             document.getElementById('edit-pengguna-telepon').value = user.phone;
-            document.getElementById('edit-pengguna-alamat').value = user.address;
+            document.getElementById('edit-pengguna-role').value = user.role;
             // Setel nilai foto ke input
-            document.getElementById('file-name').textContent = user.photo; // Menampilkan foto saat ini
+            document.getElementById('file-name').textContent = user.image; // Menampilkan foto saat ini
             // Reset input file foto, tidak perlu mengisinya
             document.getElementById('edit-pengguna-foto').value = '';
             // Simpan indeks pengguna yang sedang diedit
@@ -388,17 +398,15 @@
 
             if (editIndex !== null) {  // Pastikan editIndex digunakan di sini
                 // Ambil data dari form edit
-                users[editIndex].firstName = document.getElementById('edit-pengguna-nama-depan').value;
-                users[editIndex].lastName = document.getElementById('edit-pengguna-nama-belakang').value;
+                users[editIndex].username = document.getElementById('edit-pengguna-username').value;
                 users[editIndex].email = document.getElementById('edit-pengguna-email').value;
                 users[editIndex].phone = document.getElementById('edit-pengguna-telepon').value;
-                users[editIndex].address = document.getElementById('edit-pengguna-alamat').value;
 
                 // Simpan foto baru jika ada yang dipilih
                 const newPhotoInput = document.getElementById('edit-pengguna-foto');
                 if (newPhotoInput.files.length > 0) {
                     // Anda dapat menambahkan logika untuk mengupload foto
-                    users[editIndex].photo = URL.createObjectURL(newPhotoInput.files[0]); // Simulasi pemuatan gambar
+                    users[editIndex].image = URL.createObjectURL(newPhotoInput.files[0]); // Simulasi pemuatan gambar
                 }
 
                 // Perbarui tampilan tabel setelah data pengguna diedit
@@ -425,80 +433,61 @@
 
 
         // Fungsi untuk menampilkan daftar pengguna di tabel
+        // Fungsi untuk menampilkan daftar pengguna di tabel
         function renderUserList() {
             const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Kosongkan daftar pengguna
+            userList.innerHTML = ''; // Kosongkan tabel sebelum memperbarui
 
-            users.forEach((user, idx) => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.email}</td>
-                    <td>${user.phone}</td>
-                    <td>${user.address}</td>
-                    <td><img src="${user.photo}" alt="Foto ${user.firstName}" class="img-fluid"></td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                Aksi
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li>
-                                    <a class="dropdown-item" href="#" onclick="openEditModal(${idx})">
-                                        <i class="fas fa-pen text-warning"></i> Ubah
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" onclick="openDeleteModal(${idx})">
-                                        <i class="fas fa-trash-alt text-danger"></i> Hapus
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" onclick="openChangePasswordModal(${idx})">
-                                        <i class="fas fa-key text-success"></i> Ganti Kata Sandi
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#" onclick="upgradeToAdmin(${idx})">
-                                        <i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                `;
-                userList.appendChild(row);
+            users.forEach((user, index) => {
+                userList.innerHTML += `
+            <tr>
+                <td>${user.id}</td>
+                <td>${user.username}</td>
+                <td>${user.email}</td>
+                <td id="role-user-${user.id}">${user.role}</td>
+                <td>${user.phone}</td>
+                <td><img src="${user.image}" alt="Foto" class="img-fluid"></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Aksi</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#" onclick="openEditModal(${index})"><i class="fas fa-pen text-warning"></i> Ubah</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="openDeleteModal(${index})"><i class="fas fa-trash-alt text-danger"></i> Hapus</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="openChangePasswordModal(${index})"><i class="fas fa-key text-success"></i> Ganti Kata Sandi</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="upgradeToAdmin(${user.id})"><i class="fas fa-user-shield text-primary"></i> Jadikan Sebagai Admin</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        `;
             });
         }
-// upgrade to admin
+
+
+        // upgrade to admin
         function upgradeToAdmin(userId) {
-    // Konfirmasi tindakan pengguna
-    if (confirm("Apakah Anda yakin ingin meng-upgrade user ini menjadi admin?")) {
-        // Kirimkan permintaan ke server untuk mengubah peran pengguna
-        fetch(`/upgrade-to-admin/${userId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // Jika menggunakan CSRF Token
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert("Pengguna berhasil di-upgrade menjadi admin!");
-                // Lakukan reload atau perbarui tampilan setelah sukses
-                location.reload();
+            // Ambil elemen role berdasarkan ID pengguna yang di-click
+            var roleElement = document.getElementById(`role-user-${userId}`);
+
+            // Cek apakah elemen ditemukan
+            if (roleElement) {
+                // Cek apakah perannya saat ini adalah "User"
+                if (roleElement.textContent.trim() === 'User') {
+                    // Ubah teks menjadi "Admin"
+                    roleElement.textContent = 'Admin';
+
+                    // Tampilkan pesan sukses
+                    alert(`Pengguna dengan ID ${userId} telah di-upgrade menjadi Admin.`);
+                } else if (roleElement.textContent.trim() === 'Admin') {
+                    // Tampilkan pesan bahwa pengguna sudah admin
+                    alert(`Pengguna dengan ID ${userId} sudah merupakan Admin.`);
+                }
             } else {
-                alert("Terjadi kesalahan: " + data.message);
+                // Jika elemen role tidak ditemukan
+                alert(`Tidak dapat menemukan pengguna dengan ID ${userId}.`);
             }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Terjadi kesalahan saat meng-upgrade pengguna menjadi admin.");
-        });
-    }
-}
+        }
+
 
         // Panggil renderUserList() ketika halaman dimuat
         document.addEventListener('DOMContentLoaded', renderUserList);
