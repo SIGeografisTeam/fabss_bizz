@@ -1,253 +1,158 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Pengiriman</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Ulasan Produk | Plasqtiqu.Co</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f7f7;
-            margin: 0;
-            padding: 0;
+            font-family: 'Signika', sans-serif;
+            background-color: #f8f9fa;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 60px auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+        .review {
+            max-width: 800px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 30px;
+        .review h1 {
+            color: #033043;
         }
 
-        .input-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
+        .card {
+            margin: 15px 0;
         }
 
-        .input-container input[type="text"] {
-            width: 75%;
-            padding: 12px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-
-        .input-container input[type="text"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-
-        .input-container button {
-            padding: 12px 20px;
-            margin-left: 10px;
-            background-color: #007bff;
-            color: #fff;
+        .btn-submit {
+            background-color: #6BA3B1;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #5a8a90;
+        }
+
+        .product-link {
+            text-decoration: none;
+            color: #033043;
+            font-weight: bold;
+        }
+
+        /* Star Rating CSS */
+        .star-rating {
+            display: inline-block;
+            font-size: 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 24px;
+            color: #ddd;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
 
-        .input-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .status-box {
-            margin-top: 40px;
-        }
-
-        .status-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .status-step::before {
-            content: "";
-            position: absolute;
-            left: 12px;
-            top: 30px;
-            width: 2px;
-            height: 100%;
-            background-color: #e0e0e0;
-            z-index: -1;
-        }
-
-        .status-step:last-child::before {
-            display: none;
-        }
-
-        .status-icon {
-            width: 25px;
-            height: 25px;
-            background-color: #e0e0e0;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 12px;
-            color: #fff;
-            margin-right: 20px;
-        }
-
-        .status-icon.active {
-            background-color: #007bff;
-        }
-
-        .status-content {
-            flex-grow: 1;
-        }
-
-        .status-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .status-description {
-            font-size: 14px;
-            color: #777;
-        }
-
-        .loading {
-            text-align: center;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .loading img {
-            width: 60px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 14px;
-            color: #777;
-        }
-
-        /* Responsive styling */
-        @media (max-width: 768px) {
-            .container {
-                margin: 30px 15px;
-            }
-
-            .input-container input[type="text"] {
-                width: 65%;
-            }
-
-            .input-container button {
-                padding: 10px 16px;
-                font-size: 14px;
-            }
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #ffc107;
         }
     </style>
-    
 </head>
+
 <body>
-
-<div class="container">
-    <h1>Cek Status Pengiriman</h1>
-    
-    <div class="input-container">
-        <input type="text" id="resiInput" placeholder="Masukkan nomor resi">
-        <button onclick="cekStatus()">Cek Status</button>
+    <div class="review">
+        <h1>Ulasan Produk</h1>
+        <div id="productList"></div>
     </div>
 
-    <div class="status-box" id="statusBox" style="display: none;">
-        <div class="status-step">
-            <div class="status-icon" id="step1">1</div>
-            <div class="status-content">
-                <div class="status-title">Diproses</div>
-                <div class="status-description">Pesanan sedang diproses, masih dalam antrian.</div>
-            </div>
-        </div>
+    <script>
+        const orders = JSON.parse(localStorage.getItem('orders')) || [
+            {
+                kodeTransaksi: "TRX123456",
+                recipientName: "John Doe",
+                status: "selesai",
+                totalAmount: 100000,
+                items: [
+                { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
+                { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
+                { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
+                { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
+                { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
+                { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
+            ]
+            },
+            {
+                kodeTransaksi: "TRX654321",
+                recipientName: "Jane Smith",
+                status: "selesai",
+                totalAmount: 150000,
+                items: [
+                    { name: "Plastik Ziplock", quantity: 1, price: 10000, id: 3 }
+                ]
+            }
+        ];
 
-        <div class="status-step">
-            <div class="status-icon" id="step2">2</div>
-            <div class="status-content">
-                <div class="status-title">Dikirim</div>
-                <div class="status-description">Driver sedang menuju alamat Anda.</div>
-            </div>
-        </div>
+        const productList = document.getElementById('productList');
 
-        <div class="status-step">
-            <div class="status-icon" id="step3">3</div>
-            <div class="status-content">
-                <div class="status-title">Menuju Alamat</div>
-                <div class="status-description">Driver hampir sampai di tujuan.</div>
-            </div>
-        </div>
-    </div>
+        let hasProduct = false;
+        orders.forEach(order => {
+            if (order.status === "menunggu konfirmasi") { // Only for 'selesai' status
+                order.items.forEach(item => {
+                    hasProduct = true;
+                    const productCard = `
+                        <div class="card">
+                            <div class="card-header">
+                                <a href="product-detail.html?id=${item.id}" class="product-link">${item.name}</a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Harga: Rp ${item.price.toLocaleString()}</p>
+                                <label>Rating:</label>
+                                <div class="star-rating">
+                                    <input type="radio" id="star5-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="5"><label for="star5-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star4-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="4"><label for="star4-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star3-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="3"><label for="star3-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star2-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="2"><label for="star2-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                    <input type="radio" id="star1-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="1"><label for="star1-${order.kodeTransaksi}-${item.name}">&#9733;</label>
+                                </div>
+                                <textarea class="form-control mt-2" placeholder="Tulis ulasan..." rows="3"></textarea>
+                                <button class="btn btn-submit mt-2" onclick="submitReview('${order.kodeTransaksi}', '${item.name}', ${item.id})">Kirim Ulasan</button>
+                            </div>
+                        </div>
+                    `;
+                    productList.insertAdjacentHTML('beforeend', productCard);
+                });
+            }
+        });
 
-    <div class="loading" id="loading">
-        <img src="loading.gif" alt="Loading...">
-    </div>
-</div>
-
-<footer>
-    &copy; 2024 - E-Commerce Anda. All Rights Reserved.
-</footer>
-
-<script>
-    function cekStatus() {
-        var resi = document.getElementById('resiInput').value;
-        var statusBox = document.getElementById('statusBox');
-        var loading = document.getElementById('loading');
-        var step1 = document.getElementById('step1');
-        var step2 = document.getElementById('step2');
-        var step3 = document.getElementById('step3');
-
-        if (resi === "") {
-            alert("Silakan masukkan nomor resi!");
-            return;
+        if (!hasProduct) {
+            productList.innerHTML = '<p>Tidak ada produk untuk diulas.</p>';
         }
 
-        // Tampilkan loading
-        loading.style.display = 'block';
-        statusBox.style.display = 'none';
+        function submitReview(transactionCode, productName, productId) {
+            const rating = document.querySelector(`input[name="rating-${transactionCode}-${productName}"]:checked`).value;
+            const comment = document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value;
 
-        // Reset status
-        step1.classList.remove('active');
-        step2.classList.remove('active');
-        step3.classList.remove('active');
+            const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            reviews.push({ username: "Nama Pengguna", rating, comment, productId });
+            localStorage.setItem('reviews', JSON.stringify(reviews));
 
-        // Simulasi pengambilan data status pengiriman
-        setTimeout(function() {
-            loading.style.display = 'none';
-            statusBox.style.display = 'block';
-
-            // Contoh logika status pengiriman
-            var statusPengiriman = 2; // Contoh status (1: Diproses, 2: Dikirim, 3: Menuju Alamat)
-
-            if (statusPengiriman >= 1) {
-                step1.classList.add('active');
-            }
-            if (statusPengiriman >= 2) {
-                step2.classList.add('active');
-            }
-            if (statusPengiriman === 3) {
-                step3.classList.add('active');
-            }
-        }, 2000); // Simulasi delay 2 detik
-    }
-</script>
-
+            alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
+            window.location.href = `product-detail.html?id=${productId}`;
+        }
+    </script>
 </body>
+
 </html>

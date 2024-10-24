@@ -37,6 +37,12 @@
         .help-icon-black { color: black; }
         .no-underline { text-decoration: none !important; }
         .cart-icon, .orders-icon, .help-icon { font-size: 24px; /* Ubah ukuran sesuai kebutuhan */ }
+        .star-rating {
+            font-size: 24px; /* Ukuran bintang */
+            color: #ffc107; /* Warna kuning */
+            float: right; /* Memposisikan di sebelah kanan */
+        }
+        
     </style>
 </head>
 <body>
@@ -96,7 +102,6 @@
                     <i class="fa-solid fa-question-circle help-icon-black"></i>
                 </a>
                 
-                
                 <script>
                 // Fungsi untuk memperbarui angka di ikon keranjang
                 function updateCartIcon() {
@@ -131,29 +136,22 @@
 
 <script>
     const products = [
-    { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
-    { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 7.500', category: 'Minuman', image: '/img/plastik_minuman.jpg', description: 'Perfect for beverage packaging.' },
-    { id: 3, name: 'Plastik Ziplock', price: 'Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Convenient for storage and organization.' },
-    { id: 4, name: 'Plastik Wrapping', price: 'Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Versatile wrapping solutions.' },
-    { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 25.000', category: 'Kemasan', image: '/img/kemasan_vakum.jpg', description: 'Keeps food fresh longer.' },
-    { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 12.000', category: 'Kemasan', image: '/img/kemasan_kertas.jpg', description: 'Eco-friendly packaging option.' }
-];
+        { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: '/img/plastik_makanan.jpg', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
+        { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: '/img/plastik_minuman.jpg', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
+        { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: '/img/plastik_ziplock.jpg', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
+        { id: 4, name: 'Kemasan Kertas', price: 3000, description: 'Kemasan kertas untuk berbagai produk.', image: '/img/kemasan_kertas.jpg', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
+    ];
 
+    const productId = new URLSearchParams(window.location.search).get('id');
+    const product = products.find(p => p.id == productId);
 
-    function getProductIdFromURL() {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        return urlParams.get('id');
-    }
-
-    function displayProductDetail(product) {
-        const productDetailDiv = document.getElementById('product-detail');
-        productDetailDiv.innerHTML = `
+    if (product) {
+        document.getElementById('product-detail').innerHTML = `
             <div class="col-md-6">
                 <img src="${product.image}" alt="${product.name}" class="product-image">
             </div>
             <div class="col-md-6">
-                <h1 class="product-name">${product.name}</h1>
+                <h2 class="product-name">${product.name}</h2>
                 <p class="product-price">Rp ${product.price}</p>
                 <p class="product-description">${product.description}</p>
                 <div class="product-info">
@@ -167,79 +165,61 @@
                     <button onclick="changeQuantity(1)">+</button>
                 </div>
                 <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
-                <button class="btn btn-cart" onclick="addToCart(${product.id})">Tambah ke Keranjang</button>
+                <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
             </div>
         `;
+
+        loadReviews(productId); // Memanggil fungsi untuk memuat ulasan
+    }
+
+    function loadReviews(productId) {
+        const reviewsContainer = document.getElementById('product-reviews');
+        const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        const productReviews = reviews.filter(review => review.productId == productId);
+
+        if (productReviews.length > 0) {
+            productReviews.forEach(review => {
+                const reviewCard = document.createElement('div');
+                reviewCard.className = 'card review-card';
+                reviewCard.innerHTML = `
+                    <div class="card-body">
+                        <h5 class="card-title">${review.username}</h5>
+                        <div class="star-rating">${'★'.repeat(review.rating)}</div>
+                        <p class="card-text">${review.comment}</p>
+                    </div>
+                `;
+                reviewsContainer.appendChild(reviewCard);
+            });
+        } else {
+            reviewsContainer.innerHTML = `<p>Tidak ada ulasan untuk produk ini.</p>`;
+        }
+    }
+
+    function addToCart(productId) {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(productId);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateCartIcon();
     }
 
     function changeQuantity(change) {
         const quantityInput = document.getElementById('quantity');
-        let currentValue = parseInt(quantityInput.value);
-        currentValue += change;
-        if (currentValue < 1) currentValue = 1;
-        quantityInput.value = currentValue;
-    }
-
-    function addToCart(productId) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const quantity = parseInt(document.getElementById('quantity').value);
-        const existingProductIndex = cart.findIndex(item => item.id === productId);
-
-        if (existingProductIndex > -1) {
-            cart[existingProductIndex].quantity += quantity;
-        } else {
-            const productToAdd = products.find(product => product.id === productId);
-            productToAdd.quantity = quantity;
-            cart.push(productToAdd);
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert('Produk telah ditambahkan ke keranjang!');
-        updateCartIcon();
-    }
-
-    function displayReviews() {
-        const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-        const reviewsDiv = document.getElementById('product-reviews');
-        reviewsDiv.innerHTML = '';
-    
-        reviews.forEach(review => {
-            const reviewCard = document.createElement('div');
-            reviewCard.classList.add('review-card', 'card', 'p-3');
-    
-            // Generate star icons based on rating
-            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating); // ★ for filled stars and ☆ for empty
-    
-            reviewCard.innerHTML = `
-                <h5>${review.username}</h5>
-                <p>Rating: <span style="color: #ffc107;">${stars}</span></p> <!-- Display stars dynamically -->
-                <p>${review.comment}</p>
-            `;
-            reviewsDiv.appendChild(reviewCard);
-        });
-    
-        if (reviews.length === 0) {
-            reviewsDiv.innerHTML = '<p>Tidak ada ulasan untuk produk ini.</p>';
+        const currentQuantity = parseInt(quantityInput.value);
+        if (currentQuantity + change > 0) {
+            quantityInput.value = currentQuantity + change;
         }
     }
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const productId = getProductIdFromURL();
-        const product = products.find(prod => prod.id == productId);
-        displayProductDetail(product);
-        displayReviews();
-    });
-    
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const productId = getProductIdFromURL();
-        const product = products.find(prod => prod.id == productId);
-        displayProductDetail(product);
-        displayReviews();
-    });
 </script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Include Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Plastiqu.Co. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
 </body>
 </html>

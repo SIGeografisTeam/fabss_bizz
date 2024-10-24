@@ -86,13 +86,13 @@
                 status: "selesai",
                 totalAmount: 100000,
                 items: [
-                { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
-                { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
-                { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
-                { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
-                { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
-                { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
-            ]
+                    { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
+                    { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
+                    { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
+                    { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
+                    { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
+                    { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
+                ]
             },
             {
                 kodeTransaksi: "TRX654321",
@@ -109,7 +109,7 @@
 
         let hasProduct = false;
         orders.forEach(order => {
-            if (order.status === "menunggu konfirmasi") { // Only for 'selesai' status
+            if (order.status === "menunggu konfirmasi") { // Hanya untuk status 'selesai'
                 order.items.forEach(item => {
                     hasProduct = true;
                     const productCard = `
@@ -128,6 +128,7 @@
                                     <input type="radio" id="star1-${order.kodeTransaksi}-${item.name}" name="rating-${order.kodeTransaksi}-${item.name}" value="1"><label for="star1-${order.kodeTransaksi}-${item.name}">&#9733;</label>
                                 </div>
                                 <textarea class="form-control mt-2" placeholder="Tulis ulasan..." rows="3"></textarea>
+                                <input type="file" class="form-control mt-2" accept="image/*" id="photo-${order.kodeTransaksi}-${item.name}">
                                 <button class="btn btn-submit mt-2" onclick="submitReview('${order.kodeTransaksi}', '${item.name}', ${item.id})">Kirim Ulasan</button>
                             </div>
                         </div>
@@ -144,13 +145,36 @@
         function submitReview(transactionCode, productName, productId) {
             const rating = document.querySelector(`input[name="rating-${transactionCode}-${productName}"]:checked`).value;
             const comment = document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value;
+            const photoInput = document.getElementById(`photo-${transactionCode}-${productName}`);
+            const photoFile = photoInput.files[0];
 
             const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
-            reviews.push({ username: "Nama Pengguna", rating, comment, productId });
-            localStorage.setItem('reviews', JSON.stringify(reviews));
+            const reviewData = { username: "Nama Pengguna", rating, comment, productId };
 
-            alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
-            window.location.href = `product-detail.html?id=${productId}`;
+            // Jika ada foto yang diunggah, tambahkan ke data ulasan
+            if (photoFile) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    reviewData.photo = e.target.result; // Simpan foto dalam format base64
+                    reviews.push(reviewData);
+                    localStorage.setItem('reviews', JSON.stringify(reviews));
+                    alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
+                    // Reset form setelah pengiriman
+                    photoInput.value = "";
+                    document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value = "";
+                    // Arahkan ke halaman detail produk
+                    window.location.href = `product-detail.html?id=${productId}`;
+                };
+                reader.readAsDataURL(photoFile); // Membaca file sebagai data URL
+            } else {
+                reviews.push(reviewData);
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+                alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
+                // Reset form setelah pengiriman
+                document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value = "";
+                // Arahkan ke halaman detail produk
+                window.location.href = `product-detail.html?id=${productId}`;
+            }
         }
     </script>
 </body>
