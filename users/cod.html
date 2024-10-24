@@ -146,6 +146,10 @@
                 </tfoot>
             </table>
 
+            <!-- Metode Pembayaran -->
+            <h4 class="section-left">Metode Pembayaran</h4>
+            <p class="form-control" id="metode-pembayaran">COD (Cash On Delivery)</p>
+
             <button type="button" class="btn btn-primary btn-submit" onclick="confirmOrder()">Lanjutkan Pesanan</button>
         </form>
     </div>
@@ -161,7 +165,6 @@
 
         const cartItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
         const totalAmount = localStorage.getItem('totalAmount') || 0;
-        const paymentMethod = localStorage.getItem('paymentMethod') || "Transfer Bank";
 
         // Tampilkan data pembeli
         document.getElementById('nama').textContent = currentUser.recipientName;
@@ -197,7 +200,7 @@
                 telephone: currentUser.telephone,
                 items: cartItems,
                 totalAmount: totalAmount,
-                paymentMethod: paymentMethod,
+                paymentMethod: "COD",
                 status: "menunggu konfirmasi"
             };
 
