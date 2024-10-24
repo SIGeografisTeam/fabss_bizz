@@ -1067,3 +1067,9 @@ textarea {
 h1 {
   text-align: left;
 }
+
+/* Gaya untuk halaman aktif */
+.pagination .active {
+  background-color: #033043 !important; /* Ganti dengan warna yang diinginkan */
+  color: white !important; /* Ganti dengan warna teks yang diinginkan */
+}

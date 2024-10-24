@@ -917,7 +917,6 @@ input {
   margin-top: 20px; /* Jika ingin memberikan jarak tambahan setelah elemen ini juga */
 }
 
-
 @media (max-width: 576px) {
   .username {
     font-size: 0.8rem;

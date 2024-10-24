@@ -36,7 +36,8 @@
             </div>
 
             <form class="d-flex mx-auto my-2 search-form">
-                <input class="form-control me-2 search-input" type="search" placeholder="Cari ulasan..." aria-label="Search">
+                <input class="form-control me-2 search-input" type="search" placeholder="Cari ulasan..."
+                    aria-label="Search">
                 <button class="btn btn-warning" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
@@ -49,8 +50,10 @@
                     <span class="username ms-2">Nama Pengguna</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah Profil</a></li>
-                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                    <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i> Ubah
+                            Profil</a></li>
+                    <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
+                            Logout</a></li>
                 </ul>
             </div>
         </aside>
@@ -67,99 +70,136 @@
                 <section class="dicover">
                     <h3>Kelola</h3>
                     <ul>
-                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i> Dasbor</a></li>
-                        <li><a href="analitik.html"><i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i> Analitik</a></li>
-                        <li><a href="ulasan.html" class="active"><i class="fa-solid fa-comment" style="margin-right: 10px;"></i> Ulasan</a></li>
-                        <li><a href="banner.html"><i class="fa-solid fa-image" style="margin-right: 10px;"></i> Kustom Banner</a></li>
-                        <li><a href="users.html"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i> Pengguna</a></li>
-                        <li><a href="alamatpengguna.html"><i class="fa-solid fa-map" style="margin-right: 10px;"></i> Alamat Pengguna</a></li>
-                        <li><a href="category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i> Kategori</a></li>
-                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i> Produk</a></li>
-                        <li><a href="daftarpesanan.html"><i class="fa-solid fa-box" style="margin-right: 10px;"></i> Daftar Pesanan</a></li>
-                        <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar" style="margin-right: 10px;"></i> Keuangan</a></li>
+                        <li><a href="dashboard.html"><i class="fa-solid fa-house" style="margin-right: 10px;"></i>
+                                Dasbor</a></li>
+                        <li><a href="analitik.html"><i class="fa-solid fa-chart-line" style="margin-right: 10px;"></i>
+                                Analitik</a></li>
+                        <li><a href="ulasan.html" class="active"><i class="fa-solid fa-comment"
+                                    style="margin-right: 10px;"></i> Ulasan</a></li>
+                        <li><a href="banner.html"><i class="fa-solid fa-image" style="margin-right: 10px;"></i> Kustom
+                                Banner</a></li>
+                        <li><a href="users.html"><i class="fa-solid fa-user-gear" style="margin-right: 10px;"></i>
+                                Pengguna</a></li>
+                        <li><a href="alamatpengguna.html"><i class="fa-solid fa-map" style="margin-right: 10px;"></i>
+                                Alamat Pengguna</a></li>
+                        <li><a href="category.html"><i class="fa-solid fa-list" style="margin-right: 10px;"></i>
+                                Kategori</a></li>
+                        <li><a href="produk/produk.html"><i class="fa-solid fa-pen" style="margin-right: 10px;"></i>
+                                Produk</a></li>
+                        <li><a href="daftarpesanan.html"><i class="fa-solid fa-box" style="margin-right: 10px;"></i>
+                                Daftar Pesanan</a></li>
+                        <li><a href="keuangan.html"><i class="fa-solid fa-hand-holding-dollar"
+                                    style="margin-right: 10px;"></i> Keuangan</a></li>
                     </ul>
                 </section>
             </nav>
         </header>
 
-        <div class="container">
-            <h1>Daftar Ulasan Produk</h1>
-            <table class="review-table">
-                <thead>
-                    <tr>
-                        <th>Dibuat Pada</th>
-                        <th>Nama Produk</th>
-                        <th>Nama Pengguna</th>
-                        <th>Teks Ulasan</th>
-                        <th>Rating</th>
-                        <th>Gambar</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2024-10-21 10:30</td>
-                        <td>Produk A</td>
-                        <td>JohnDoe</td>
-                        <td>Produk ini sangat bagus!</td>
-                        <td>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </td>
-                        <td><img src="review-image.jpg" alt="Gambar Ulasan" width="100"></td>
-                        <td>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyReviewModal">Balas</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2024-10-20 12:45</td>
-                        <td>Produk B</td>
-                        <td>JaneDoe</td>
-                        <td>Pengiriman sedikit terlambat, tapi produknya bagus.</td>
-                        <td>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </td>
-                        <td><img src="review-image2.jpg" alt="Gambar Ulasan" width="100"></td>
-                        <td>
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyReviewModal">Balas</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <main class="content-wrap">
+            <header class="content-head">
+                <h1 class="dashboard-title" style="margin-bottom: 20px;">Daftar Ulasan Produk</h1>
+            </header>
 
-        <!-- Popup untuk Balasan Ulasan -->
-        <div class="modal fade" id="replyReviewModal" tabindex="-1" aria-labelledby="replyReviewModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="brand">
-                        <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
-                        <span class="text-center">Plastiqu.Co</span>
-                    </div>
-                    <h2 class="text-center form-title">Balasan Ulasan</h2>
-                    <p class="welcome-text">Berikan balasan untuk ulasan ini!</p>
-                    <form class="register-form" id="reply-review-form" onsubmit="return replyReview()">
-                        <div class="input-group">
-                            <textarea id="review-reply" placeholder="" required></textarea>
-                            <!-- Menghapus label di sini -->
-                        </div>
-                        <button type="submit" class="submit-btn">Kirim Balasan</button>
-                        <div class="cancel-btn-container">
-                            <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </button>
-                        </div>
-                    </form>
+            <div class="content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Dibuat Pada</th>
+                            <th>Nama Produk</th>
+                            <th>Nama Pengguna</th>
+                            <th>Teks Ulasan</th>
+                            <th>Rating</th>
+                            <th>Gambar</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-10-21 10:30</td>
+                            <td>Produk A</td>
+                            <td>JohnDoe</td>
+                            <td>Produk ini sangat bagus!</td>
+                            <td>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </td>
+                            <td><img src="review-image.jpg" alt="Gambar Ulasan" width="100"></td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#replyReviewModal">Balas</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2024-10-20 12:45</td>
+                            <td>Produk B</td>
+                            <td>JaneDoe</td>
+                            <td>Pengiriman sedikit terlambat, tapi produknya bagus.</td>
+                            <td>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </td>
+                            <td><img src="review-image2.jpg" alt="Gambar Ulasan" width="100"></td>
+                            <td>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#replyReviewModal">Balas</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <i class="fa-solid fa-backward"></i>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <i class="fa-solid fa-forward"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+    </div>
+
+    <!-- Popup untuk Balasan Ulasan -->
+    <div class="modal fade" id="replyReviewModal" tabindex="-1" aria-labelledby="replyReviewModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="brand">
+                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                    <span class="text-center">Plastiqu.Co</span>
                 </div>
+                <h2 class="text-center form-title">Balasan Ulasan</h2>
+                <p class="welcome-text">Berikan balasan untuk ulasan ini!</p>
+                <form class="register-form" id="reply-review-form" onsubmit="return replyReview()">
+                    <div class="input-group">
+                        <textarea id="review-reply" placeholder="" required></textarea>
+                        <!-- Menghapus label di sini -->
+                    </div>
+                    <button type="submit" class="submit-btn">Kirim Balasan</button>
+                    <div class="cancel-btn-container">
+                        <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
