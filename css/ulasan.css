@@ -1050,3 +1050,12 @@ textarea {
   resize: none; /* Menonaktifkan resize */
   outline: none; /* Menghilangkan outline saat fokus */
 }
+/* Warna bintang terisi penuh menjadi kuning */
+.fa-star {
+  color: #FFD700;
+}
+
+/* Warna bintang tidak terisi penuh menjadi abu-abu */
+.fa-star-o {
+  color: #E0E0E0;
+}
