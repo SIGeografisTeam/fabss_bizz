@@ -115,13 +115,14 @@
 
 <script>
     const products = [
-        { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Makanan', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
-        { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: 'https://via.placeholder.com/300x300?text=Plastik+Minuman', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
-        { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Ziplock', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
-        { id: 4, name: 'Plastik Wrapping', price: 7500, description: 'Plastik wrapping untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Wrapping', category: 'Plastik Makanan', weight: '60g', availability: 'Tersedia' },
-        { id: 5, name: 'Plastik Kemasan Vakum', price: 15000, description: 'Plastik vakum untuk makanan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Vakum', category: 'Plastik Makanan', weight: '70g', availability: 'Tersedia' },
-        { id: 6, name: 'Plastik Kemasan Kertas', price: 6000, description: 'Plastik ramah lingkungan.', image: 'https://via.placeholder.com/300x300?text=Plastik+Kertas', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
-    ];
+    { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
+    { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 7.500', category: 'Minuman', image: '/img/plastik_minuman.jpg', description: 'Perfect for beverage packaging.' },
+    { id: 3, name: 'Plastik Ziplock', price: 'Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Convenient for storage and organization.' },
+    { id: 4, name: 'Plastik Wrapping', price: 'Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Versatile wrapping solutions.' },
+    { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 25.000', category: 'Kemasan', image: '/img/kemasan_vakum.jpg', description: 'Keeps food fresh longer.' },
+    { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 12.000', category: 'Kemasan', image: '/img/kemasan_kertas.jpg', description: 'Eco-friendly packaging option.' }
+];
+
 
     function getProductIdFromURL() {
         const queryString = window.location.search;
@@ -185,22 +186,34 @@
         const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
         const reviewsDiv = document.getElementById('product-reviews');
         reviewsDiv.innerHTML = '';
-
+    
         reviews.forEach(review => {
             const reviewCard = document.createElement('div');
             reviewCard.classList.add('review-card', 'card', 'p-3');
+    
+            // Generate star icons based on rating
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating); // ★ for filled stars and ☆ for empty
+    
             reviewCard.innerHTML = `
                 <h5>${review.username}</h5>
-                <p>Rating: ${'bintang '.repeat(review.rating)}</p> <!-- Menampilkan "bintang" untuk rating -->
+                <p>Rating: <span style="color: #ffc107;">${stars}</span></p> <!-- Display stars dynamically -->
                 <p>${review.comment}</p>
             `;
             reviewsDiv.appendChild(reviewCard);
         });
-
+    
         if (reviews.length === 0) {
             reviewsDiv.innerHTML = '<p>Tidak ada ulasan untuk produk ini.</p>';
         }
     }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const productId = getProductIdFromURL();
+        const product = products.find(prod => prod.id == productId);
+        displayProductDetail(product);
+        displayReviews();
+    });
+    
 
     document.addEventListener('DOMContentLoaded', () => {
         const productId = getProductIdFromURL();
