@@ -1059,3 +1059,11 @@ textarea {
 .fa-star-o {
   color: #E0E0E0;
 }
+
+.review-table th {
+  color: white;
+}
+
+h1 {
+  text-align: left;
+}

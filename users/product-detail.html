@@ -227,11 +227,12 @@
 
     <script>
         const products = [
-            { id: 1, name: 'Plastik Bungkus Makanan', price: 5000, description: 'Plastik untuk membungkus makanan.', image: '/img/plastik_makanan.jpg', category: 'Plastik Makanan', weight: '50g', availability: 'Tersedia' },
-            { id: 2, name: 'Plastik Bungkus Minuman', price: 4000, description: 'Plastik untuk membungkus berbagai minuman.', image: '/img/plastik_minuman.jpg', category: 'Plastik Minuman', weight: '30g', availability: 'Tersedia' },
-            { id: 3, name: 'Plastik Ziplock', price: 10000, description: 'Plastik ziplock untuk makanan.', image: '/img/plastik_ziplock.jpg', category: 'Plastik Makanan', weight: '40g', availability: 'Tersedia' },
-            { id: 4, name: 'Kemasan Kertas', price: 3000, description: 'Kemasan kertas untuk berbagai produk.', image: '/img/kemasan_kertas.jpg', category: 'Kemasan Kertas', weight: '20g', availability: 'Tersedia' }
-        ];
+        { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
+        { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 7.500', category: 'Minuman', image: '/img/plastik_minuman.jpg', description: 'Perfect for beverage packaging.' },
+        { id: 3, name: 'Plastik Ziplock', price: 'Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Convenient for storage and organization.' },
+        { id: 4, name: 'Plastik Wrapping', price: 'Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Versatile wrapping solutions.' },
+        { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 25.000', category: 'Kemasan', image: '/img/kemasan_vakum.jpg', description: 'Keeps food fresh longer.' },
+        { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 12.000', category: 'Kemasan', image: '/img/kemasan_kertas.jpg', description: 'Eco-friendly packaging option.' }];
 
         const productId = new URLSearchParams(window.location.search).get('id');
         const product = products.find(p => p.id == productId);
@@ -267,24 +268,54 @@
             const reviewsContainer = document.getElementById('product-reviews');
             const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
             const productReviews = reviews.filter(review => review.productId == productId);
-
+        
             if (productReviews.length > 0) {
-                productReviews.forEach(review => {
+                const maxVisibleReviews = 5; // Jumlah ulasan yang ditampilkan secara default
+                productReviews.slice(0, maxVisibleReviews).forEach(review => {
                     const reviewCard = document.createElement('div');
                     reviewCard.className = 'card review-card';
                     reviewCard.innerHTML = `
-                    <div class="card-body">
-                        <h5 class="card-title">${review.username}</h5>
-                        <div class="star-rating">${'★'.repeat(review.rating)}</div>
-                        <p class="card-text">${review.comment}</p>
-                    </div>
-                `;
+                        <div class="card-body">
+                            <h5 class="card-title">${review.username}</h5>
+                            <div class="star-rating">${'★'.repeat(review.rating)}</div>
+                            <p class="card-text">${review.comment}</p>
+                            ${review.photo ? `<img src="${review.photo}" alt="Foto Ulasan" class="img-fluid mt-2" style="max-width: 60px; height: auto;">` : ''}
+                        </div>
+                    `;
                     reviewsContainer.appendChild(reviewCard);
                 });
+        
+                // Tombol untuk melihat semua ulasan jika ada lebih dari 5 ulasan
+                if (productReviews.length > maxVisibleReviews) {
+                    const seeAllButton = document.createElement('button');
+                    seeAllButton.textContent = 'Lihat Semua Ulasan';
+                    seeAllButton.className = 'btn btn-outline-secondary mt-2';
+                    seeAllButton.onclick = function () {
+                        reviewsContainer.innerHTML = ''; // Hapus ulasan yang ditampilkan sebelumnya
+                        productReviews.forEach(review => { // Tampilkan semua ulasan
+                            const reviewCard = document.createElement('div');
+                            reviewCard.className = 'card review-card';
+                            reviewCard.innerHTML = `
+                                <div class="card-body">
+                                    <h5 class="card-title">${review.username}</h5>
+                                    <div class="star-rating">${'★'.repeat(review.rating)}</div>
+                                    <p class="card-text">${review.comment}</p>
+                                    ${review.photo ? `<img src="${review.photo}" alt="Foto Ulasan" class="img-fluid mt-2" style="max-width: 60px; height: auto;">` : ''}
+                                </div>
+                            `;
+                            reviewsContainer.appendChild(reviewCard);
+                        });
+                        seeAllButton.remove(); // Hilangkan tombol setelah semua ulasan ditampilkan
+                    };
+                    reviewsContainer.appendChild(seeAllButton);
+                }
             } else {
                 reviewsContainer.innerHTML = `<p>Tidak ada ulasan untuk produk ini.</p>`;
             }
         }
+        
+        
+        
 
         function addToCart(productId) {
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
