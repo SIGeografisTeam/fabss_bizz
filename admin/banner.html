@@ -21,6 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
+    <script src="path/to/your-script.js"></script>
 </head>
 
 <body>
@@ -187,188 +188,195 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </main>
+        </main>
 
-    <!-- Form untuk menambah banner (Popup) -->
-    <div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="brand">
-                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
-                    <span class="text-center">Plastiqu.Co</span>
-                </div>
-                <h2 class="text-center category-title">Tambah Banner</h2>
-                <p class="welcome-text">Silakan unggah banner baru!</p>
-                <form class="register-form" id="add-banner-form" onsubmit="return handleAddBanner(event)">
-                    <!-- Input untuk Unggah Banner -->
-                    <div class="input-group">
-                        <input type="file" id="banner-file" accept="image/*" required>
-                        <label for="banner-file">Pilih File Banner</label>
+        <!-- Form untuk menambah banner (Popup) -->
+        <div class="modal fade" id="addBannerModal" tabindex="-1" aria-labelledby="addBannerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="brand">
+                        <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                        <span class="text-center">Plastiqu.Co</span>
                     </div>
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn">Simpan</button>
-                    <!-- Cancel Button -->
-                    <div class="cancel-btn-container">
+                    <h2 class="text-center category-title">Tambah Banner</h2>
+                    <p class="welcome-text">Silakan unggah banner baru!</p>
+                    <form class="register-form" id="add-banner-form" onsubmit="return handleAddBanner(event)">
+                        <!-- Input untuk Unggah Banner -->
+                        <div class="input-group">
+                            <input type="file" id="banner-file" accept="image/*" required>
+                            <label for="banner-file">Pilih File Banner</label>
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">Simpan</button>
+                        <!-- Cancel Button -->
+                        <div class="cancel-btn-container">
+                            <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form untuk mengubah banner (Popup) -->
+        <div class="modal fade" id="editBannerModal" tabindex="-1" aria-labelledby="editBannerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="brand">
+                        <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                        <span class="text-center">Plastiqu.Co</span>
+                    </div>
+                    <h2 class="text-center category-title">Ubah Banner</h2>
+                    <p class="welcome-text">Silakan ubah banner ini!</p>
+                    <form class="register-form" id="edit-banner-form" onsubmit="return handleEditBanner(event)">
+                        <!-- Preview Gambar Banner -->
+                        <div class="image-preview">
+                            <img id="current-banner-preview" src="" alt="Banner Saat Ini" class="img-fluid">
+                        </div>
+                        <!-- Input untuk Unggah Gambar Baru -->
+                        <div class="input-group">
+                            <input type="file" id="edit-banner-file" accept="image/*">
+                            <label for="edit-banner-file">Pilih File Banner Baru</label>
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="submit-btn">Simpan</button>
+                        <!-- Cancel Button -->
+                        <div class="cancel-btn-container">
+                            <button type="button" class="cancel-btn" data-bs-dismiss="modal">
+                                <i class="fa-solid fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form untuk menghapus banner (Popup) -->
+        <div class="modal fade" id="deleteBannerModal" tabindex="-1" aria-labelledby="deleteBannerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="brand">
+                        <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
+                        <span class="text-center">Plastiqu.Co</span>
+                    </div>
+                    <h2 class="text-center category-title">Hapus Banner</h2>
+                    <p class="welcome-text">Apakah Anda yakin ingin menghapus banner ini?</p>
+                    <div class="text-center">
+                        <!-- Konfirmasi Hapus -->
+                        <button id="confirm-delete-btn" class="submit-btn">Hapus</button>
+                        <!-- Cancel Button -->
                         <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-circle-xmark"></i>
+                            <i class="fa-solid fa-circle-xmark"></i> Batal
                         </button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Form untuk mengubah banner (Popup) -->
-    <div class="modal fade" id="editBannerModal" tabindex="-1" aria-labelledby="editBannerModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="brand">
-                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
-                    <span class="text-center">Plastiqu.Co</span>
-                </div>
-                <h2 class="text-center category-title">Ubah Banner</h2>
-                <p class="welcome-text">Silakan ubah banner ini!</p>
-                <form class="register-form" id="edit-banner-form" onsubmit="return handleEditBanner(event)">
-                    <!-- Preview Gambar Banner -->
-                    <div class="image-preview">
-                        <img id="current-banner-preview" src="" alt="Banner Saat Ini" class="img-fluid">
-                    </div>
-                    <!-- Input untuk Unggah Gambar Baru -->
-                    <div class="input-group">
-                        <input type="file" id="edit-banner-file" accept="image/*">
-                        <label for="edit-banner-file">Pilih File Banner Baru</label>
-                    </div>
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-btn">Simpan</button>
-                    <!-- Cancel Button -->
-                    <div class="cancel-btn-container">
-                        <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Form untuk menghapus banner (Popup) -->
-    <div class="modal fade" id="deleteBannerModal" tabindex="-1" aria-labelledby="deleteBannerModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="brand">
-                    <img src="/assets/logo_only_vector.png" alt="Logo" height="50" class="logo-img">
-                    <span class="text-center">Plastiqu.Co</span>
-                </div>
-                <h2 class="text-center category-title">Hapus Banner</h2>
-                <p class="welcome-text">Apakah Anda yakin ingin menghapus banner ini?</p>
-                <div class="text-center">
-                    <!-- Konfirmasi Hapus -->
-                    <button id="confirm-delete-btn" class="submit-btn">Hapus</button>
-                    <!-- Cancel Button -->
-                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">
-                        <i class="fa-solid fa-circle-xmark"></i> Batal
-                    </button>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        function handleAddBanner(event) {
-            event.preventDefault(); // Prevent default form submission
+        <script>
+            function handleAddBanner(event) {
+                event.preventDefault(); // Prevent default form submission
 
-            const fileInput = document.getElementById('banner-file');
-            const file = fileInput.files[0];
+                const fileInput = document.getElementById('banner-file');
+                const file = fileInput.files[0];
 
-            if (file) {
-                // Select the banner list
-                const bannerList = document.querySelector('.banner-list');
+                if (file) {
+                    // Select the banner list
+                    const bannerList = document.querySelector('.banner-list');
 
-                // Get current number of banners and set the next banner number
-                const currentBanners = bannerList.querySelectorAll('.banner-item').length;
-                const nextBannerNumber = currentBanners + 1;
+                    // Get current number of banners and set the next banner number
+                    const currentBanners = bannerList.querySelectorAll('.banner-item').length;
+                    const nextBannerNumber = currentBanners + 1;
 
-                // Create new banner item
-                const bannerItem = document.createElement('div');
-                bannerItem.classList.add('banner-item', 'mb-3');
+                    // Create new banner item
+                    const bannerItem = document.createElement('div');
+                    bannerItem.classList.add('banner-item', 'mb-3');
 
-                // Banner title with the next number
-                const bannerTitle = document.createElement('h3');
-                bannerTitle.classList.add('banner-title');
-                bannerTitle.innerText = `Banner ${nextBannerNumber}`; // Set the name with the number
+                    // Banner title with the next number
+                    const bannerTitle = document.createElement('h3');
+                    bannerTitle.classList.add('banner-title');
+                    bannerTitle.innerText = `Banner ${nextBannerNumber}`; // Set the name with the number
 
-                // Banner image
-                const bannerImg = document.createElement('img');
-                bannerImg.src = URL.createObjectURL(file); // Preview uploaded image
-                bannerImg.alt = `Banner ${nextBannerNumber}`;
-                bannerImg.classList.add('img-fluid');
+                    // Banner image
+                    const bannerImg = document.createElement('img');
+                    bannerImg.src = URL.createObjectURL(file); // Preview uploaded image
+                    bannerImg.alt = `Banner ${nextBannerNumber}`;
+                    bannerImg.classList.add('img-fluid');
 
-                // Edit and Delete buttons
-                const buttonGroup = document.createElement('div');
-                buttonGroup.classList.add('button-group', 'mt-2');
+                    // Edit and Delete buttons
+                    const buttonGroup = document.createElement('div');
+                    buttonGroup.classList.add('button-group', 'mt-2');
 
-                const editButton = document.createElement('button');
-                editButton.classList.add('btn', 'btn-warning');
-                editButton.innerHTML = '<i class="fas fa-pen text-light"></i> Ubah';
+                    const editButton = document.createElement('button');
+                    editButton.classList.add('btn', 'btn-warning', 'edit-banner-btn');
+                    editButton.innerHTML = '<i class="fas fa-pen text-light"></i> <span class="text-light">Ubah</span>';
 
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('btn', 'btn-danger');
-                deleteButton.innerHTML = '<i class="fas fa-trash-alt text-light"></i> Hapus';
+                    const deleteButton = document.createElement('button');
+                    deleteButton.classList.add('btn', 'btn-danger');
+                    deleteButton.innerHTML = '<i class="fas fa-trash-alt text-light"></i> Hapus';
 
-                // Add buttons to the group
-                buttonGroup.appendChild(editButton);
-                buttonGroup.appendChild(deleteButton);
+                    // Add buttons to the group
+                    buttonGroup.appendChild(editButton);
+                    buttonGroup.appendChild(deleteButton);
 
-                // Add title, image, and buttons to banner item
-                bannerItem.appendChild(bannerTitle);
-                bannerItem.appendChild(bannerImg);
-                bannerItem.appendChild(buttonGroup);
+                    // Add title, image, and buttons to banner item
+                    bannerItem.appendChild(bannerTitle);
+                    bannerItem.appendChild(bannerImg);
+                    bannerItem.appendChild(buttonGroup);
 
-                // Append new banner item to the list
-                bannerList.appendChild(bannerItem);
+                    // Append new banner item to the list
+                    bannerList.appendChild(bannerItem);
 
-                // Reset the form
-                fileInput.value = '';
+                    // Reset the form
+                    fileInput.value = '';
 
-                // Hide the modal
-                const modalElement = document.getElementById('addBannerModal');
-                const modal = bootstrap.Modal.getInstance(modalElement);
-                if (modal) {
+                    // Hide the modal
+                    const modalElement = document.getElementById('addBannerModal');
+                    const modal = bootstrap.Modal.getInstance(modalElement);
                     modal.hide();
+
+
+                    // Manually remove 'show' class and backdrop if still visible
+                    modalElement.classList.remove('show');
+                    modalElement.setAttribute('aria-hidden', 'true');
+                    modalElement.style.display = 'none';
+
+                    const modalBackdrop = document.querySelector('.modal-backdrop');
+                    if (modalBackdrop) {
+                        modalBackdrop.remove();
+                    }
+
+                    // Show success message (optional)
+                    Swal.fire({
+                        title: 'Banner Ditambahkan!',
+                        text: `Banner ${nextBannerNumber} berhasil ditambahkan.`,
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+
+                    // Tambahkan event listener untuk tombol "Ubah" dan "Hapus" di banner baru
+                    editButton.addEventListener('click', function () {
+                        handleEditButtonClick(bannerItem);
+                    });
+
+                    deleteButton.addEventListener('click', function () {
+                        handleDeleteButtonClick(bannerItem);
+                    });
                 }
-
-                // Manually remove 'show' class and backdrop if still visible
-                modalElement.classList.remove('show');
-                modalElement.setAttribute('aria-hidden', 'true');
-                modalElement.style.display = 'none';
-
-                // Remove the backdrop manually (if it exists)
-                const modalBackdrop = document.querySelector('.modal-backdrop');
-                if (modalBackdrop) {
-                    modalBackdrop.remove();
-                }
-
-                // Optionally show a success message (e.g., using SweetAlert)
-                Swal.fire({
-                    title: 'Banner Ditambahkan!',
-                    text: `Banner ${nextBannerNumber} berhasil ditambahkan.`,
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
             }
-        }
 
-        let editingBanner = null; // Variabel untuk menyimpan banner yang sedang di-edit
-        let deletingBanner = null; // Variabel untuk menyimpan banner yang sedang dihapus
 
-        document.addEventListener('DOMContentLoaded', function () {
+            let editingBanner = null; // Variabel untuk menyimpan banner yang sedang di-edit
+            let deletingBanner = null; // Variabel untuk menyimpan banner yang sedang dihapus
+
             // Fungsi untuk menangani tombol "Ubah" di setiap banner
             function handleEditButtonClick(bannerElement) {
                 editingBanner = bannerElement; // Simpan banner yang sedang di-edit
@@ -391,73 +399,76 @@
                 deleteBannerModal.show();
             }
 
-            // Tambahkan event listener untuk tombol "Ubah" di setiap banner
-            const editButtons = document.querySelectorAll('.edit-banner-btn');
-            editButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const bannerElement = button.closest('.banner-item');
-                    handleEditButtonClick(bannerElement); // Panggil fungsi edit ketika "Ubah" diklik
+            document.addEventListener('DOMContentLoaded', function () {
+                // Tambahkan event listener untuk tombol "Ubah" di setiap banner
+                const editButtons = document.querySelectorAll('.edit-banner-btn');
+                editButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const bannerElement = button.closest('.banner-item');
+                        handleEditButtonClick(bannerElement); // Panggil fungsi edit ketika "Ubah" diklik
+                    });
                 });
+
+                // Tambahkan event listener untuk tombol "Hapus" di setiap banner
+                const deleteButtons = document.querySelectorAll('.btn-danger');
+                deleteButtons.forEach(button => {
+                    button.addEventListener('click', function () {
+                        const bannerElement = button.closest('.banner-item');
+                        handleDeleteButtonClick(bannerElement); // Panggil fungsi hapus ketika "Hapus" diklik
+                    });
+                });
+
+                // Fungsi untuk menangani form "Edit Banner"
+                function handleEditBanner(event) {
+                    event.preventDefault();
+
+                    const fileInput = document.getElementById('edit-banner-file');
+                    const file = fileInput.files[0];
+
+                    if (file && editingBanner) {
+                        const bannerImg = editingBanner.querySelector('img');
+                        if (file) {
+                            bannerImg.src = URL.createObjectURL(file);
+                        }
+
+                        // Sembunyikan popup setelah selesai edit
+                        const editBannerModal = bootstrap.Modal.getInstance(document.getElementById('editBannerModal'));
+                        editBannerModal.hide();
+
+                        // Tampilkan notifikasi sukses (optional)
+                        Swal.fire({
+                            title: 'Banner Berhasil Diubah!',
+                            text: 'Banner telah berhasil diperbarui.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                }
+
+                // Event listener untuk submit form "Edit Banner"
+                document.getElementById('edit-banner-form').addEventListener('submit', handleEditBanner);
             });
 
-            // Tambahkan event listener untuk tombol "Hapus" di setiap banner
-            const deleteButtons = document.querySelectorAll('.btn-danger');
-            deleteButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const bannerElement = button.closest('.banner-item');
-                    handleDeleteButtonClick(bannerElement); // Panggil fungsi hapus ketika "Hapus" diklik
-                });
-            });
+            // Fungsi untuk mengonfirmasi penghapusan banner
+            document.getElementById('confirm-delete-btn').addEventListener('click', function () {
+                if (deletingBanner) {
+                    deletingBanner.remove(); // Hapus banner dari DOM
 
-            // Fungsi untuk menangani form "Edit Banner"
-            function handleEditBanner(event) {
-                event.preventDefault();
-
-                const fileInput = document.getElementById('edit-banner-file');
-                const file = fileInput.files[0];
-
-                if (file && editingBanner) {
-                    const bannerImg = editingBanner.querySelector('img');
-                    bannerImg.src = URL.createObjectURL(file); // Ubah gambar banner dengan file yang baru di-upload
-
-                    // Sembunyikan popup setelah selesai edit
-                    const editBannerModal = bootstrap.Modal.getInstance(document.getElementById('editBannerModal'));
-                    editBannerModal.hide();
+                    // Sembunyikan popup setelah selesai hapus
+                    const deleteBannerModal = bootstrap.Modal.getInstance(document.getElementById('deleteBannerModal'));
+                    deleteBannerModal.hide();
 
                     // Tampilkan notifikasi sukses (optional)
                     Swal.fire({
-                        title: 'Banner Berhasil Diubah!',
-                        text: 'Banner telah berhasil diperbarui.',
+                        title: 'Banner Dihapus!',
+                        text: 'Banner telah berhasil dihapus.',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
                 }
-            }
+            });
 
-            // Event listener untuk submit form "Edit Banner"
-            document.getElementById('edit-banner-form').addEventListener('submit', handleEditBanner);
-        });
-
-        // Fungsi untuk mengonfirmasi penghapusan banner
-        document.getElementById('confirm-delete-btn').addEventListener('click', function () {
-            if (deletingBanner) {
-                deletingBanner.remove(); // Hapus banner dari DOM
-
-                // Sembunyikan popup setelah selesai hapus
-                const deleteBannerModal = bootstrap.Modal.getInstance(document.getElementById('deleteBannerModal'));
-                deleteBannerModal.hide();
-
-                // Tampilkan notifikasi sukses (optional)
-                Swal.fire({
-                    title: 'Banner Dihapus!',
-                    text: 'Banner telah berhasil dihapus.',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-            }
-        });
-
-    </script>
+        </script>
     </div>
 </body>
 
