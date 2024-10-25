@@ -916,6 +916,26 @@ button.delete-btn:hover {
 #addProductBtn:hover {
     background-color: #1976D2;
 }
+.d-flex.justify-content-between {
+  gap: 2px; /* Kurangi jarak antar tombol */
+}
+
+.btn-edit, .btn-delete {
+  margin: 0; /* Hilangkan margin pada tombol */
+  padding: 4px 6px; /* Kurangi padding agar lebih kecil */
+  font-size: 12px; /* Ukuran font kecil agar muat */
+  display: inline-flex; /* Pastikan tombol tetap rapi dalam satu baris */
+  align-items: center; /* Selaraskan ikon dan teks secara vertikal */
+}
+
+.btn-edit i, .btn-delete i {
+  margin-right: 2px; /* Jarak sangat kecil antara ikon dan teks */
+  font-size: 12px; /* Ukuran ikon kecil agar lebih rapi */
+}
+
+.btn-edit, .btn-delete {
+  width: auto; /* Pastikan tombol menyesuaikan dengan konten */
+}
 
 
 
