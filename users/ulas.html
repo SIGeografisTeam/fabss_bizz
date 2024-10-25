@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Signika', sans-serif;
@@ -109,7 +110,7 @@
 
         let hasProduct = false;
         orders.forEach(order => {
-            if (order.status === "menunggu konfirmasi") { // Hanya untuk status 'selesai'
+            if (order.status === "menunggu konfirmasi") {
                 order.items.forEach(item => {
                     hasProduct = true;
                     const productCard = `
@@ -151,29 +152,33 @@
             const reviews = JSON.parse(localStorage.getItem('reviews')) || [];
             const reviewData = { username: "Nama Pengguna", rating, comment, productId };
 
-            // Jika ada foto yang diunggah, tambahkan ke data ulasan
             if (photoFile) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    reviewData.photo = e.target.result; // Simpan foto dalam format base64
+                    reviewData.photo = e.target.result;
                     reviews.push(reviewData);
                     localStorage.setItem('reviews', JSON.stringify(reviews));
-                    alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
-                    // Reset form setelah pengiriman
-                    photoInput.value = "";
-                    document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value = "";
-                    // Arahkan ke halaman detail produk
-                    window.location.href = `product-detail.html?id=${productId}`;
+                    Swal.fire({
+                        title: "Berhasil!",
+                        text: `Produk ${productName} berhasil diulas.`,
+                        icon: "success",
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.href = `product-detail.html?id=${productId}`;
+                    });
                 };
-                reader.readAsDataURL(photoFile); // Membaca file sebagai data URL
+                reader.readAsDataURL(photoFile);
             } else {
                 reviews.push(reviewData);
                 localStorage.setItem('reviews', JSON.stringify(reviews));
-                alert(`Ulasan untuk ${productName} dengan Kode Transaksi ${transactionCode} telah dikirim!`);
-                // Reset form setelah pengiriman
-                document.querySelector(`textarea[placeholder="Tulis ulasan..."]`).value = "";
-                // Arahkan ke halaman detail produk
-                window.location.href = `product-detail.html?id=${productId}`;
+                Swal.fire({
+                    title: "Berhasil!",
+                    text: `Produk ${productName} berhasil diulas.`,
+                    icon: "success",
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = `product-detail.html?id=${productId}`;
+                });
             }
         }
     </script>
