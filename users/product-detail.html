@@ -20,6 +20,10 @@
     <!-- FA Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!--SweetAlert-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
     <style>
         .product-detail-container {
             margin-top: 40px;
@@ -299,7 +303,7 @@
                         <input type="number" id="quantity" value="1" min="1">
                         <button onclick="changeQuantity(1)">+</button>
                     </div>
-                    <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
+                    <button class="btn btn-buy" onclick="buyNow(${product.id}, true)">Beli Sekarang</button>
                     <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
                 </div>
             `;
@@ -361,7 +365,21 @@
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             cartItems.push(productId);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            updateCartIcon();
+
+            // Tampilkan SweetAlert2 setelah produk berhasil ditambahkan
+            Swal.fire({
+                title: 'Sukses!',
+                text: 'Produk telah ditambahkan ke keranjang.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                updateCartIcon(); // Memperbarui ikon keranjang jika ada fungsi ini
+            });
+        }
+
+        function buyNow(productId) {
+            // Alihkan pengguna ke halaman checkout setelah menambahkan
+            window.location.href = 'checkout.html?id=' + productId; // Menambahkan ID produk ke URL jika diperlukan
         }
 
         function changeQuantity(change) {
@@ -371,6 +389,11 @@
                 quantityInput.value = currentQuantity + change;
             }
         }
+
+        function updateCartIcon() {
+            // Logika untuk memperbarui ikon keranjang bisa ditambahkan di sini, jika diperlukan.
+        }
+
     </script>
 
 </body>
