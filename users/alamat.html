@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alamat | Plastiqu.Co</title>
+    <link rel="shortcut icon" href="/assets/circle.png" type="image/png">
+    <link rel="stylesheet" href="/css/alamat.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Daftar Alamat Saya</h2>
+
+    <button class="btn-add" onclick="showAddAddressForm()">+ Tambah Alamat</button>
+
+    <div id="address-list">
+        <!-- Contoh alamat (dari database atau localStorage) -->
+        <div class="address-card">
+            <p><strong>Nama:</strong> Balqis Rosa</p>
+            <p><strong>Alamat:</strong> Jalan Mawar No.10, Bandung</p>
+            <p><strong>No. Telepon:</strong> 08123456789</p>
+            <div class="address-actions">
+                <button onclick="editAddress()">Edit</button>
+                <button onclick="deleteAddress()">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Form untuk menambah alamat baru -->
+    <div id="add-address-form" class="hidden">
+        <h3>Tambah Alamat Baru</h3>
+        <form>
+            <label>Nama:</label>
+            <input type="text" id="name" required><br>
+
+            <label>Alamat:</label>
+            <textarea id="address" required></textarea><br>
+
+            <label>No. Telepon:</label>
+            <input type="text" id="phone" required><br>
+
+            <button type="button" onclick="addAddress()">Simpan</button>
+            <button type="button" onclick="hideAddAddressForm()">Batal</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showAddAddressForm() {
+    document.getElementById('add-address-form').classList.remove('hidden');
+}
+
+function hideAddAddressForm() {
+    document.getElementById('add-address-form').classList.add('hidden');
+}
+
+function addAddress() {
+    const name = document.getElementById('name').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+
+    if (name && address && phone) {
+        const addressList = document.getElementById('address-list');
+        const newAddress = document.createElement('div');
+        newAddress.classList.add('address-card');
+        newAddress.innerHTML = `
+            <p><strong>Nama:</strong> ${name}</p>
+            <p><strong>Alamat:</strong> ${address}</p>
+            <p><strong>No. Telepon:</strong> ${phone}</p>
+            <div class="address-actions">
+                <button onclick="editAddress()">Edit</button>
+                <button onclick="deleteAddress()">Hapus</button>
+            </div>
+        `;
+        addressList.appendChild(newAddress);
+        hideAddAddressForm();
+    } else {
+        alert('Harap lengkapi semua bidang.');
+    }
+}
+
+function editAddress() {
+    alert('Fungsi edit belum diimplementasikan.');
+}
+
+function deleteAddress() {
+    alert('Fungsi hapus belum diimplementasikan.');
+}
+
+</script>
+
+</body>
+</html>
