@@ -64,9 +64,22 @@
             color: white;
         }
 
+        .btn-buy:hover {
+            background-color: #ffc107;
+            transition: background-color 0.3s ease;
+            /* animasi perubahan */
+        }
+
         .btn-cart {
             background-color: #033043;
             color: white;
+        }
+
+        .btn-cart:hover {
+            background-color: #ffc107;
+            /* warna saat hover */
+            transition: background-color 0.3s ease;
+            /* animasi perubahan */
         }
 
         .quantity-control {
@@ -82,6 +95,22 @@
 
         .quantity-control button {
             width: 40px;
+            background-color: #033043;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .quantity-control input[type="number"]::-webkit-inner-spin-button,
+        .quantity-control input[type="number"]::-webkit-outer-spin-button {
+            opacity: 1;
+            /* Menampilkan ikon spin secara permanen */
+        }
+
+
+        .quantity-control input[type="number"]:focus {
+            border-color: #80bdff;
+            /* Warna saat input aktif */
+            outline: none;
         }
 
         .dropdown-menu {
@@ -136,6 +165,10 @@
         .navbar-brand {
             color: #033043 !important;
             font-size: 24px;
+        }
+
+        .navbar-brand:hover {
+            color: white !important;
         }
     </style>
 </head>
@@ -196,7 +229,7 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                         <li><a class="dropdown-item profile-edit" href="/profile"><i class="fa-solid fa-user-edit"></i>
                                 Profil Saya</a></li>
-                        <li><a class="dropdown-item profile-edit" href="/address"><i class="fa-solid fa-map"></i>
+                        <li><a class="dropdown-item profile-edit" href="alamat.html"><i class="fa-solid fa-map"></i>
                                 Alamat Saya</a></li>
                         <li><a class="dropdown-item logout" href="/logout"><i class="fa-solid fa-sign-out-alt"></i>
                                 Logout</a></li>
@@ -236,39 +269,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
     <script>
         const products = [
-            { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 10.000', category: 'Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal for wrapping food items.' },
-            { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 7.500', category: 'Minuman', image: '/img/plastik_minuman.jpg', description: 'Perfect for beverage packaging.' },
-            { id: 3, name: 'Plastik Ziplock', price: 'Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Convenient for storage and organization.' },
-            { id: 4, name: 'Plastik Wrapping', price: 'Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Versatile wrapping solutions.' },
-            { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 25.000', category: 'Kemasan', image: '/img/kemasan_vakum.jpg', description: 'Keeps food fresh longer.' },
-            { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 12.000', category: 'Kemasan', image: '/img/kemasan_kertas.jpg', description: 'Eco-friendly packaging option.' }];
+            { id: 1, name: 'Plastik Bungkus Makanan', price: 'Rp 10.000', category: 'Plastik Makanan', image: '/img/plastik_makanan.jpg', description: 'Ideal untuk membungkus makanan.', variant: 'Ukuran Kecil', stock: 300 },
+            { id: 2, name: 'Plastik Bungkus Minuman', price: 'Rp 7.500', category: 'Plastik Minuman', image: '/img/plastik_minuman.jpg', description: 'Sempurna untuk kemasan minuman.', variant: '500ml', stock: 120 },
+            { id: 3, name: 'Plastik Ziplock', price: 'Rp 20.000', category: 'Kemasan', image: '/img/plastik_ziplock.jpg', description: 'Praktis untuk penyimpanan dan pengorganisasian.', variant: 'Ukuran Sedang', stock: 50 },
+            { id: 4, name: 'Plastik Wrapping', price: 'Rp 15.000', category: 'Kemasan', image: '/img/kemasan_wrapping.jpg', description: 'Solusi pembungkus serbaguna.', variant: '1 Meter', stock: 75 },
+            { id: 5, name: 'Plastik Kemasan Vakum', price: 'Rp 25.000', category: 'Kemasan', image: '/img/kemasan_vakum.jpg', description: 'Menjaga makanan tetap segar lebih lama.', variant: '300g', stock: 45 },
+            { id: 6, name: 'Plastik Kemasan Kertas', price: 'Rp 12.000', category: 'Kemasan', image: '/img/kemasan_kertas.jpg', description: 'Pilihan kemasan ramah lingkungan.', variant: '25x30cm', stock: 200 }
+        ];
 
         const productId = new URLSearchParams(window.location.search).get('id');
         const product = products.find(p => p.id == productId);
 
         if (product) {
             document.getElementById('product-detail').innerHTML = `
-            <div class="col-md-6">
-                <img src="${product.image}" alt="${product.name}" class="product-image">
-            </div>
-            <div class="col-md-6">
-                <h2 class="product-name">${product.name}</h2>
-                <p class="product-price">Rp ${product.price}</p>
-                <p class="product-description">${product.description}</p>
-                <div class="product-info">
-                    <p><strong>Kategori:</strong> ${product.category}</p>
-                    <p><strong>Berat:</strong> ${product.weight}</p>
-                    <p><strong>Ketersediaan:</strong> ${product.availability}</p>
+                <div class="col-md-6">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
                 </div>
-                <div class="quantity-control">
-                    <button onclick="changeQuantity(-1)">-</button>
-                    <input type="number" id="quantity" value="1" min="1">
-                    <button onclick="changeQuantity(1)">+</button>
+                <div class="col-md-6">
+                    <h2 class="product-name">${product.name}</h2>
+                    <p class="product-price">${product.price}</p>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-info">
+                        <p><strong>Kategori:</strong> ${product.category}</p>
+                        <p><strong>Varian:</strong> ${product.variant}</p>
+                        <p><strong>Stok Tersisa:</strong> ${product.stock} pcs</p>
+                    </div>
+                    <div class="quantity-control">
+                        <button onclick="changeQuantity(-1)">-</button>
+                        <input type="number" id="quantity" value="1" min="1">
+                        <button onclick="changeQuantity(1)">+</button>
+                    </div>
+                    <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
+                    <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
                 </div>
-                <button class="btn btn-buy" onclick="addToCart(${product.id})">Beli Sekarang</button>
-                <button class="btn btn-cart" onclick="addToCart(${product.id})">Masukkan ke Keranjang</button>
-            </div>
-        `;
+            `;
 
             loadReviews(productId); // Memanggil fungsi untuk memuat ulasan
         }
@@ -323,9 +357,6 @@
             }
         }
 
-
-
-
         function addToCart(productId) {
             let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
             cartItems.push(productId);
@@ -341,6 +372,7 @@
             }
         }
     </script>
+
 </body>
 
 </html>
